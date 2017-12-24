@@ -121,7 +121,7 @@ export class AuthProvider {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        this.http.delete(this.url + 'api/auth/delete', JSON.stringify(this.token._id), {headers: headers})
+        this.http.post(this.url + 'api/auth/delete', JSON.stringify(this.token._id), {headers: headers})
           .subscribe(res => {
 
             let data = res.json();
