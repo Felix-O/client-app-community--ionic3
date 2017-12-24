@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { MapProvider } from '../../providers/map/map';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,18 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  @ViewChild('map') mapRef: ElementRef;
 
+  constructor(public navCtrl: NavController, public map: MapProvider) {
+
+  }
+
+  ionViewDidLoad(){
+      //this.map.showMap(this.mapRef.nativeElement);
+  }
+
+  goToLogin(){
+    this.navCtrl.setRoot('LoginPage');
   }
 
 }
