@@ -33,7 +33,7 @@ export class ProfilePage {
     //Check if already authenticated
     this.authService.checkAuthentication().then((res) => {
         console.log("Authorized");
-        this.authService.useEmail().then((value) => {
+        this.authService.storedUser().then((value) => {
           //console.log(value);
           this.showData(value);
         });

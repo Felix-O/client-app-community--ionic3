@@ -7,12 +7,13 @@ import 'rxjs/add/operator/map';
 export class AuthProvider {
 
   public token: any;
+  public user: any;
   public url: string = 'https://fo-server--express.herokuapp.com/';
 
   constructor(public http: Http, public storage: Storage) {
   }
 
-  useEmail(){
+  storedUser(){
     return this.storage.get('user');
   }
 
@@ -49,15 +50,14 @@ export class AuthProvider {
 
             let data = res.json();
             this.token = data.token;
+            this.user = data.user;
             this.storage.set('token', data.token);
             this.storage.set('user', data.user);
             resolve(data);
           }, (err) => {
             reject(err);
           });
-
     });
-
   }
 
   login(credentials){
@@ -73,17 +73,15 @@ export class AuthProvider {
             let data = res.json();
             //console.log(data.user);
             this.token = data.token;
+            this.user = data.user;
             this.storage.set('user', data.user);
             this.storage.set('token', data.token);
             resolve(data);
-
             //resolve(res.json());
           }, (err) => {
             reject(err);
           });
-
     });
-
   }
 
   logout(){
@@ -103,10 +101,11 @@ export class AuthProvider {
           .subscribe(res => {
 
             let data = res.json();
-            console.log(data);
-            //this.token = data.token;
-            //this.storage.set('token', data.token);
-            //this.storage.set('user', data.user);
+            //console.log(data);
+            this.token = data.token;
+            this.user = data.user;
+            this.storage.set('token', data.token);
+            this.storage.set('user', data.user);
             resolve(data);
           }, (err) => {
             reject(err);
@@ -121,10 +120,12 @@ export class AuthProvider {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        this.http.post(this.url + 'api/auth/delete', JSON.stringify(this.token._id), {headers: headers})
+        this.http.post(this.url + 'api/auth/delete', JSON.stringify(this.user._id), {headers: headers})
           .subscribe(res => {
 
             let data = res.json();
+
+            this.logout();
 
             resolve(data);
           }, (err) => {

@@ -19,16 +19,16 @@ export class LoginPage {
 
     ionViewDidLoad() {
 
-        this.showLoader();
+        //this.showLoader();
 
         //Check if already authenticated
         this.authService.checkAuthentication().then((res) => {
             console.log("Already authorized");
-            this.loading.dismiss();
+            //this.loading.dismiss();
             this.navCtrl.setRoot('ProfilePage');
         }, (err) => {
             console.log("Not already authorized");
-            this.loading.dismiss();
+            //this.loading.dismiss();
         });
 
     }
