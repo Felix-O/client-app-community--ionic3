@@ -1,6 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MapProvider } from '../../providers/map/map';
+import { PopoverController } from 'ionic-angular';
+//import { PopoverPage } from '../popover/popover';
 
 @Component({
   selector: 'page-home',
@@ -10,7 +12,9 @@ export class HomePage {
 
   @ViewChild('map') mapRef: ElementRef;
 
-  constructor(public navCtrl: NavController, public map: MapProvider) {
+  constructor(
+    public popoverCtrl: PopoverController,
+    public navCtrl: NavController, public map: MapProvider) {
 
   }
 
@@ -19,7 +23,11 @@ export class HomePage {
   }
 
   goToLogin(){
-    this.navCtrl.setRoot('LoginPage');
+  }
+
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create('PopoverPage');
+    popover.present({ev: ev});
   }
 
 }
