@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
@@ -13,7 +13,8 @@ export class LoginPage {
     password: string;
     loading: any;
 
-    constructor(public navCtrl: NavController, public authService: AuthProvider, public loadingCtrl: LoadingController) {
+    constructor(public viewCtrl: ViewController,
+      public navCtrl: NavController, public authService: AuthProvider, public loadingCtrl: LoadingController) {
 
     }
 
@@ -64,7 +65,10 @@ export class LoginPage {
         });
 
         this.loading.present();
+    }
 
+    close(){
+      this.viewCtrl.dismiss();
     }
 
 }

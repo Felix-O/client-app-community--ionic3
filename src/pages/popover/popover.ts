@@ -13,9 +13,7 @@ import { IonicPage, ViewController, ModalController } from 'ionic-angular';
   selector: 'page-popover',
   templateUrl: 'popover.html',
   template: `
-  <ion-list>
     <button ion-item (click)="goToLogin()">Login</button>
-  </ion-list>
 `
 })
 export class PopoverPage {

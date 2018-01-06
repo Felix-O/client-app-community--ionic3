@@ -1,14 +1,8 @@
 //import { HttpClient } from '@angular/common/http';
-import { Injectable, /*ViewChild,*/ ElementRef } from '@angular/core';
+import { Injectable/*, ViewChild, ElementRef/**/ } from '@angular/core';
 
 declare var google: any;
 
-/*
-  Generated class for the MapProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class MapProvider {
 
@@ -28,7 +22,7 @@ export class MapProvider {
 
     this.gMap = new google.maps.Map(mapRef, options);
 
-    this.addMarker(location, this.gMap);
+    //this.addMarker(location, this.gMap);
   }
 
   addMarker(position, map){
