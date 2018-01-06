@@ -15,13 +15,13 @@ export class HomePage {
   //gMap: any;
 
   constructor(
-    public popoverCtrl: PopoverController,
+    public popoverCtrl: PopoverController/**/,
     public navCtrl: NavController/**/, public mapPrvdr: MapProvider/**/) {
 
   }
 
   ionViewDidLoad(){
-      this.mapPrvdr.showMap(this.mapRef.nativeElement);
+      //this.mapPrvdr.showMap(this.mapRef.nativeElement);
       //this.showMap();
   }
 
