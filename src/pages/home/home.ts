@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MapProvider } from '../../providers/map/map';
+import { IndexProvider } from '../../providers/index/index';
 import { PopoverController } from 'ionic-angular';
 
 //declare var google: any;
@@ -13,19 +14,30 @@ export class HomePage {
 
   @ViewChild('map') mapRef: ElementRef;
   //gMap: any;
+  userData;
 
-  constructor(
+  constructor(/**/
     public popoverCtrl: PopoverController/**/,
-    public navCtrl: NavController/**/, public mapPrvdr: MapProvider/**/) {
+    public navCtrl: NavController/**/,
+    public mapPvdr: MapProvider/**/,
+    public indexPvdr: IndexProvider/**/) {
 
   }
 
   ionViewDidLoad(){
-      //this.mapPrvdr.showMap(this.mapRef.nativeElement);
+      //this.mapPvdr.showMap(this.mapRef.nativeElement);
       //this.showMap();
+      this.indexPvdr.getUsers().then((res) => {
+        this.userData = res.json();
+        console.log(this.userData);
+      });
   }
 
   goToLogin(){
+  }
+
+  goToUser(){
+    this.navCtrl.setRoot('UserPage');
   }
 
   presentPopover(ev){

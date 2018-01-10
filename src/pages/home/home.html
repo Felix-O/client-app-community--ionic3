@@ -19,7 +19,11 @@
   <div #map id="map">
 
   </div>
-
-  <!--button ion-button full (click)="goToLogin()">Login</button-->
+<br>
+  <ion-list *ngFor="let aUser of userData">
+    <button ion-item (click)="goToUser()">
+      {{aUser.firstname}} {{aUser.lastname}}
+    </button>
+  </ion-list>
 
 </ion-content>

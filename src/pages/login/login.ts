@@ -27,6 +27,7 @@ export class LoginPage {
             console.log("Already authorized");
             //this.loading.dismiss();
             this.navCtrl.setRoot('ProfilePage');
+            //this.close();
         }, (err) => {
             console.log("Not already authorized");
             //this.loading.dismiss();
@@ -47,6 +48,7 @@ export class LoginPage {
             this.loading.dismiss();
             console.log(result);
             this.navCtrl.setRoot('ProfilePage');
+            //this.close();
         }, (err) => {
             this.loading.dismiss();
             console.log(err);
@@ -56,14 +58,13 @@ export class LoginPage {
 
     launchSignup(){
         this.navCtrl.push('RegisterPage');
+        this.close();
     }
 
     showLoader(){
-
         this.loading = this.loadingCtrl.create({
             content: 'Authenticating...'
         });
-
         this.loading.present();
     }
 

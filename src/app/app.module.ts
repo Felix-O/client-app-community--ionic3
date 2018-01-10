@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MapProvider } from '../providers/map/map';
 import { AuthProvider } from '../providers/auth/auth';
+import { IndexProvider } from '../providers/index/index';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthProvider } from '../providers/auth/auth';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MapProvider,
-    AuthProvider
+    AuthProvider,
+    IndexProvider
   ]
 })
 export class AppModule {}

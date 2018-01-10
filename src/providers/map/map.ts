@@ -12,7 +12,7 @@ export class MapProvider {
   constructor() {
   }
 
-  showMap(mapRef: ElementRef){
+  showMap(mapRef: any){
     const location = new google.maps.LatLng(117.1611,32.715736);
 
     const options = {
