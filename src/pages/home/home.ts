@@ -27,8 +27,8 @@ export class HomePage {
   ionViewDidLoad(){
       //this.mapPvdr.showMap(this.mapRef.nativeElement);
       //this.showMap();
-      this.indexPvdr.getUsers().then((data) => {
-        this.userData = data;
+      this.indexPvdr.getUsers().then(res => {
+        this.userData = res;
         //console.log(res.json());
       });
   }
