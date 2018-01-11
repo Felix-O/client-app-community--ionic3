@@ -14,7 +14,7 @@ export class HomePage {
 
   //@ViewChild('map') mapRef: ElementRef;
   //gMap: any;
-  userData: any;
+  userData = [];
 
   constructor(/**/
     public popoverCtrl: PopoverController/**/,
@@ -27,9 +27,9 @@ export class HomePage {
   ionViewDidLoad(){
       //this.mapPvdr.showMap(this.mapRef.nativeElement);
       //this.showMap();
-      this.indexPvdr.getUsers().then((res) => {
-        this.userData = res.json();
-        console.log(this.userData);
+      this.indexPvdr.getUsers().then((data) => {
+        this.userData = data;
+        //console.log(res.json());
       });
   }
 

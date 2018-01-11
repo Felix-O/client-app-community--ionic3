@@ -28,9 +28,8 @@ export class IndexProvider {
 
             this.http.get(this.url + 'api/index/users', {headers: headers})
                 .subscribe(res => {
-                   //console.log(res.json());
-                   //this.userData = res;
-                    resolve(res);
+                   let data = res.json();
+                    resolve(data);
                 }, (err) => {
                     reject(err);
                 });
