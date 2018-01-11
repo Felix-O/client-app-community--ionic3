@@ -7,11 +7,11 @@ declare var google: any;
 export class MapProvider {
 
   //@ViewChild('map') mapRef: ElementRef;
-  gMap: any;
+  //gMap: any;
 
   constructor() {
   }
-
+/*
   showMap(mapRef: any){
     const location = new google.maps.LatLng(117.1611,32.715736);
 
@@ -30,6 +30,6 @@ export class MapProvider {
       position,
       map
     });
-  }
+  }/**/
 
 }
