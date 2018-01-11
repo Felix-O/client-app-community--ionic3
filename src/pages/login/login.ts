@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ViewController, LoadingController } from 'ionic-angular';
+import { App, IonicPage, NavController, ViewController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 
-@IonicPage()
+@IonicPage({
+  defaultHistory: ['register']
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -13,9 +15,11 @@ export class LoginPage {
     password: string;
     loading: any;
 
-    constructor(public viewCtrl: ViewController,
-      public navCtrl: NavController, public authService: AuthProvider, public loadingCtrl: LoadingController) {
-
+    constructor( protected app: App,
+      public viewCtrl: ViewController,
+      public navCtrl: NavController,
+      public authService: AuthProvider,
+      public loadingCtrl: LoadingController) {
     }
 
     ionViewDidLoad() {
@@ -26,7 +30,7 @@ export class LoginPage {
         this.authService.checkAuthentication().then((res) => {
             console.log("Already authorized");
             //this.loading.dismiss();
-            this.navCtrl.setRoot('ProfilePage');
+            this.app.getRootNav().setRoot('ProfilePage');
             //this.close();
         }, (err) => {
             console.log("Not already authorized");
@@ -36,24 +40,20 @@ export class LoginPage {
     }
 
     login(){
-
         this.showLoader();
-
         let credentials = {
             email: this.email,
             password: this.password
         };
-
         this.authService.login(credentials).then((result) => {
             this.loading.dismiss();
-            console.log(result);
-            this.navCtrl.setRoot('ProfilePage');
-            //this.close();
+            //console.log(result);
+            this.app.getRootNav().setRoot('ProfilePage');
+            this.close();
         }, (err) => {
             this.loading.dismiss();
-            console.log(err);
+            //console.log(err);
         });
-
     }
 
     launchSignup(){

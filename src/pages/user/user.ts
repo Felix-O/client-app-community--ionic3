@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+//import { PopoverController } from 'ionic-angular';
 
 /**
  * Generated class for the UserPage page.
@@ -21,7 +22,10 @@ export class UserPage {
   firstname: any;
   lastname: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    //public popoverCtrl: PopoverController/**/,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
 
   }
 
@@ -31,5 +35,11 @@ export class UserPage {
     this.lastname = this.navParams.get('ln');
     //console.log(this.user);
   }
+
+/*
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create('PopoverPage');
+    popover.present({ev: ev});
+  }/**/
 
 }

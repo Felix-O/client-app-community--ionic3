@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, ModalController } from 'ionic-angular';
-
+import { App, IonicPage, ViewController, ModalController } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth/auth';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the PopoverPage page.
  *
@@ -13,16 +14,33 @@ import { IonicPage, ViewController, ModalController } from 'ionic-angular';
   selector: 'page-popover',
   templateUrl: 'popover.html',
   template: `
-    <button ion-item (click)="goToLogin()">Login</button>
+    <button *ngIf ="!loggedIn" ion-item (click)="goToLogin()">Login</button>
+    <button *ngIf ="loggedIn" ion-item (click)="logOut()">Logout</button>
 `
 })
 export class PopoverPage {
 
-  constructor(public modalCtrl: ModalController,
-    public viewCtrl: ViewController) {
+  loggedIn: boolean;
+
+  constructor(protected app: App,
+    public modalCtrl: ModalController,
+    public viewCtrl: ViewController,
+    public authService: AuthProvider) {
+      //Check if already authenticated
+      this.authService.checkAuthentication().then((res) => {
+          this.authService.storedUser().then((value) => {
+            if(value){
+              this.loggedIn = true;
+            }
+          });
+      }, (err) => {
+          this.loggedIn = false;
+      });/**/
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+
+  }
 
   close() {
     this.viewCtrl.dismiss();
@@ -32,4 +50,11 @@ export class PopoverPage {
     this.modalCtrl.create('LoginPage').present();
     this.viewCtrl.dismiss();
   }
+
+  logOut(){
+    this.authService.logout();
+    this.loggedIn = false;
+    this.app.getRootNav().setRoot(HomePage);
+  }
+
 }

@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import { PopoverController } from 'ionic-angular';
 
-@IonicPage()
+@IonicPage({
+  name: 'register'
+})
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html'
@@ -18,12 +21,27 @@ export class RegisterPage {
   ln: string;
   un: string;
 
-  constructor(public navCtrl: NavController, public authService: AuthProvider, public loadingCtrl: LoadingController) {
+  constructor(public popoverCtrl: PopoverController/**/,
+    public navCtrl: NavController,
+    public authService: AuthProvider,
+    public loadingCtrl: LoadingController) {
 
   }
 
-  register(){
+  ionViewDidLoad() {
+    //Check if already authenticated
+    this.authService.checkAuthentication().then((res) => {
+        console.log("Authorized");
+        this.authService.storedUser().then((value) => {
+          //console.log(value);
+          this.navCtrl.setRoot('ProfilePage');
+        });
+    }, (err) => {
+        console.log("You may register");
+    });
+  }
 
+  register(){
     this.showLoader();
 
     let details = {
@@ -46,13 +64,15 @@ export class RegisterPage {
   }
 
   showLoader(){
-
     this.loading = this.loadingCtrl.create({
       content: 'Authenticating...'
     });
-
     this.loading.present();
+  }
 
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create('PopoverPage');
+    popover.present({ev: ev});
   }
 
 }
