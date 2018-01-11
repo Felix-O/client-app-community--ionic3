@@ -4,7 +4,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { PopoverController } from 'ionic-angular';
 
 @IonicPage({
-  name: 'register'
+  name: 'RegisterPage'
 })
 @Component({
   selector: 'page-register',
@@ -43,7 +43,6 @@ export class RegisterPage {
 
   register(){
     this.showLoader();
-
     let details = {
         firstname: this.fn,
         lastname: this.ln,
@@ -52,15 +51,13 @@ export class RegisterPage {
         password: this.password,
         role: this.role
     };
-
     this.authService.createAccount(details).then((result) => {
       this.loading.dismiss();
-      console.log(result);
+      //console.log(result);
       this.navCtrl.setRoot('HomePage');
     }, (err) => {
         this.loading.dismiss();
     });
-
   }
 
   showLoader(){

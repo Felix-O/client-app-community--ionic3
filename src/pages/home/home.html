@@ -21,7 +21,7 @@
   </div-->
 <br>
   <ion-list *ngFor="let aUser of userData">
-    <button ion-item (click)="goToUser(aUser._id, aUser.firstname, aUser.lastname, aUser.username)">
+    <button ion-item (click)="goToUser(aUser._id, aUser.firstname, aUser.lastname, aUser.username, aUser.email, aUser.role)">
       {{aUser.firstname}} {{aUser.lastname}}
     </button>
   </ion-list>

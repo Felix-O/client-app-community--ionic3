@@ -36,8 +36,8 @@ export class HomePage {
   goToLogin(){
   }
 
-  goToUser(userID, firstname, lastname, username){
-    this.navCtrl.setRoot('UserPage', { uid: userID, fn: firstname, ln: lastname, un: username });
+  goToUser(userID, firstname, lastname, username, email, role){
+    this.navCtrl.setRoot('UserPage', { uid: userID, fn: firstname, ln: lastname, un: username, em: email, rl: role });
   }
 
   presentPopover(ev){

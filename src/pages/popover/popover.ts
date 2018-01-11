@@ -38,7 +38,7 @@ export class PopoverPage {
       });/**/
   }
 
-  ionViewDidLoad() {
+  ionViewWillAppear() {
 
   }
 
@@ -48,13 +48,14 @@ export class PopoverPage {
 
   goToLogin(){
     this.modalCtrl.create('LoginPage').present();
-    this.viewCtrl.dismiss();
+    this.close();
   }
 
   logOut(){
     this.authService.logout();
-    this.loggedIn = false;
+    //this.loggedIn = false;
     this.app.getRootNav().setRoot(HomePage);
+    this.close();
   }
 
 }
