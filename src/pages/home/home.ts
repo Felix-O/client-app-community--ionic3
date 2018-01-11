@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { MapProvider } from '../../providers/map/map';
+//import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
 import { PopoverController } from 'ionic-angular';
 
@@ -14,12 +14,12 @@ export class HomePage {
 
   //@ViewChild('map') mapRef: ElementRef;
   //gMap: any;
-  userData;
+  userData: any;
 
   constructor(/**/
     public popoverCtrl: PopoverController/**/,
     public navCtrl: NavController/**/,
-    public mapPvdr: MapProvider/**/,
+    //public mapPvdr: MapProvider/**/,
     public indexPvdr: IndexProvider/**/) {
 
   }
