@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="">
     <ion-title>
-      Resource Index
+      Index
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="search()">
@@ -21,7 +21,7 @@
   </div>
 <br>
   <ion-list *ngFor="let aUser of userData">
-    <button ion-item (click)="goToUser()">
+    <button ion-item (click)="goToUser(aUser._id, aUser.firstname, aUser.lastname, aUser.username)">
       {{aUser.firstname}} {{aUser.lastname}}
     </button>
   </ion-list>
