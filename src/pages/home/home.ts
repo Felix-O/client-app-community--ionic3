@@ -14,7 +14,7 @@ export class HomePage {
 
   //@ViewChild('map') mapRef: ElementRef;
   //gMap: any;
-  userData = [];
+  userData: {};
 
   constructor(/**/
     public popoverCtrl: PopoverController/**/,
