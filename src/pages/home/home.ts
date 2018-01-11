@@ -12,7 +12,7 @@ import { PopoverController } from 'ionic-angular';
 })
 export class HomePage {
 
-  @ViewChild('map') mapRef: ElementRef;
+  //@ViewChild('map') mapRef: ElementRef;
   //gMap: any;
   userData;
 
@@ -44,23 +44,5 @@ export class HomePage {
     let popover = this.popoverCtrl.create('PopoverPage');
     popover.present({ev: ev});
   }
-
-/*
-  showMap(){
-    const location = new google.maps.LatLng(117.1611,32.715736);
-    const options = {
-      center: location,
-      zoom: 10
-    }
-    this.gMap = new google.maps.Map(this.mapRef.nativeElement, options);
-    this.addMarker(location, this.gMap);
-  }
-
-  addMarker(position, map){
-    return new google.maps.Marker({
-      position,
-      map
-    });
-  }/**/
 
 }
