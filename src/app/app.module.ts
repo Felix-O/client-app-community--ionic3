@@ -8,15 +8,15 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+//import { HomePage } from '../pages/home/home';
 import { MapProvider } from '../providers/map/map';
 import { AuthProvider } from '../providers/auth/auth';
 import { IndexProvider } from '../providers/index/index';
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp//,
+    //HomePage
   ],
   imports: [
     BrowserModule,
@@ -26,8 +26,8 @@ import { IndexProvider } from '../providers/index/index';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp//,
+    //HomePage
   ],
   providers: [
     StatusBar,

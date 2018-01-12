@@ -1,11 +1,11 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 //import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
 import { PopoverController } from 'ionic-angular';
 
 //declare var google: any;
-
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

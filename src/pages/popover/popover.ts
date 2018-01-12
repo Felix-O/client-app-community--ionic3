@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { App, IonicPage, ViewController, ModalController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { HomePage } from '../home/home';
+//import { HomePage } from '../home/home';
 /**
  * Generated class for the PopoverPage page.
  *
@@ -54,7 +54,7 @@ export class PopoverPage {
   logOut(){
     this.authService.logout();
     //this.loggedIn = false;
-    this.app.getRootNav().setRoot(HomePage);
+    this.app.getRootNav().setRoot('HomePage');
     this.close();
   }
 

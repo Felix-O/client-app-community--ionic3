@@ -43,7 +43,7 @@ export class ProfilePage {
         });
     }, (err) => {
         console.log("Not Authorized");
-        this.navCtrl.setRoot('LoginPage');
+        this.navCtrl.setRoot('HomePage');
     });
   }
 
@@ -59,7 +59,7 @@ export class ProfilePage {
 
   loggingOut(){
     this.authService.logout();
-    this.navCtrl.setRoot('LoginPage');
+    this.navCtrl.setRoot('HomePage');
   }
 
   update(){
