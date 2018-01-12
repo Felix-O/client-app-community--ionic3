@@ -38,7 +38,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     MapProvider,
     AuthProvider,
     IndexProvider,
-    {provide: LocationStrategy, useClass: PathLocationStrategy},
+    //{provide: LocationStrategy, useClass: PathLocationStrategy},
   ]
 })
 export class AppModule {}

@@ -14,8 +14,11 @@ import { AuthProvider } from '../../providers/auth/auth';
   selector: 'page-popover',
   templateUrl: 'popover.html',
   template: `
-    <button *ngIf ="!loggedIn" ion-item (click)="goToLogin()">Login</button>
-    <button *ngIf ="loggedIn" ion-item (click)="logOut()">Logout</button>
+
+    <button class="popdrop" ion-item (click)="goHome()">&nbsp;&nbsp;&nbsp;Home</button>
+    <button class="popdrop" *ngIf ="!loggedIn" ion-item (click)="goToLogin()">&nbsp;&nbsp;&nbsp;Login</button>
+    <button class="popdrop" *ngIf ="loggedIn" ion-item (click)="logOut()">&nbsp;&nbsp;&nbsp;Logout</button>
+
 `
 })
 export class PopoverPage {
@@ -48,6 +51,11 @@ export class PopoverPage {
 
   goToLogin(){
     this.modalCtrl.create('LoginPage').present();
+    this.close();
+  }
+
+  goHome(){
+    this.app.getRootNav().setRoot('HomePage');
     this.close();
   }
 
