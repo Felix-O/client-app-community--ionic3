@@ -57,7 +57,7 @@ export class LoginPage {
     }
 
     launchSignup(){
-        this.navCtrl.push('RegisterPage');
+        this.app.getRootNav().setRoot('RegisterPage');
         this.close();
     }
 

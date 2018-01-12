@@ -13,6 +13,8 @@ import { MapProvider } from '../providers/map/map';
 import { AuthProvider } from '../providers/auth/auth';
 import { IndexProvider } from '../providers/index/index';
 
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+
 @NgModule({
   declarations: [
     MyApp//,
@@ -35,7 +37,8 @@ import { IndexProvider } from '../providers/index/index';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MapProvider,
     AuthProvider,
-    IndexProvider
+    IndexProvider,
+    {provide: LocationStrategy, useClass: PathLocationStrategy},
   ]
 })
 export class AppModule {}
