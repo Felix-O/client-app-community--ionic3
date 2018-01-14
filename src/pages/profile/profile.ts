@@ -77,7 +77,8 @@ export class ProfilePage {
   }
 
   delete(){
-    this.authService.deleteAccount();
+    this.authService.deleteAccount(this._id);
+    //console.log(this._id);
     this.navCtrl.setRoot('HomePage');
   }
 

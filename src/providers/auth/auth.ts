@@ -18,18 +18,15 @@ export class AuthProvider {
   }
 
   checkAuthentication(){
-
     return new Promise((resolve, reject) => {
         //Load token if exists
         this.storage.get('token').then((value) => {
-
             this.token = value;
-
             let headers = new Headers();
             headers.append('Authorization', this.token);
-
             this.http.get(this.url + 'api/auth/protected', {headers: headers})
                 .subscribe(res => {
+                    //console.log(res.json());
                     resolve(res);
                 }, (err) => {
                     reject(err);
@@ -39,15 +36,11 @@ export class AuthProvider {
   }
 
   createAccount(details){
-
     return new Promise((resolve, reject) => {
-
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
         this.http.post(this.url + 'api/auth/register', JSON.stringify(details), {headers: headers})
           .subscribe(res => {
-
             let data = res.json();
             this.token = data.token;
             this.user = data.user;
@@ -61,19 +54,16 @@ export class AuthProvider {
   }
 
   login(credentials){
-
     return new Promise((resolve, reject) => {
-
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
         this.http.post(this.url + 'api/auth/login', JSON.stringify(credentials), {headers: headers})
           .subscribe(res => {
-
             let data = res.json();
             //console.log(data.user);
             this.token = data.token;
             this.user = data.user;
+            console.log(this.user);
             this.storage.set('user', data.user);
             this.storage.set('token', data.token);
             resolve(data);
@@ -90,16 +80,12 @@ export class AuthProvider {
   }
 
   updateAccount(details){
-
     return new Promise((resolve, reject) => {
-
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         //headers.append('Authorization', this.token);
-
         this.http.put(this.url + 'api/auth/update', JSON.stringify(details), {headers: headers})
           .subscribe(res => {
-
             let data = res.json();
             //console.log(data);
             this.token = data.token;
@@ -113,21 +99,19 @@ export class AuthProvider {
     });
   }
 
-  deleteAccount(){
-
+  deleteAccount(userID){
+    console.log(userID);
+    let userForDeletion = {
+      _id : userID
+    }
     return new Promise((resolve, reject) => {
-
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
-        this.http.post(this.url + 'api/auth/delete', JSON.stringify(this.user._id), {headers: headers})
+        this.http.post(this.url + 'api/auth/delete', JSON.stringify(userForDeletion), {headers: headers})
           .subscribe(res => {
-
-            let data = res.json();
-
+            //let data = res.json();
             this.logout();
-
-            resolve(data);
+            resolve(res);
           }, (err) => {
             reject(err);
           });
