@@ -63,7 +63,6 @@ export class ProfilePage {
   }
 
   update(){
-
     let details = {
         _id : this._id,
         firstname: this.fn,
@@ -73,12 +72,13 @@ export class ProfilePage {
         password: this.password,
         role: this.role
     };
-
     this.authService.updateAccount(details);
+    this.navCtrl.setRoot('HomePage');
   }
 
   delete(){
     this.authService.deleteAccount();
+    this.navCtrl.setRoot('HomePage');
   }
 
   presentPopover(ev){

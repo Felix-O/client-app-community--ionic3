@@ -19,6 +19,10 @@ export class IndexProvider {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
+      headers.append('Content-Type', 'text/plain');
+      headers.append('Accept', 'application/json');
+      headers.append('Accept', 'text/plain');
+      headers.append('Content-Type', 'Authorization');
       this.http.get(this.url + 'api/index/users', {headers: headers})
           .subscribe(res => {
              let data = res.json();
@@ -42,5 +46,23 @@ export class IndexProvider {
           });
     });
   }
+
+  getContents(){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Content-Type', 'text/plain');
+      headers.append('Accept', 'application/json');
+      headers.append('Accept', 'text/plain');
+      //headers.append("Cache-Control", "no-store");
+      this.http.get(this.url + "api/googledrive/filecontents", {headers: headers})
+          .subscribe(res => {
+             let data = res.json();
+              resolve(data);
+          }, (err) => {
+              reject(err);
+          });
+    });
+  }/**/
 
 }

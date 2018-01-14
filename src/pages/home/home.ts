@@ -15,6 +15,7 @@ export class HomePage {
   //@ViewChild('map') mapRef: ElementRef;
   //gMap: any;
   userData: {};
+  gDoc: any;
 
   constructor(/**/
     public popoverCtrl: PopoverController/**/,
@@ -31,6 +32,10 @@ export class HomePage {
         this.userData = res;
         //console.log(res.json());
       });
+      this.indexPvdr.getContents().then(res => {
+        console.log(res);
+        this.gDoc = res;
+      });/**/
   }
 
   goToLogin(){
