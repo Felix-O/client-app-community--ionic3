@@ -36,13 +36,13 @@ export class ProfilePage {
   ionViewDidLoad() {
     //Check if already authenticated
     this.authService.checkAuthentication().then((res) => {
-        console.log("Authorized");
+        //console.log("Authorized");
         this.authService.storedUser().then((value) => {
           //console.log(value);
           this.showData(value);
         });
     }, (err) => {
-        console.log("Not Authorized");
+        //console.log("Not Authorized");
         this.navCtrl.setRoot('HomePage');
     });
   }
