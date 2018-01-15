@@ -33,7 +33,7 @@ export class HomePage {
         //console.log(res.json());
       });
       this.indexPvdr.getContents().then(res => {
-        console.log(res);
+        //console.log(res);
         this.gDoc = res.substr(1074);
       });/**/
   }
