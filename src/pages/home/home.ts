@@ -35,7 +35,8 @@ export class HomePage {
       this.indexPvdr.getContents().then(res => {
         console.log(JSON.stringify(res));
 
-        this.gDoc = JSON.stringify(res).substr(1101);
+        this.gDoc = JSON.stringify(res).substr(1101).slice(0, -1);
+
       });/**/
   }
 
