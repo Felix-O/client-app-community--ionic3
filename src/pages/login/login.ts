@@ -1,21 +1,31 @@
 import { Component } from '@angular/core';
 import { App, IonicPage, NavController, ViewController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import { User } from '../../models/user';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+//import { GooglePlus } from '@ionic-native/google-plus';
+
+//declare window: any;
 
 @IonicPage({
-  defaultHistory: ['register']
+  defaultHistory: ['HomePage']
 })
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
+  //providers: [GooglePlus]
 })
 export class LoginPage {
 
     email: string;
     password: string;
     loading: any;
+    user = {} as User;
 
     constructor( protected app: App,
+      private aFAuth: AngularFireAuth,
+      //private googlePlus: GooglePlus,
       public viewCtrl: ViewController,
       public navCtrl: NavController,
       public authService: AuthProvider,
@@ -23,9 +33,7 @@ export class LoginPage {
     }
 
     ionViewDidLoad() {
-
         //this.showLoader();
-
         //Check if already authenticated
         this.authService.checkAuthentication().then((res) => {
             console.log("Already authorized");
@@ -37,6 +45,24 @@ export class LoginPage {
             //this.loading.dismiss();
         });
 
+        /**
+        window.plugins.googleplus.login({
+          'webClientId': '602320724221-45ne6ra24g7n2b9velck9dv94hlaqghp.apps.googleusercontent.com',
+          'offline': true
+        })
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
+        /**/
+    }
+
+    async googleLogin(){
+      try{
+        const result = await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        console.log(result);
+      }
+      catch (e){
+          console.error(e);
+      }
     }
 
     login(){

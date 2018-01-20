@@ -74,6 +74,27 @@ export class AuthProvider {
     });
   }
 
+  googleLogin(credentials){
+    return new Promise((resolve, reject) => {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.post(this.url + '/api/auth/googlelogin', JSON.stringify(credentials), {headers: headers})
+          .subscribe(res => {
+            let data = res.json();
+            //console.log(data.user);
+            this.token = data.token;
+            this.user = data.user;
+            console.log(this.user);
+            this.storage.set('user', data.user);
+            this.storage.set('token', data.token);
+            resolve(data);
+            //resolve(res.json());
+          }, (err) => {
+            reject(err);
+          });
+    });
+  }
+
   logout(){
     this.storage.set('token', '');
     this.storage.set('user', '');

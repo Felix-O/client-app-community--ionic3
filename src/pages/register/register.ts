@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { PopoverController } from 'ionic-angular';
+import { User } from '../../models/user';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @IonicPage({
   name: 'RegisterPage'
@@ -21,7 +24,10 @@ export class RegisterPage {
   ln: string;
   un: string;
 
-  constructor(public popoverCtrl: PopoverController/**/,
+  user = {} as User;
+
+  constructor( private aFAuth: AngularFireAuth,
+    public popoverCtrl: PopoverController/**/,
     public navCtrl: NavController,
     public authService: AuthProvider,
     public loadingCtrl: LoadingController) {
@@ -39,6 +45,16 @@ export class RegisterPage {
     }, (err) => {
         console.log("You may register");
     });
+  }
+
+  async googleRegister(){
+    try{
+      const result = await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      console.log(result.user);
+    }
+    catch (e){
+        console.error(e);
+    }
   }
 
   register(){

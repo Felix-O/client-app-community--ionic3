@@ -3,6 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 //import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
 import { PopoverController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 //declare var google: any;
 @IonicPage()
@@ -18,11 +19,15 @@ export class HomePage {
   gDoc: any;
 
   constructor(/**/
+    private aFAuth: AngularFireAuth/**/,
     public popoverCtrl: PopoverController/**/,
     public navCtrl: NavController/**/,
     //public mapPvdr: MapProvider/**/,
     public indexPvdr: IndexProvider/**/) {
-
+    /**
+    this.aFAuth.authState.subscribe(data => {
+      console.log(data);
+    });/**/
   }
 
   ionViewDidLoad(){

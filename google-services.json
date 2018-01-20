@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "602320724221",
+    "project_id": "fo-resource-inde-1512938461056"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602320724221:android:a680c51155150d74",
+        "android_client_info": {
+          "package_name": "com.herokuapp.foresourceindexionic3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602320724221-vh57oreguvbjai9leho913rg42m4uih3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.herokuapp.foresourceindexionic3",
+            "certificate_hash": "accd9b84f4f0a31741b016c328ba2681396408ff"
+          }
+        },
+        {
+          "client_id": "602320724221-45ne6ra24g7n2b9velck9dv94hlaqghp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxtIyar6IXLG64DWaM01AQoldbse_zpDE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,8 +11,6 @@
 
 <ion-content fullscreen="true">
 
-  <h5 *ngIf="core">Login</h5>
-
     <ion-row class="login-form">
         <ion-col>
             <ion-list inset>
@@ -29,8 +27,14 @@
 
             </ion-list>
 
-            <button ion-button (click)="login()" color="light" class="login-button">Login</button>
-            <button ion-button (click)="launchSignup()" color="light" class="create-account">Create an Account</button>
+            <button ion-button full (click)="login()" color="light" class="login-button">Login</button>
+            <button ion-button full (click)="launchSignup()" color="light" class="create-account">Create an Account</button>
+            <div style="width: 100%; display: block; text-align: center;">
+              <p>
+                - or -
+              </p>
+            </div>
+            <button ion-button full (click)="googleLogin()" color="light" class="login-button">Google Login/Register</button>
         </ion-col>
     </ion-row>
 

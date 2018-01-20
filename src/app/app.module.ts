@@ -6,12 +6,16 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 import { MyApp } from './app.component';
 //import { HomePage } from '../pages/home/home';
 import { MapProvider } from '../providers/map/map';
 import { AuthProvider } from '../providers/auth/auth';
 import { IndexProvider } from '../providers/index/index';
+import { FIREBASE_CONFIG } from './app.firebase.config';
 
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
@@ -24,7 +28,9 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,6 +41,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GooglePlus,
     MapProvider,
     AuthProvider,
     IndexProvider,
