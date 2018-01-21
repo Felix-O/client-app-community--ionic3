@@ -52,7 +52,23 @@ export class AuthProvider {
           });
     });
   }
-
+/**
+  login(credentials){
+    return new Promise((resolve, reject) => {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.post(this.url + 'api/auth/test', JSON.stringify(credentials), {headers: headers})
+          .subscribe(res => {
+            let data = res.json();
+            console.log(data);
+            resolve(data);
+            //resolve(res.json());
+          }, (err) => {
+            reject(err);
+          });
+    });
+  }
+/**/
   login(credentials){
     return new Promise((resolve, reject) => {
         let headers = new Headers();
@@ -63,7 +79,7 @@ export class AuthProvider {
             //console.log(data.user);
             this.token = data.token;
             this.user = data.user;
-            console.log(this.user);
+            //console.log(this.user);
             this.storage.set('user', data.user);
             this.storage.set('token', data.token);
             resolve(data);
@@ -73,7 +89,7 @@ export class AuthProvider {
           });
     });
   }
-
+/**/
   googleLogin(credentials){
     return new Promise((resolve, reject) => {
         let headers = new Headers();
