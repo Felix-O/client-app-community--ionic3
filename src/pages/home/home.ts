@@ -1,8 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, PopoverController } from 'ionic-angular';
 //import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
-import { PopoverController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 //declare var google: any;
@@ -45,16 +44,8 @@ export class HomePage {
       });/**/
   }
 
-  goToLogin(){
-  }
-
   goToUser(userID, firstname, lastname, username, email, role){
     this.navCtrl.setRoot('UserPage', { uid: userID, fn: firstname, ln: lastname, un: username, em: email, rl: role });
-  }
-
-  presentPopover(ev){
-    let popover = this.popoverCtrl.create('PopoverPage');
-    popover.present({ev: ev});
   }
 
 }

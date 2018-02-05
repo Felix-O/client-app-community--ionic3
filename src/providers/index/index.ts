@@ -37,13 +37,18 @@ export class IndexProvider {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.post(this.url + 'api/index/user', JSON.stringify(details), {headers: headers})
+      let body = {
+        username: details
+      };
+      //console.log(JSON.stringify(body));
+      /**/
+      this.http.post(this.url + 'api/index/user', JSON.stringify(body), {headers: headers})
           .subscribe(res => {
              let data = res.json();
               resolve(data);
           }, (err) => {
               reject(err);
-          });
+          });/**/
     });
   }
 

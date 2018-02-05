@@ -1,12 +1,10 @@
 <ion-header>
 
   <ion-navbar color="">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Create Account</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="presentPopover($event)">
-        <ion-icon name="more"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -46,9 +44,8 @@
                 <ion-item>
                     <ion-label>Role</ion-label>
                     <ion-select [(ngModel)]="role">
-                        <ion-option value="prospect">Prospect</ion-option>
-                        <ion-option value="employer">Employer</ion-option>
-                        <ion-option value="admin">Admin</ion-option>
+                        <ion-option value="Member">Member</ion-option>
+                        <ion-option value="Admin">Admin</ion-option>
                     </ion-select>
                 </ion-item>
 

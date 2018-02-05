@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PopoverController } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { IndexProvider } from '../../providers/index/index';
 
 /**
@@ -25,34 +24,29 @@ export class UserPage {
   username: any;
   email: any;
   role: any;
+  userData: any;
 
   constructor(
+    protected app: App,
     public indexPvdr: IndexProvider,
-    public popoverCtrl: PopoverController/**/,
     public navCtrl: NavController,
     public navParams: NavParams) {
 
   }
 
   ionViewDidLoad() {
-    this.userID = this.navParams.get('uid');
-    this.firstname = this.navParams.get('fn');
-    this.lastname = this.navParams.get('ln');
-
     this.username = this.navParams.get('un');
-    /*this.indexPvdr.getUser(this.username).then(res => {
-      //this.userData = res;
-      console.log(res);
+    //console.log(this.username);
+    /**/
+    this.indexPvdr.getUser(this.username).then( data => {
+      this.userData = data[0];
+      //console.log(this.userData);
+      this.userID = this.userData._id;
+      this.firstname = this.userData.firstname;
+      this.lastname = this.userData.lastname;
+      this.email = this.userData.email;
+      this.role = this.userData.role;
     });/**/
-
-    this.email = this.navParams.get('em');
-    this.role = this.navParams.get('rl');
-    //sconsole.log(this.username);
   }
-
-  presentPopover(ev){
-    let popover = this.popoverCtrl.create('PopoverPage');
-    popover.present({ev: ev});
-  }/**/
 
 }

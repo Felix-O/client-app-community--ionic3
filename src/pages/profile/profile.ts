@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { PopoverController } from 'ionic-angular';
 
 /**
  * Generated class for the ProfilePage page.
@@ -27,7 +26,8 @@ export class ProfilePage {
   ln: string = null;
   un: string = null;
 
-  constructor(public popoverCtrl: PopoverController/**/,
+  constructor(
+    protected app: App,
     public navCtrl: NavController,
     public navParams: NavParams,
     public authService: AuthProvider) {
@@ -80,11 +80,6 @@ export class ProfilePage {
     this.authService.deleteAccount(this._id);
     //console.log(this._id);
     this.navCtrl.setRoot('HomePage');
-  }
-
-  presentPopover(ev){
-    let popover = this.popoverCtrl.create('PopoverPage');
-    popover.present({ev: ev});
   }
 
 }

@@ -1,1 +1,21 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <ion-item class="popdrop" style="height: 100px; text-align: center;">
+      <h4>App Name</h4>
+    </ion-item>
+    <button class="popdrop" ion-item menuClose (click)="goHome()">&nbsp;&nbsp;&nbsp;Bulletin</button>
+    <button class="popdrop" ion-item menuClose (click)="goToGroups()">&nbsp;&nbsp;&nbsp;Groups</button>
+    <button class="popdrop" ion-item menuClose (click)="goToAtivities()">&nbsp;&nbsp;&nbsp;Activities</button>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
+
+<ion-buttons end class="navbuttonends">
+  <!--button ion-button icon-only (click)="search()">
+    <ion-icon name="search"></ion-icon>
+  </button-->
+  <button ion-button icon-only clear color="dark" (click)="presentPopover($event)">
+    <ion-icon name="more"></ion-icon>
+  </button>
+</ion-buttons>

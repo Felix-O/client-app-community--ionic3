@@ -15,9 +15,10 @@ import { MyApp } from './app.component';
 import { MapProvider } from '../providers/map/map';
 import { AuthProvider } from '../providers/auth/auth';
 import { IndexProvider } from '../providers/index/index';
+import { GroupsProvider } from '../providers/groups/groups';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+//import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     MapProvider,
     AuthProvider,
     IndexProvider,
+    GroupsProvider,
     //{provide: LocationStrategy, useClass: PathLocationStrategy},
   ]
 })

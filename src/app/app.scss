@@ -1,5 +1,33 @@
+.ios {
+  .navbuttonends {
+    margin-top: 15px;
+    margin-right: -6px;
+  }
+}
+ .popdrop {
+   padding-left: 0px;
+   padding-right: 0px;
+   margin: 0px;
+ }
+
 .scroll-content {
     overflow-y: auto !important;
+
+}
+
+.navbuttonends {
+  margin-top: 6px;
+  margin-right: 3px;
+}
+
+.bar-button-md {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.bar-button-ios {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 // http://ionicframework.com/docs/theming/

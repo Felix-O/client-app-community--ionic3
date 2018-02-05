@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { App, Platform, PopoverController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+//import { AngularFireAuth } from 'angularfire2/auth';
+//import * as firebase from 'firebase/app';
 
 //import { HomePage } from '../pages/home/home';
 
@@ -15,6 +15,8 @@ export class MyApp {
   rootPage:any = 'HomePage';
 
   constructor(
+    protected app: App,
+    public popoverCtrl: PopoverController,
     //public aFAuth: AngularFireAuth,
     platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -32,4 +34,22 @@ export class MyApp {
     this.aFAuth.auth.signOut();
   }
   /**/
+
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create('PopoverPage');
+    popover.present({ev: ev});
+  }/**/
+  goHome(){
+    this.app.getRootNav().setRoot('HomePage');
+    //this.close();
+  }
+  goToGroups(){
+    this.app.getRootNav().setRoot('GroupsPage');
+    //this.close();
+  }
+  goToAtivities(){
+    this.app.getRootNav().setRoot('ActivitiesPage');
+    //this.close();
+  }
+
 }
