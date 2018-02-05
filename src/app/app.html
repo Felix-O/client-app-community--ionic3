@@ -1,11 +1,21 @@
 <ion-menu [content]="mycontent">
   <ion-content>
-    <ion-item class="popdrop" style="height: 100px; text-align: center;">
-      <h4>App Name</h4>
+    <ion-item-group style="text-align: center;">
+    <ion-item class="popdrop" style="text-align: center;">
+      <div style="padding: 10px;">
+      <img src="http://livingwaternazarene.com/wp-content/uploads/2016/04/LWC8cropped.jpg"/>
+      <p>
+        A new work of God in San Diego's
+      </p>
+      <p>
+        East Village
+      </p>
+      </div>
     </ion-item>
-    <button class="popdrop" ion-item menuClose (click)="goHome()">&nbsp;&nbsp;&nbsp;Bulletin</button>
-    <button class="popdrop" ion-item menuClose (click)="goToGroups()">&nbsp;&nbsp;&nbsp;Groups</button>
-    <button class="popdrop" ion-item menuClose (click)="goToAtivities()">&nbsp;&nbsp;&nbsp;Activities</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goHome()">&nbsp;&nbsp;&nbsp;Bulletin</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToGroups()">&nbsp;&nbsp;&nbsp;Groups</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToAtivities()">&nbsp;&nbsp;&nbsp;Activities</button>
+    </ion-item-group>
   </ion-content>
 </ion-menu>
 

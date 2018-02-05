@@ -22,12 +22,27 @@
   <!--div #map id="map">
 
   </div-->
+  <ion-slides style="height: 200px;">
+    <ion-slide style="height: 200px;">
+      <img style="height: 200px;" src="https://i0.wp.com/livingwaternazarene.com/wp-content/uploads/2016/04/FaultLineParkServicefromMrsKimbrall2.jpg?resize=1018%2C304" />
+    </ion-slide>
+    <ion-slide style="height: 200px;">
+      <img style="height: 200px;" src="https://i1.wp.com/livingwaternazarene.com/wp-content/uploads/2016/04/DSC_3403-1.jpg?resize=1700%2C500" />
+    </ion-slide>
+    <ion-slide style="height: 200px;">
+      <img style="height: 200px;" src="https://i2.wp.com/livingwaternazarene.com/wp-content/uploads/2016/02/plants.jpg?resize=1700%2C500" />
+    </ion-slide>
+    <ion-slide style="height: 200px;">
+      <img style="height: 200px;" src="https://i0.wp.com/livingwaternazarene.com/wp-content/uploads/2016/02/TeamSliderImage-2.jpg?resize=1700%2C494" />
+    </ion-slide>
+  </ion-slides>
+
 <br />
-  <ion-list *ngFor="let aUser of userData">
+  <!--ion-list *ngFor="let aUser of userData">
     <button ion-item (click)="goToUser(aUser._id, aUser.firstname, aUser.lastname, aUser.username, aUser.email, aUser.role)">
       {{aUser.firstname}} {{aUser.lastname}}
     </button>
-  </ion-list>
+  </ion-list-->
   <ion-list style="border: none;">
     <div style="padding-top:5px; padding-left:15px; padding-right:15px;" [innerHTML]="gDoc"></div>
   </ion-list>
