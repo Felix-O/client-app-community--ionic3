@@ -16,6 +16,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: 'popover.html',
   template: `
 
+    <button class="popdrop" ion-item (click)="goHome()">&nbsp;&nbsp;&nbsp;Home</button>
     <button class="popdrop" *ngIf ="loggedIn" ion-item (click)="goToProfile()">&nbsp;&nbsp;&nbsp;Profile</button>
     <button class="popdrop" *ngIf ="!loggedIn" ion-item (click)="goToRegister()">&nbsp;&nbsp;&nbsp;Register</button>
     <button class="popdrop" *ngIf ="!loggedIn" ion-item (click)="goToLogin()">&nbsp;&nbsp;&nbsp;Login</button>
