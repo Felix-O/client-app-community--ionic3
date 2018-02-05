@@ -1,7 +1,7 @@
 <ion-menu [content]="mycontent">
   <ion-content>
     <ion-item-group style="text-align: center;">
-    <ion-item class="popdrop" style="text-align: center;">
+    <ion-item (click)="goHome()"  menuClose class="popdrop" style="text-align: center;">
       <div style="padding: 10px;">
       <img src="http://livingwaternazarene.com/wp-content/uploads/2016/04/LWC8cropped.jpg"/>
       <p>
@@ -12,9 +12,15 @@
       </p>
       </div>
     </ion-item>
-    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goHome()">&nbsp;&nbsp;&nbsp;Bulletin</button>
-    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToGroups()">&nbsp;&nbsp;&nbsp;Groups</button>
-    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToAtivities()">&nbsp;&nbsp;&nbsp;Activities</button>
+    <!--button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goHome()">Home</button-->
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToWhatToExpect()">What to Expect</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToParacleteProgram()">Paraclete Program</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToSermons()">Sermons</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToGroups()">Small Groups</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToAtivities()">Coming Events</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToTheTeam()">The Team</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToUpdates()">Updates</button>
+    <button class="popdrop" ion-item menuClose style="text-align: center;" (click)="goToGive()">Give</button>
     </ion-item-group>
   </ion-content>
 </ion-menu>

@@ -51,5 +51,30 @@ export class MyApp {
     this.app.getRootNav().setRoot('ActivitiesPage');
     //this.close();
   }
+  goToWhatToExpect(){
+    this.app.getRootNav().setRoot('WhatToExpectPage');
+    //this.close();
+  }
+  goToParacleteProgram(){
+    this.app.getRootNav().setRoot('ParacleteProgramPage');
+    //this.close();
+  }
+  goToSermons(){
+    this.app.getRootNav().setRoot('SermonsPage');
+    //this.close();
+  }
+  goToTheTeam(){
+    this.app.getRootNav().setRoot('TheTeamPage');
+    //this.close();
+  }
+  goToUpdates(){
+    this.app.getRootNav().setRoot('UpdatesPage');
+    //this.close();
+  }
+  goToGive(){
+    this.app.getRootNav().setRoot('GivePage');
+    //this.close();
+  }
+
 
 }
