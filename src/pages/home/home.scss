@@ -10,9 +10,14 @@ page-home {
     height: 240px;
     margin-bottom: -20px;
   }
+  #homeslidesback{
+    height: 200px;
+    background: black;
+  }
   .homeslide{
     height: 200px;
-      width: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, #000000 198px, #ffffff 40px);
   }
   .homeslidemessage{
     background-color: rgba(0,0,0,0.90);
