@@ -25,9 +25,19 @@
   <ion-slides style="height: 200px;">
     <ion-slide style="height: 200px;">
       <img style="height: 200px;" src="https://i0.wp.com/livingwaternazarene.com/wp-content/uploads/2016/04/FaultLineParkServicefromMrsKimbrall2.jpg?resize=1018%2C304" />
+      <ion-fab left bottom color="dark">
+        <div style="background-color: black; padding: 1px;">
+        <h4 style="color: white; margin: 10px;">Join us for Worship</h4>
+        </div>
+      </ion-fab>
     </ion-slide>
     <ion-slide style="height: 200px;">
       <img style="height: 200px;" src="https://i1.wp.com/livingwaternazarene.com/wp-content/uploads/2016/04/DSC_3403-1.jpg?resize=1700%2C500" />
+      <ion-fab left bottom color="dark">
+        <div style="background-color: black; padding: 1px;">
+        <h4 style="color: white; margin: 10px;">Join a Small Group!</h4>
+        </div>
+      </ion-fab>
     </ion-slide>
     <ion-slide style="height: 200px;">
       <img style="height: 200px;" src="https://i2.wp.com/livingwaternazarene.com/wp-content/uploads/2016/02/plants.jpg?resize=1700%2C500" />
@@ -43,7 +53,9 @@
       {{aUser.firstname}} {{aUser.lastname}}
     </button>
   </ion-list-->
-  <ion-list style="border: none;">
-    <div style="padding-top:5px; padding-left:15px; padding-right:15px;" [innerHTML]="gDoc"></div>
-  </ion-list>
+  <!--ion-list style="border: none;"-->
+    <ion-card>
+      <div style="padding-top:5px; padding-left:15px; padding-right:15px;" [innerHTML]="gDoc"></div>
+    </ion-card>
+  <!--/ion-list-->
 </ion-content>
