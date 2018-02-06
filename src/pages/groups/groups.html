@@ -16,21 +16,22 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <!--div style="height: 40px;">
   </div-->
-  <ion-card *ngFor="let aGroup of groupData" (click)="goToGroup(aGroup.title)">
-    <img style="height:150px;" src="https://response.restoration.noaa.gov/sites/default/files/images/13/citizen-science-volunteers-beach-california_creative-commons-heal-the-bay-ana-luisa-ahern_980.jpg"/>
-    <ion-card-content>
-      <ion-card-title>
-          {{aGroup.title}}
-      </ion-card-title>
-      <p>
-        {{aGroup.description}}
-      </p>
+  <ion-list style="margin-bottom: 0px;" *ngFor="let aGroup of groupData" (click)="goToGroup(aGroup.title)">
+    <ion-row style="padding: 15px; padding-bottom: 0px;">
+      <ion-col >
+        <img align="right" style="height: 200px; width: 100%; margin-bottom: 10px;" src="https://response.restoration.noaa.gov/sites/default/files/images/13/citizen-science-volunteers-beach-california_creative-commons-heal-the-bay-ana-luisa-ahern_980.jpg"/>
+          <br  />
+          <h6 style="margin: 0px;">{{aGroup.title}}</h6>
+          <p>
+            {{aGroup.description}}
+          </p>
+      </ion-col>
+    </ion-row>
       <!--button ion-button clear>Join</button-->
-    </ion-card-content>
-  </ion-card>
+  </ion-list>
 
   <ion-fab *ngIf="role === 'Admin'" right bottom>
   <button ion-fab color="theme" (click)="addGroup()">
