@@ -19,6 +19,15 @@
 <ion-content>
   <!--div style="height: 40px;">
   </div-->
+  <ion-list>
+    <ion-row style="padding: 20px; padding-bottom: 0px; padding-top: 5px;">
+      <ion-col>
+        <p style="float: right; font-weight: 500; margin: 8px;">
+          Join
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-list>
   <ion-list style="margin-bottom: 0px;" *ngFor="let aGroup of groupData" (click)="goToGroup(aGroup.title)">
     <ion-row style="padding: 15px; padding-bottom: 0px;">
       <ion-col >
