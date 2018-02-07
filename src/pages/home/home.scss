@@ -6,14 +6,34 @@ page-home {
   ion-item{
     width: 100px;
   }
-  #homeslides{
-    height: 245px;
-    margin-bottom: -15px;
+  #homeslideimage{
+    object-fit: cover;
   }
-  .homeslide{
-    height: 200px;
-    width: 100%;
-    background: linear-gradient(to bottom, #000000 198px, #ffffff 45px);
+  @media screen and (max-width: 699px){
+    #homeslides{
+      height: 245px;
+      margin-bottom: -15px;
+    }
+    .homeslide{
+      height: 200px;
+    }
+    .homeslide{
+      width: 100%;
+      background: linear-gradient(to bottom, #000000 197px, #ffffff 45px);
+    }
+  }
+  @media screen and (min-width: 700px){
+    #homeslides{
+      height: 345px;
+      margin-bottom: -15px;
+    }
+    .homeslide{
+      height: 300px;
+    }
+    .homeslide{
+      width: 100%;
+      background: linear-gradient(to bottom, #000000 297px, #ffffff 45px);
+    }
   }
   .homeslidemessage{
     background-color: rgba(0,0,0,0.90);
