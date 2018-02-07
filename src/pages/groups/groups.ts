@@ -51,7 +51,7 @@ export class GroupsPage {
   }
 
   goToGroup(groupTitle){
-    this.navCtrl.setRoot("GroupPage", {gt: groupTitle });
+    this.navCtrl.push("GroupPage", {gt: groupTitle });
   }
 
 }

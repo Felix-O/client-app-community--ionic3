@@ -20,24 +20,24 @@
   <!--div style="height: 40px;">
   </div-->
   <ion-list>
-    <ion-row style="padding: 20px; padding-bottom: 0px; padding-top: 5px;">
+    <ion-row >
       <ion-col>
-        <p style="float: right; font-weight: 500; margin: 8px;">
-          Join
+        <p style="float: right; font-weight: 500; margin: 0px; margin-right: 5px;">
+          Join Us
         </p>
       </ion-col>
     </ion-row>
   </ion-list>
-  <ion-list style="margin-bottom: 0px;" *ngFor="let aGroup of groupData" (click)="goToGroup(aGroup.title)">
-    <ion-row style="padding: 15px; padding-bottom: 0px;">
+  <ion-list *ngFor="let aGroup of groupData" (click)="goToGroup(aGroup.title)">
+    <ion-row>
       <ion-col >
         <img align="left" style="object-fit: cover; border-radius: 5px; height: 150px; width: 100%; margin-bottom: 10px;" src="https://response.restoration.noaa.gov/sites/default/files/images/13/citizen-science-volunteers-beach-california_creative-commons-heal-the-bay-ana-luisa-ahern_980.jpg"/>
           <h6 style="margin: 0px; display: inline-block; width: 100px;">{{aGroup.title}}</h6>
           <p style="float: right; margin: 0px;">
           members: 0
           </p>
-          <p>
-            {{aGroup.description}}
+          <p style="margin-bottom: 0px;">
+            {{aGroup.description}} This is placeholder text for a group description
           </p>
       </ion-col>
     </ion-row>

@@ -16,11 +16,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: 'popover.html',
   template: `
     <ion-item-group style="padding-left: 15px;">
-    <button class="popdrop" ion-item (click)="goHome()"><ion-icon name="home"></ion-icon>&nbsp;&nbsp;&nbsp;Home</button>
-    <button class="popdrop" *ngIf ="loggedIn" ion-item (click)="goToProfile()"><ion-icon name="person"></ion-icon>&nbsp;&nbsp;&nbsp;Profile</button>
-    <button class="popdrop" *ngIf ="!loggedIn" ion-item (click)="goToRegister()"><ion-icon name="mail"></ion-icon>&nbsp;&nbsp;&nbsp;Register</button>
-    <button class="popdrop" *ngIf ="!loggedIn" ion-item (click)="goToLogin()"><ion-icon name="lock"></ion-icon>&nbsp;&nbsp;&nbsp;Login</button>
-    <button class="popdrop" *ngIf ="loggedIn" ion-item (click)="logOut()"><ion-icon name="lock"></ion-icon>&nbsp;&nbsp;&nbsp;Logout</button>
+    <button class="popdrop" ion-item (click)="goHome()"><ion-icon name="home" color="theme2"></ion-icon>&nbsp;&nbsp;&nbsp;Home</button>
+    <button class="popdrop" *ngIf ="loggedIn" ion-item (click)="goToProfile()"><ion-icon name="person" color="theme2"></ion-icon>&nbsp;&nbsp;&nbsp;Profile</button>
+    <button class="popdrop" *ngIf ="!loggedIn" ion-item (click)="goToRegister()"><ion-icon name="mail" color="theme2"></ion-icon>&nbsp;&nbsp;&nbsp;Register</button>
+    <button class="popdrop" *ngIf ="!loggedIn" ion-item (click)="goToLogin()"><ion-icon name="lock" color="theme2"></ion-icon>&nbsp;&nbsp;&nbsp;Login</button>
+    <button class="popdrop" *ngIf ="loggedIn" ion-item (click)="logOut()"><ion-icon name="lock" color="theme2"></ion-icon>&nbsp;&nbsp;&nbsp;Logout</button>
     </ion-item-group>
 `
 })

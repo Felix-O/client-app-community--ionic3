@@ -1,22 +1,23 @@
+.scroll-content {
+    overflow-y: auto !important;
+}
+
 .ios {
   .navbuttonends {
     margin-top: 15px;
     margin-right: -6px;
   }
 }
- .popdrop {
-   padding-left: 0px;
-   padding-right: 0px;
-   margin: 0px;
- }
-
-.scroll-content {
-    overflow-y: auto !important;
-}
 
 .navbuttonends {
   margin-top: 6px;
   margin-right: 3px;
+}
+
+.popdrop {
+   padding-left: 0px;
+   padding-right: 0px;
+   margin: 0px;
 }
 
 .bar-button-md {
@@ -33,20 +34,29 @@
   box-shadow: none !important;
   border-color: rgba(0,0,0,0) !important;
   outline: none !important;
+  background-color: transparent;
 }
 
 .menubutton:active{
   box-shadow: none !important;
   border-color: rgba(0,0,0,0) !important;
   outline: none !important;
+  background-color: transparent;
 }
 
-.card-title-md {
-    font-size: 1.8rem;
-    font-weight: 500;
-    line-height: 1.2;
-    margin: 1px 0;
-    padding: 1px 0;
+.menubutton:hover{
+  box-shadow: none !important;
+  border-color: rgba(0,0,0,0) !important;
+  outline: none !important;
+  background-color: transparent;
+}
+
+menubutton button button-md button-default button-default-md button-md-menu{
+  background-color: transparent;
+}
+
+icon icon-md ion-md-more{
+  color: inherit;
 }
 
 // http://ionicframework.com/docs/theming/
