@@ -30,7 +30,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    console.log(this.app.getActiveNav(0));
+    //console.log(this.app.getActiveNav(0));
     /**
     for ( let i=0; i < this.nav.length(); i++ )
       {
