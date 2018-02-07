@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { App, Platform, PopoverController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { App, Platform, PopoverController, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   rootPage:any = 'HomePage';
   menuButtonColor: string = 'theme';
+  //@ViewChild('menuButtonColor') menuButtonColor;
 
   constructor(
     protected app: App,
@@ -29,14 +30,16 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+    console.log(this.app.getActiveNav(0));
     /**
-    for ( let i=0; i < this.navCtrl.length(); i++ )
+    for ( let i=0; i < this.nav.length(); i++ )
       {
-          let v = this.navCtrl.getViews()[i];
+          let v = this.nav.getViews()[i];
+          /**
           if (v.component.name = 'GroupPage'){
             this.invertMenuButton();
           };
-
+          /**console.log(v.component.name);
       }
     /**/
   }
@@ -99,8 +102,10 @@ export class MyApp {
     //this.close();
   }
 
+  /**
   invertMenuButton(){
     this.menuButtonColor = 'dark';
   }
+  /**/
 
 }
