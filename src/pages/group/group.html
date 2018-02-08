@@ -27,22 +27,32 @@ text-align: center;
       </button>
     </ion-buttons-->
   </ion-navbar>
-  <ion-title>{{title}}</ion-title>
+  <ion-title>
+    <ion-input (ionChange)="updateGroupTitle(newTitle)" [(ngModel)]="title" placeholder="{{title}}" type="text"></ion-input>
+  </ion-title>
 </div>
 </ion-header>
 
 
 <ion-content fullscreen="true">
-  <!--ion-list>
+  <ion-list>
     <ion-row>
       <ion-col>
+        {{desciption}}
       </ion-col>
     </ion-row>
-  </ion-list-->
+  </ion-list>
   <ion-list>
     <ion-row>
       <ion-col>
         <button ion-button full color="theme">Join</button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  <ion-list>
+    <ion-row>
+      <ion-col>
+        <button ion-button (click)="deleteGroup()"></button>
       </ion-col>
     </ion-row>
   </ion-list>

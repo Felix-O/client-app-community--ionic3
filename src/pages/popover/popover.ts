@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, ViewController, ModalController } from 'ionic-angular';
+import { App, IonicPage, ViewController, ModalController, NavController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 //import { HomePage } from '../home/home';
@@ -33,6 +33,7 @@ export class PopoverPage {
     private aFAuth: AngularFireAuth,
     public modalCtrl: ModalController,
     public viewCtrl: ViewController,
+    public navCtrl: NavController,
     public authService: AuthProvider) {
       //Check if already authenticated
       this.authService.checkAuthentication().then((res) => {
@@ -51,7 +52,8 @@ export class PopoverPage {
           });
           //this.loggedIn = false;
       });/**/
-
+    console.log(this.navCtrl);
+    console.log(this.viewCtrl);
   }
 
   ionViewWillAppear() {

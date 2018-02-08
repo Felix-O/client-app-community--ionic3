@@ -39,6 +39,7 @@ export class GroupsPage {
     this.groupService.getGroups().then((groupsArray) => {
       if(groupsArray){
         this.groupData = groupsArray;
+        console.log(this.groupData);
       }
       else {
         console.log("there are no groups");
@@ -50,8 +51,8 @@ export class GroupsPage {
     this.modalCtrl.create("CreateGroupPage").present();
   }
 
-  goToGroup(groupTitle){
-    this.navCtrl.push("GroupPage", {gt: groupTitle });
+  goToGroup(groupId, groupTitle, groupDescription){
+    this.navCtrl.push("GroupPage", {id: groupId, gt: groupTitle, ds: groupDescription });
   }
 
 }

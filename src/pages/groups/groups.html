@@ -28,7 +28,7 @@
       </ion-col>
     </ion-row>
   </ion-list>
-  <ion-list *ngFor="let aGroup of groupData" (click)="goToGroup(aGroup.title)">
+  <ion-list *ngFor="let aGroup of groupData" (click)="goToGroup(aGroup._id, aGroup.title, aGroup.desciption)">
     <ion-row>
       <ion-col >
         <div style="background-size: cover; border-radius: 5px; height: 150px; width: 100%; margin-bottom: 10px; background: url('https://response.restoration.noaa.gov/sites/default/files/images/13/citizen-science-volunteers-beach-california_creative-commons-heal-the-bay-ana-luisa-ahern_980.jpg') no-repeat center center;">

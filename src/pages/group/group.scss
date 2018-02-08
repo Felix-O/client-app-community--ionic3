@@ -3,15 +3,22 @@ page-group {
     color: black;
   }
   ion-title{
-    margin-top: 25px;
-    vertical-align: middle;
+    //margin-top: 25px;
   }
   .toolbar-title-md{
     font-size: 3rem;
     color: white;
+    //vertical-align: middle;
   }
   .toolbar-title-ios{
     font-size: 3rem;
     color: white;
+    //vertical-align: middle;
+  }
+  .text-input-md{
+    text-align: center;
+  }
+  .text-input-ios{
+    text-align: center;
   }
 }
