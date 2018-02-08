@@ -34,17 +34,22 @@ export class GroupPage {
 
   ionViewWillEnter() {
     this.storage.get('user').then(data => {
-      //console.log(data.role);
       if(data){
         this.role = data.role;
       }
     });
     this.title = this.navParams.get('gt');
     this._id = this.navParams.get('id');/**/
-    //console.log(this._id);/**/
-    this.groupService.getGroup(this._id).then( data => {
-      //this.description = JSON.stringify(data.description);
-      console.log(data);
+    if(this._id){
+      let body = this._id;
+    }
+    else {
+      let body = this.title;
+    }/**/
+    //console.log(body);/**/
+    this.groupService.getGroup(body).then( data => {
+      this.description = data.description;
+      console.log(data.description);
     });/**/
   }
 
