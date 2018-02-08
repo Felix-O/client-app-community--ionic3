@@ -48,8 +48,8 @@ export class GroupPage {
     }/**/
     //console.log(body);/**/
     this.groupService.getGroup(body).then( data => {
-      this.description = data.description;
-      console.log(data.description);
+      //this.description = data.description;
+      //console.log(data.description);
     });/**/
   }
 
