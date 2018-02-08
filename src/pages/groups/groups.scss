@@ -4,11 +4,13 @@ page-groups {
       display: none;
     }
   }
+  
   @media screen and (min-width: 700px){
     .sidebar{
       //display: block;
     }
   }
+
   .result-bar ion-row ion-col {
     text-align: center;
     padding-bottom: 2px;
