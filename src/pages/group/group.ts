@@ -39,7 +39,7 @@ export class GroupPage {
       }
     });
     this.title = this.navParams.get('gt');
-    this._id = this.navParams.get('id');/**/
+    this._id = this.navParams.get('id');/**
     if(this._id){
       let body = this._id;
     }
@@ -47,7 +47,7 @@ export class GroupPage {
       let body = this.title;
     }/**/
     //console.log(body);/**/
-    this.groupService.getGroup(body).then( data => {
+    this.groupService.getGroup(this._id).then( data => {
       //this.description = data.description;
       //console.log(data.description);
     });/**/
