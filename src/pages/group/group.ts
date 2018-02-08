@@ -43,7 +43,7 @@ export class GroupPage {
     this._id = this.navParams.get('id');/**/
     //console.log(this._id);/**/
     this.groupService.getGroup(this._id).then( data => {
-      this.description = JSON.stringify(data.description);
+      //this.description = JSON.stringify(data.description);
       console.log(data);
     });/**/
   }
