@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { GroupsProvider } from '../../providers/groups/groups';
 
 /**
@@ -18,29 +19,53 @@ import { GroupsProvider } from '../../providers/groups/groups';
 })
 export class GroupPage {
 
-  _id: string;
-  title: string;
-  desciption: string;
+  role: string = "none";
+  _id: string = null;
+  title: string = null;
+  description: any = null;
 
   constructor(
+    public storage: Storage,
     public groupService: GroupsProvider,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    this._id = this.navParams.get('id');
-    console.log(this._id);
+  ionViewWillEnter() {
+    this.storage.get('user').then(data => {
+      //console.log(data.role);
+      if(data){
+        this.role = data.role;
+      }
+    });
     this.title = this.navParams.get('gt');
-    this.desciption = this.navParams.get('ds');
+    this._id = this.navParams.get('id');/**/
+    //console.log(this._id);/**/
+    this.groupService.getGroup(this._id).then( data => {
+      this.description = JSON.stringify(data.description);
+      console.log(data);
+    });/**/
   }
 
-  updateGroupTitle(newTitle) {
-    let data = {
-      title: newTitle
+  updateTitle() {
+    if(this.role = "Admin"){
+      let data = {
+        _id: this._id,
+        title: this.title
+      }
+      this.groupService.updateGroupTitle(data);
     }
-    this.groupService.updateGroup(data);
+  }
+
+  updateDescription() {
+    if(this.role = "Admin"){
+      let data = {
+        _id: this._id,
+        description: this.description
+      }
+      this.groupService.updateGroupDescription(data);
+    }
   }
 
   deleteGroup(){

@@ -28,7 +28,7 @@ export class GroupsPage {
     public navParams: NavParams) {
   }
 
-  ionViewDidLoad(){
+  ionViewWillEnter(){
     this.authService.checkAuthentication().then((res) => {
       this.authService.storedUser().then((value) => {
         this.role = value.role;
@@ -39,7 +39,7 @@ export class GroupsPage {
     this.groupService.getGroups().then((groupsArray) => {
       if(groupsArray){
         this.groupData = groupsArray;
-        console.log(this.groupData);
+        //console.log(this.groupData);
       }
       else {
         console.log("there are no groups");
@@ -51,8 +51,8 @@ export class GroupsPage {
     this.modalCtrl.create("CreateGroupPage").present();
   }
 
-  goToGroup(groupId, groupTitle, groupDescription){
-    this.navCtrl.push("GroupPage", {id: groupId, gt: groupTitle, ds: groupDescription });
+  goToGroup(groupId, groupTitle){
+    this.navCtrl.push("GroupPage", {id: groupId, gt: groupTitle });
   }
 
 }

@@ -29,6 +29,25 @@ export class GroupsProvider {
     });
   }
 
+  getGroup(details){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Authorization', this.authService.token);
+      headers.append('Content-Type', 'application/json');
+      //console.log(details);
+      let body = {
+        _id: details
+      };
+      this.http.post(this.url + 'api/groups/group', JSON.stringify(body), {headers: headers})
+          .subscribe(res => {
+              let data = res.json();
+              resolve(data);
+          }, (err) => {
+              reject(err);
+          });/**/
+    });
+  }
+
   createGroup(group){
     return new Promise((resolve, reject) => {
       let headers = new Headers();
@@ -44,12 +63,27 @@ export class GroupsProvider {
     });
   }
 
-  updateGroup(group){
+  updateGroupTitle(newTitle){
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization', this.authService.token);
-      this.http.post(this.url + 'api/groups/update', JSON.stringify(group), {headers: headers})
+      this.http.post(this.url + 'api/groups/group/update/title', JSON.stringify(newTitle), {headers: headers})
+        .map(res => res.json())
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  updateGroupDescription(newDescription){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Authorization', this.authService.token);
+      this.http.post(this.url + 'api/groups/group/update/description', JSON.stringify(newDescription), {headers: headers})
         .map(res => res.json())
         .subscribe(res => {
           resolve(res);

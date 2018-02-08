@@ -27,8 +27,11 @@ text-align: center;
       </button>
     </ion-buttons-->
   </ion-navbar>
-  <ion-title>
-    <ion-input (ionChange)="updateGroupTitle(newTitle)" [(ngModel)]="title" placeholder="{{title}}" type="text"></ion-input>
+  <ion-title *ngIf="role === 'Admin'">
+    <ion-input (ionChange)="updateTitle()" [(ngModel)]="title" placeholder="{{title}}" type="text"></ion-input>
+  </ion-title>
+  <ion-title *ngIf="role === 'none'">
+    {{title}}
   </ion-title>
 </div>
 </ion-header>
@@ -38,7 +41,10 @@ text-align: center;
   <ion-list>
     <ion-row>
       <ion-col>
-        {{desciption}}
+        <ion-input *ngIf="role === 'Admin'" (ionChange)="updateDescription()" [(ngModel)]="description" placeholder="{{description}}" type="text"></ion-input>
+        <p *ngIf="role === 'none'">
+          {{description}}
+        </p>
       </ion-col>
     </ion-row>
   </ion-list>
