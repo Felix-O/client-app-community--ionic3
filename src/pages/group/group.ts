@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { GroupsProvider } from '../../providers/groups/groups';
 
@@ -25,6 +25,7 @@ export class GroupPage {
   description: any = null;
 
   constructor(
+    protected app: App,
     public storage: Storage,
     public groupService: GroupsProvider,
     public viewCtrl: ViewController,
@@ -33,24 +34,23 @@ export class GroupPage {
   }
 
   ionViewWillEnter() {
-    this.storage.get('user').then(data => {
-      if(data){
-        this.role = data.role;
-      }
-    });
     this.title = this.navParams.get('gt');
-    this._id = this.navParams.get('id');/**
-    if(this._id){
-      let body = this._id;
+    this._id = this.navParams.get('id');/**/
+    if(!this._id){
+      this.app.getRootNav().setRoot('GroupsPage');
     }
-    else {
-      let body = this.title;
-    }/**/
-    //console.log(body);/**/
-    this.groupService.getGroup(this._id).then( data => {
-      //this.description = data.description;
-      //console.log(data.description);
-    });/**/
+    else{
+      this.storage.get('user').then(data => {
+        if(data){
+          this.role = data.role;
+        }
+      });
+      
+      this.groupService.getGroup(this._id).then( data => {
+        //this.description = data.description;
+        //console.log(data.description);
+      });/**/
+    }
   }
 
   updateTitle() {
