@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { GroupsProvider } from '../../providers/groups/groups';
+//import { IndexProvider } from '../../providers/index/index';
 
 /**
  * Generated class for the GroupPage page.
@@ -29,6 +30,7 @@ export class GroupPage {
     protected app: App,
     public storage: Storage,
     public groupService: GroupsProvider,
+    //public indexService: IndexProvider/**/,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public navParams: NavParams) {
@@ -49,9 +51,13 @@ export class GroupPage {
       });
 
       this.groupService.getGroup(this.groupId).then( data => {
-        this.description = data.description;
+        //this.description = data.description;
         console.log(data.users);
       });/**/
+
+      this.groupService.getUsers(this.groupId).then( users => {
+        console.log(users);
+      });
     }
   }
 
