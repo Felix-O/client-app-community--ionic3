@@ -105,4 +105,41 @@ export class GroupsProvider {
     });
  }
 
+ joinGroup(groupId, userId){
+   return new Promise((resolve, reject) => {
+     let headers = new Headers();
+     headers.append('Content-Type', 'application/json');
+     headers.append('Authorization', this.authService.token);
+     let body = {
+       groupId: groupId,
+       userId: userId
+     };
+     this.http.post(this.url + 'api/groups/group/join', JSON.stringify(body), {headers: headers})
+       .map(res => res.json())
+       .subscribe(res => {
+         resolve(res);
+       }, (err) => {
+         reject(err);
+       });
+   });
+ }
+
+ leaveGroup(groupId, userId){
+   return new Promise((resolve, reject) => {
+     let headers = new Headers();
+     headers.append('Content-Type', 'application/json');
+     headers.append('Authorization', this.authService.token);
+     let body = {
+       groupId: groupId,
+       userId: userId
+     };
+     this.http.post(this.url + 'api/groups/group/leave', JSON.stringify(body), {headers: headers})
+       .map(res => res.json())
+       .subscribe(res => {
+         resolve(res);
+       }, (err) => {
+         reject(err);
+       });
+   });
+ }
 }

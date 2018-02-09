@@ -20,7 +20,8 @@ import { GroupsProvider } from '../../providers/groups/groups';
 export class GroupPage {
 
   role: string = "none";
-  _id: string = null;
+  userId: string = null;
+  groupId: string = null;
   title: string = null;
   description: any = null;
 
@@ -35,20 +36,21 @@ export class GroupPage {
 
   ionViewWillEnter() {
     this.title = this.navParams.get('gt');
-    this._id = this.navParams.get('id');/**/
-    if(!this._id){
+    this.groupId = this.navParams.get('id');/**/
+    if(!this.groupId){
       this.app.getRootNav().setRoot('GroupsPage');
     }
     else{
       this.storage.get('user').then(data => {
         if(data){
           this.role = data.role;
+          //console.log(data);
         }
       });
-      
-      this.groupService.getGroup(this._id).then( data => {
+
+      this.groupService.getGroup(this.groupId).then( data => {
         //this.description = data.description;
-        //console.log(data.description);
+        console.log(data);
       });/**/
     }
   }
@@ -56,7 +58,7 @@ export class GroupPage {
   updateTitle() {
     if(this.role = "Admin"){
       let data = {
-        _id: this._id,
+        _id: this.groupId,
         title: this.title
       }
       this.groupService.updateGroupTitle(data);
@@ -66,15 +68,41 @@ export class GroupPage {
   updateDescription() {
     if(this.role = "Admin"){
       let data = {
-        _id: this._id,
+        _id: this.groupId,
         description: this.description
-      }
+      };
       this.groupService.updateGroupDescription(data);
     }
   }
 
+  joinGroup(){
+    this.groupId = this.navParams.get('id');
+    this.storage.get('user').then(data => {
+      if(data){
+        this.userId = data._id;
+        //console.log(this.userId); /**
+        this.groupService.joinGroup(this.groupId, this.userId).then(res => {
+          console.log(res);
+        });/**/
+      }
+    });
+  }
+
+  leaveGroup(){
+    this.groupId = this.navParams.get('id');
+    this.storage.get('user').then(data => {
+      if(data){
+        this.userId = data._id;
+        //console.log(this.userId); /**
+        this.groupService.joinGroup(this.groupId, this.userId).then(res => {
+          console.log(res);
+        });/**/
+      }
+    });
+  }
+
   deleteGroup(){
-    this.groupService.deleteGroup(this._id);
+    this.groupService.deleteGroup(this.groupId);
     this.close();
   }
 

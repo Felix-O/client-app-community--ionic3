@@ -42,6 +42,9 @@ export class MyApp {
           /**console.log(v.component.name);
       }
     /**/
+    //let nav = app._appRoot._getActivePortal() || app.getActiveNav();
+    //let activeView = nav.getActive();
+    //console.log(app._appRoot._getActivePortal());
   }
   /**
   googleLogin(){

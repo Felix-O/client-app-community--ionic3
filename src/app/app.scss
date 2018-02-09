@@ -64,6 +64,42 @@ icon icon-md ion-md-more{
   margin:0px;
 }
 
+.container-np{
+  padding:0px;
+}
+
+.container-nm{
+  margin:0px;
+}
+
+.overlay{
+    z-index: 1000;
+    width: auto;
+    height: 150px;
+    overflow: auto;
+    position: relative;
+}
+
+.overlay-black-90{
+  background-color: rgba(0, 0, 0, .9);
+}
+
+.overlay-black-75{
+  background-color: rgba(0, 0, 0, .75);
+}
+
+.overlay-black-50{
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.overlay-dark-gray-90{
+  background-color: rgba(50, 50, 50, .9);
+}
+
+.rounded-five-px{
+  border-radius: 5px;
+}
+
 // http://ionicframework.com/docs/theming/
 
 

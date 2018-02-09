@@ -25,6 +25,7 @@ export class ProfilePage {
   fn: string = null;
   ln: string = null;
   un: string = null;
+  groups: any;
 
   constructor(
     protected app: App,
@@ -55,6 +56,7 @@ export class ProfilePage {
       this.email = userData.email;
       this.password = userData.password;
       this.role = userData.role;
+      this.groups = userData.groups;
   }
 
   loggingOut(){
@@ -70,7 +72,8 @@ export class ProfilePage {
         username: this.un,
         email: this.email,
         password: this.password,
-        role: this.role
+        role: this.role,
+        groups: this.groups
     };
     this.authService.updateAccount(details);
     this.navCtrl.setRoot('HomePage');
