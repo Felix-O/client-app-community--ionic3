@@ -49,8 +49,8 @@ export class GroupPage {
       });
 
       this.groupService.getGroup(this.groupId).then( data => {
-        //this.description = data.description;
-        console.log(data);
+        this.description = data.description;
+        //console.log(data.description);
       });/**/
     }
   }
