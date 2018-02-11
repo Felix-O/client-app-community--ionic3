@@ -49,14 +49,14 @@ export class ProfilePage {
   }
 
   showData(userData: any){
-      this._id = userData._id;
-      this.fn = userData.firstname;
-      this.ln = userData.lastname;
-      this.un = userData.username;
-      this.email = userData.email;
-      this.password = userData.password;
-      this.role = userData.role;
-      this.groups = userData.groups;
+    this._id = userData._id;
+    this.fn = userData.firstname;
+    this.ln = userData.lastname;
+    this.un = userData.username;
+    this.email = userData.email;
+    this.password = userData.password;
+    this.role = userData.role;
+    this.groups = userData.groups;
   }
 
   loggingOut(){

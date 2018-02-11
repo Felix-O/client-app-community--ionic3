@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { App, IonicPage, ViewController, ModalController, NavController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { AngularFireAuth } from 'angularfire2/auth';
+//import { AngularFireAuth } from 'angularfire2/auth';
 //import { HomePage } from '../home/home';
 /**
  * Generated class for the PopoverPage page.
@@ -30,34 +30,33 @@ export class PopoverPage {
 
   constructor(
     protected app: App,
-    private aFAuth: AngularFireAuth,
+    //private aFAuth: AngularFireAuth,
     public modalCtrl: ModalController,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public authService: AuthProvider) {
-      //Check if already authenticated
-      this.authService.checkAuthentication().then((res) => {
-          this.authService.storedUser().then((value) => {
-            if(value){
-              this.loggedIn = true;
-            }
-          });
-      }, (err) => {
-          this.aFAuth.authState.subscribe(data => {
-            if(data){
-              this.loggedIn = true;
-            }else{
-              this.loggedIn = false;
-            }
-          });
-          //this.loggedIn = false;
-      });/**/
-    console.log(this.navCtrl);
-    console.log(this.viewCtrl);
   }
 
-  ionViewWillAppear() {
-
+  ionViewCanEnter() {
+    //Check if already authenticated
+    this.authService.checkAuthentication().then((res) => {
+        this.authService.storedUser().then((value) => {
+          if(value){
+            this.loggedIn = true;
+          }
+        });
+    }, (err) => {/**
+        this.aFAuth.authState.subscribe(data => {
+          if(data){
+            this.loggedIn = true;
+          }else{/**/
+            this.loggedIn = false;
+          //}
+        //});
+        //this.loggedIn = false;
+    });/**/
+  //console.log(this.navCtrl);
+  //console.log(this.viewCtrl);
   }
 
   close() {
@@ -86,7 +85,7 @@ export class PopoverPage {
 
   logOut(){
     this.authService.logout();
-    this.aFAuth.auth.signOut();
+    //this.aFAuth.auth.signOut();
     //this.loggedIn = false;
     this.app.getRootNav().setRoot('HomePage');
     this.close();

@@ -58,7 +58,23 @@ export class LoginPage {
     async googleLogin(){
       try{
         const result = await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-        console.log(result);
+
+        let credentials = {
+          googleId: result.user.uid,
+          googleProfilePic: result.user.photoURL,
+          firstname: result.additionalUserInfo.profile.given_name,
+          lastname: result.additionalUserInfo.profile.family_name,
+          username: result.user.displayName,
+          email: result.user.email,
+          password: 'bust4all'
+        };
+        this.authService.googleLogin(credentials).then((result) => {
+            //console.log(result);
+            //this.app.getRootNav().setRoot('ProfilePage');
+            this.close();
+        }, (err) => {
+            console.log(err);
+        });
       }
       catch (e){
           console.error(e);
@@ -74,7 +90,7 @@ export class LoginPage {
         this.authService.login(credentials).then((result) => {
             this.loading.dismiss();
             //console.log(result);
-            this.app.getRootNav().setRoot('ProfilePage');
+            //this.app.getRootNav().setRoot('ProfilePage');
             this.close();
         }, (err) => {
             this.loading.dismiss();

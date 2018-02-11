@@ -1,7 +1,7 @@
 export interface Group {
   title: String,
   description: String,
-  tags: Array,
-  picurls: Array,
-  users: Array
+  tags: Array<String>,
+  picurls: Array<String>,
+  users: Array<String>
 }

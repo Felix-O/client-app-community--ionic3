@@ -26,7 +26,7 @@ export class AuthProvider {
             headers.append('Authorization', this.token);
             this.http.get(this.url + 'api/auth/protected', {headers: headers})
                 .subscribe(res => {
-                    //console.log(res.json());
+                    console.log(res.json());
                     resolve(res);
                 }, (err) => {
                     reject(err);
@@ -76,10 +76,10 @@ export class AuthProvider {
         this.http.post(this.url + 'api/auth/login', JSON.stringify(credentials), {headers: headers})
           .subscribe(res => {
             let data = res.json();
-            //console.log(data.user);
             this.token = data.token;
             this.user = data.user;
-            //console.log(this.user);
+            console.log(data);
+            console.log(data.token);
             this.storage.set('user', data.user);
             this.storage.set('token', data.token);
             resolve(data);
@@ -94,13 +94,13 @@ export class AuthProvider {
     return new Promise((resolve, reject) => {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this.http.post(this.url + '/api/auth/googlelogin', JSON.stringify(credentials), {headers: headers})
+        this.http.post(this.url + 'api/auth/googlelogin', JSON.stringify(credentials), {headers: headers})
           .subscribe(res => {
             let data = res.json();
-            //console.log(data.user);
-            this.token = data.token;
-            this.user = data.user;
-            console.log(this.user);
+            //console.log(data);
+            //this.token = data.token;
+            //this.user = data.user;
+            //console.log(this.user);
             this.storage.set('user', data.user);
             this.storage.set('token', data.token);
             resolve(data);
