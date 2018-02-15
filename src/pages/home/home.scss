@@ -16,7 +16,7 @@ page-home {
   }
   @media screen and (max-width: 699px){
     #homeslides{
-      height: 245px;
+      height: 240px;
       margin-bottom: -15px;
     }
     .homeslide{
@@ -24,12 +24,12 @@ page-home {
     }
     .homeslide{
       width: 100%;
-      background: linear-gradient(to bottom, #000000 197px, #ffffff 45px);
+      background: linear-gradient(to bottom, #000000 197px, #ffffff 40px);
     }
   }
   @media screen and (min-width: 700px){
     #homeslides{
-      height: 345px;
+      height: 340px;
       margin-bottom: -15px;
     }
     .homeslide{
@@ -37,7 +37,7 @@ page-home {
     }
     .homeslide{
       width: 100%;
-      background: linear-gradient(to bottom, #000000 297px, #ffffff 45px);
+      background: linear-gradient(to bottom, #000000 297px, #ffffff 40px);
     }
   }
   .homeslidemessage{
