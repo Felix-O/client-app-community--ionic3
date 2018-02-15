@@ -3,6 +3,7 @@ import { App, IonicPage, ViewController, ModalController, NavController } from '
 import { AuthProvider } from '../../providers/auth/auth';
 //import { AngularFireAuth } from 'angularfire2/auth';
 //import { HomePage } from '../home/home';
+
 /**
  * Generated class for the PopoverPage page.
  *
@@ -38,25 +39,14 @@ export class PopoverPage {
   }
 
   ionViewCanEnter() {
-    //Check if already authenticated
-    this.authService.checkAuthentication().then((res) => {
-        this.authService.storedUser().then((value) => {
-          if(value){
-            this.loggedIn = true;
-          }
-        });
-    }, (err) => {/**
-        this.aFAuth.authState.subscribe(data => {
-          if(data){
-            this.loggedIn = true;
-          }else{/**/
-            this.loggedIn = false;
-          //}
-        //});
-        //this.loggedIn = false;
-    });/**/
-  //console.log(this.navCtrl);
-  //console.log(this.viewCtrl);
+    this.authService.storedToken().then((value) => {
+      if(value){
+        this.loggedIn = true;
+      }
+      else{
+        this.loggedIn = false;
+      }
+    });
   }
 
   close() {
@@ -87,7 +77,7 @@ export class PopoverPage {
     this.authService.logout();
     //this.aFAuth.auth.signOut();
     //this.loggedIn = false;
-    this.app.getRootNav().setRoot('HomePage');
+    //this.app.getRootNav().setRoot('HomePage');
     this.close();
   }
 

@@ -17,6 +17,10 @@ export class AuthProvider {
     return this.storage.get('user');
   }
 
+  storedToken(){
+    return this.storage.get('token');
+  }
+
   checkAuthentication(){
     return new Promise((resolve, reject) => {
         //Load token if exists

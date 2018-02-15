@@ -63,12 +63,32 @@
       {{aUser.firstname}} {{aUser.lastname}}
     </button>
   </ion-list-->
+  <hr />
   <div style="text-align: center; padding-left: 20px; padding-right: 20px;">
     <h3 style="margin-top: 5px; color: rgba(25,25,25,0.75);">Welcome to Living Water Church of the Nazarene</h3>
   </div>
-  <!--ion-list style="border: none;"-->
+  <hr />
+  <!--ion-list style="border: none;"->
     <ion-card>
       <div style="padding-top:5px; padding-left:15px; padding-right:15px;" [innerHTML]="gDoc"></div>
     </ion-card>
-  <!--/ion-list-->
+  <-/ion-list-->
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-start>
+      <img src="https://i0.wp.com/livingwaternazarene.com/wp-content/uploads/2016/02/lamppost-2.jpg?resize=750%2C500">
+    </ion-thumbnail>
+    <h2>Join us for worship!</h2>
+    <p>Join us Sundays at 4:30pm, Service at 5pm</p>
+    <button ion-button clear item-end>View</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="https://i1.wp.com/livingwaternazarene.com/wp-content/uploads/2016/02/IMG_1995-2.jpg?resize=750%2C500">
+      </ion-thumbnail>
+      <h2>Sermon Archive</h2>
+      <p>Pastor Chris' Sermons from Southeast Church of the Nazarene</p>
+      <button ion-button clear item-end>View</button>
+    </ion-item>
+  </ion-list>
 </ion-content>
