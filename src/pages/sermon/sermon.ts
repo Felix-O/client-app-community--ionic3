@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 
+interface sermonType {
+      content: any
+}
+
 @IonicPage({
   segment: 'sermon/:st'
 })
@@ -32,8 +36,8 @@ export class SermonPage {
       this.app.getRootNav().setRoot('SermonsPage');
     }
     else{
-      this.wpService.getSermon(sermonQuery).then( data => {
-        //console.log(data.content);/**/
+      this.wpService.getSermon(sermonQuery).then( (data: sermonType) => {
+        console.log(data.content);/**/
         //this.content = data.content.rendered;
       });/**/
       let mediaQuery = "?parent=" + this.sermonId;
