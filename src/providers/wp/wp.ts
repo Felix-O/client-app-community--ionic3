@@ -16,7 +16,7 @@ export class WpProvider {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.get(this.url + 'wp-json/wp/v2/ctc_sermon', {headers: headers})
-      .map((res:Response) => res.json())
+      .map(res => res.json())
       .subscribe(data => {
           resolve(data);
       }, (err) => {
@@ -44,7 +44,7 @@ export class WpProvider {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.get(this.url + 'wp-json/wp/v2/ctc_events', {headers: headers})
-      .map((res:Response) => res.json())
+      .map(res => res.json())
       .subscribe(data => {
           resolve(data);
       }, (err) => {
@@ -58,7 +58,7 @@ export class WpProvider {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.get(this.url + 'wp-json/wp/v2/users', {headers: headers})
-      .map((res:Response) => res.json())
+      .map(res => res.json())
       .subscribe(data => {
           resolve(data);
       }, (err) => {
@@ -72,7 +72,7 @@ export class WpProvider {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.get(this.url + 'wp-json/wp/v2/users' + userQuery , {headers: headers})
-      .map((res:Response) => res.json())
+      .map(res => res.json())
       .subscribe(data => {
           resolve(data);
       }, (err) => {
@@ -86,7 +86,7 @@ export class WpProvider {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.get(this.url + 'wp-json/wp/v2/media' + mediaQuery/**/ , {headers: headers})
-      .map((res:Response) => res.json())
+      .map(res => res.json())
       .subscribe(data => {
           resolve(data);
       }, (err) => {
