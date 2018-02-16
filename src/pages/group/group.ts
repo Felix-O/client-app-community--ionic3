@@ -51,9 +51,9 @@ export class GroupPage {
       });
 
       this.groupService.getGroup(this.groupId).then((groupData: groupType)  => {
-        this.group = groupData;
-        //console.log(data.description);
-        this.description = this.group.description;
+        //this.group = groupData;
+        //console.log(groupData.description);
+        //this.description = groupData.description;
       });/**
 
       this.groupService.getUsers(this.groupId).then( users => {
