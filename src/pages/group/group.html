@@ -22,7 +22,7 @@
       <ion-col>
         <ion-input *ngIf="role === 'Admin'" (ionChange)="updateDescription()" [(ngModel)]="description" placeholder="{{description}}" type="text"></ion-input>
         <p *ngIf="role === 'none'">
-          {{description}
+          {{description}}
         </p>
       </ion-col>
     </ion-row>

@@ -5,12 +5,9 @@ import { GroupsProvider } from '../../providers/groups/groups';
 import { Group } from '../../models/group';
 //import { IndexProvider } from '../../providers/index/index';
 
-/**
- * Generated class for the GroupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+interface groupType {
+    description: any
+}
 
 @IonicPage({
   segment: 'group/:gt'
@@ -53,10 +50,10 @@ export class GroupPage {
         }
       });
 
-      this.groupService.getGroup(this.groupId).then( data => {
-        //this.group = data;
+      this.groupService.getGroup(this.groupId).then((groupData: groupType)  => {
+        this.group = groupData;
         //console.log(data.description);
-        //this.description = this.group.description;
+        this.description = this.group.description;
       });/**
 
       this.groupService.getUsers(this.groupId).then( users => {
