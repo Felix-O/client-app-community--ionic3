@@ -18,15 +18,15 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let aSermon of sermons">
+  <ion-card *ngFor="let aSermon of sermons" (click)="goToSermon(aSermon.id, aSermon.title.rendered)">
     <ion-card-header>
       {{aSermon?.title.rendered}}
     </ion-card-header>
     <ion-card-content>
-      <p style="margin-right: 0px; ">
+      <p *ngIf="author" style="margin-right: 0px;">
         {{author?.name}}
         <span style="float: right;">
-          {{aSermon.date}}
+          {{aSermon?.date}}
         </span>
       </p>
     </ion-card-content>

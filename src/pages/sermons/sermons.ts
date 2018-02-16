@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 
-/**
- * Generated class for the SermonsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-sermons',
@@ -37,6 +30,10 @@ export class SermonsPage {
         this.author = userData[0];
       });/**/
     });
+  }
+
+  goToSermon(sermonId, sermonTitle){
+    this.navCtrl.push("SermonPage", {id: sermonId, st: sermonTitle });
   }
 
 }
