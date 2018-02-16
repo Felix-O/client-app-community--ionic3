@@ -17,6 +17,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { IndexProvider } from '../providers/index/index';
 import { GroupsProvider } from '../providers/groups/groups';
 import { FIREBASE_CONFIG } from './app.firebase.config';
+import { WpProvider } from '../providers/wp/wp';
 
 //import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
@@ -47,6 +48,7 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
     AuthProvider,
     IndexProvider,
     GroupsProvider,
+    WpProvider,
     //{provide: LocationStrategy, useClass: PathLocationStrategy},
   ]
 })

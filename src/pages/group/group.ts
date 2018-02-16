@@ -27,6 +27,7 @@ export class GroupPage {
   title: string = null;
   description: any = null;
   group = {} as Group;
+  users: any;
 
   constructor(
     protected app: App,
@@ -53,10 +54,10 @@ export class GroupPage {
       });
 
       this.groupService.getGroup(this.groupId).then( data => {
-        //this.group = data;
-        //console.log(data.title);
-        //this.description = this.group.description;
-      });/**
+        this.group = data;
+        console.log(data.description);
+        this.description = this.group.description;
+      });/**/
 
       this.groupService.getUsers(this.groupId).then( users => {
         console.log(users);

@@ -39,9 +39,9 @@ export class GroupsProvider {
         _id: details
       };
       this.http.post(this.url + 'api/groups/group', JSON.stringify(body), {headers: headers})
+          .map(res => res.json())
           .subscribe(res => {
-              let data = res.json();
-              resolve(data);
+              resolve(res);
           }, (err) => {
               reject(err);
           });/**/
@@ -97,7 +97,8 @@ export class GroupsProvider {
     return new Promise((resolve, reject) => {
         let headers = new Headers();
         headers.append('Authorization', this.authService.token);
-        this.http.delete(this.url + 'api/groups/delete/' + id, {headers: headers}).subscribe((res) => {
+        this.http.delete(this.url + 'api/groups/delete/' + id, {headers: headers})
+        .subscribe((res) => {
             resolve(res);
         }, (err) => {
             reject(err);
@@ -115,12 +116,12 @@ export class GroupsProvider {
        userId: userId
      };
      this.http.post(this.url + 'api/groups/group/join', JSON.stringify(body), {headers: headers})
-       .map(res => res.json())
-       .subscribe(res => {
-         resolve(res);
-       }, (err) => {
-         reject(err);
-       });
+     .map(res => res.json())
+     .subscribe(res => {
+       resolve(res);
+     }, (err) => {
+       reject(err);
+     });
    });
  }
 
