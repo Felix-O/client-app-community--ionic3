@@ -46,4 +46,8 @@ export class HomePage {
     this.navCtrl.setRoot('UserPage', { uid: userID, fn: firstname, ln: lastname, un: username, em: email, rl: role });
   }
 
+  goToSermons(){
+    this.navCtrl.setRoot('SermonsPage');
+  }
+
 }
