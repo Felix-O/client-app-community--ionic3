@@ -26,7 +26,7 @@ export class GroupPage {
   groupId: string = null;
   title: string = null;
   description: any = null;
-  group = {} as Group;
+  //group = {} as Group;
   users: any;
 
   constructor(
