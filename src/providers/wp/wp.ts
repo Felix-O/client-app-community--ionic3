@@ -1,4 +1,4 @@
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
@@ -30,7 +30,7 @@ export class WpProvider {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.get(this.url + 'wp-json/wp/v2/ctc_sermon' + sermonQuery , {headers: headers})
-      .map((res:Response) => res.json())
+      .map((res) => res.json())
       .subscribe(data => {
           resolve(data);
       }, (err) => {
