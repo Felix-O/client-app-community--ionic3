@@ -48,7 +48,7 @@ export class SermonPage {
       this.wpService.getMedia(mediaQuery).then((mediaData: mediaType) => {
         //console.log(mediaData.source_url);
         this.media = mediaData.source_url;
-        this.audio = '<video controls><source src={{media?.source_url}} type="video/mp4"></video>';
+        //this.audio = '<video controls><source src={{media?.source_url}} type="video/mp4"></video>';
       });
     }
   }
