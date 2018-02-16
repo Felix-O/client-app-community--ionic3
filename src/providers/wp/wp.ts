@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class WpProvider {
 
-  url:string = "http://livingwaternazarene.com/";
+  url:string = "https://livingwaternazarene.com/";
 
   constructor(
     public http: Http) {
