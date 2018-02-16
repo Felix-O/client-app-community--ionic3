@@ -23,9 +23,13 @@
       {{aSermon?.title.rendered}}
     </ion-card-header>
     <ion-card-content>
-      <p *ngIf="author" style="margin-right: 0px;">
+      <div [innerHTML]="aSermon?.excerpt.rendered">
+
+      </div>
+      <br />
+      <p style="margin-right: 0px;">
         {{author?.name}}
-        <span style="float: right;">
+        <span *ngIf="author" style="float: right;">
           {{aSermon?.date}}
         </span>
       </p>
