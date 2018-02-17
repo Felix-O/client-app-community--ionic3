@@ -21,7 +21,7 @@ export class SermonPage {
 
   sermonId: string = null;
   title: string = null;
-  content: any;
+  sermonContents: any;
   media: any;
   audio: any;
 
@@ -41,14 +41,15 @@ export class SermonPage {
     }
     else{
       this.wpService.getSermon(sermonQuery).then((data: sermonType) => {
-        //console.log(data.content);/**/
-        this.content = data.content.rendered;
+        console.log(data.content);/**/
+        this.sermonContents = data.content.rendered;
       });/**/
       let mediaQuery = "?parent=" + this.sermonId;
       this.wpService.getMedia(mediaQuery).then((mediaData: mediaType) => {
-        //console.log(mediaData.source_url);
-        this.media = mediaData.source_url;
-        //this.audio = '<video controls><source src={{media?.source_url}} type="video/mp4"></video>';
+        console.log(mediaData[0].source_url);
+        this.media = mediaData[0].source_url;
+
+        this.audio = '<video controls><source src="' + this.media + '" type="video/mp4"></video>';
       });
     }
   }
