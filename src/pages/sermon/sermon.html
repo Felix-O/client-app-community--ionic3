@@ -17,15 +17,14 @@
 
   <ion-card>
 
-
-    <div style="padding: 20px;" [innerHTML]="sermonContents">
-
+    <ion-card-header>
+      {{title}}
+    </ion-card-header>
+    <div style="padding: 20px; padding-top:0px;" [innerHTML]="sermonContents">
     </div>
-    <!--video controls><source src={{media}} type="video/mp4"></video-->
-    <div style="padding: 20px;" [innerHTML]="audio">
-
+    <div style="padding: 20px; width: 100%; padding-top:0px;">
+    <video style="display: block; width: 100%;" controls [innerHTML]="audio"></video>
     </div>
-
 
   </ion-card>
 

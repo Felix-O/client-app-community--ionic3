@@ -22,7 +22,7 @@ export class SermonsPage {
   ionViewDidLoad() {
     this.wpService.loadSermons().then((sermonData) => {
       this.sermons = sermonData;
-      //console.log(sermonData);
+      console.log(sermonData);
       this.userQuery = "?id=1" /*+ this.sermons.author/**/;
 
       this.wpService.loadUser(this.userQuery).then((userData) => {
@@ -32,8 +32,8 @@ export class SermonsPage {
     });
   }
 
-  goToSermon(sermonId, sermonTitle){
-    this.navCtrl.push("SermonPage", {id: sermonId, st: sermonTitle });
+  goToSermon(sermonId, sermonSlug, sermonTitle){
+    this.navCtrl.push("SermonPage", {id: sermonId, sl: sermonSlug, st: sermonTitle });
   }
 
 }

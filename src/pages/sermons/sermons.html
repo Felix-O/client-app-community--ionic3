@@ -18,7 +18,7 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let aSermon of sermons" (click)="goToSermon(aSermon.id, aSermon.title.rendered)">
+  <ion-card *ngFor="let aSermon of sermons" (click)="goToSermon(aSermon.id, aSermon.slug, aSermon.title.rendered)">
     <ion-card-header>
       {{aSermon?.title.rendered}}
     </ion-card-header>

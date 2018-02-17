@@ -11,7 +11,7 @@ interface mediaType {
 }
 
 @IonicPage({
-  segment: 'sermon/:st'
+  segment: 'sermon/:sl'
 })
 @Component({
   selector: 'page-sermon',
@@ -19,6 +19,7 @@ interface mediaType {
 })
 export class SermonPage {
 
+  slug: string = null;
   sermonId: string = null;
   title: string = null;
   sermonContents: any;
@@ -33,6 +34,8 @@ export class SermonPage {
   }
 
   ionViewWillEnter() {
+    this.slug = this.navParams.get('sl');
+    console.log(this.slug);
     this.title = this.navParams.get('st');
     this.sermonId = this.navParams.get('id');/**/
     let sermonQuery = "/" + this.sermonId;
@@ -41,15 +44,14 @@ export class SermonPage {
     }
     else{
       this.wpService.getSermon(sermonQuery).then((data: sermonType) => {
-        console.log(data.content);/**/
+        //console.log(data.content);/**/
         this.sermonContents = data.content.rendered;
       });/**/
       let mediaQuery = "?parent=" + this.sermonId;
       this.wpService.getMedia(mediaQuery).then((mediaData: mediaType) => {
-        console.log(mediaData[0].source_url);
+        //console.log(mediaData[0].source_url);
         this.media = mediaData[0].source_url;
-
-        this.audio = '<video controls><source src="' + this.media + '" type="video/mp4"></video>';
+        this.audio = '<source src="' + this.media + '" type="video/mp4">';
       });
     }
   }
