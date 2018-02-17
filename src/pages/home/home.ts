@@ -50,4 +50,10 @@ export class HomePage {
     this.navCtrl.setRoot('SermonsPage');
   }
 
+  goToSundayWorship(){
+    this.navCtrl.push('EventPage', {
+      'sl': 'sunday-worship-service'
+    });
+  }
+
 }

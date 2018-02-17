@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { App, Platform, PopoverController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Observable } from 'rxjs/Observable';
+//import { Observable } from 'rxjs/Observable';
 
 //import { AngularFireAuth } from 'angularfire2/auth';
 //import * as firebase from 'firebase/app';
@@ -37,12 +37,12 @@ export class MyApp {
 
   ionViewDidLoad(){
 
-    console.log(this.app);
-
+    //console.log(this.app);
+    /*
     let currentPage = Observable.create((pageName) =>{
-      pageName.next("na");
+      pageName.next("na");/**
       //console.log(this.app.getRootNav());
-    });
+    });/**/
 
     //this.isTheme = true;
   }
@@ -76,8 +76,8 @@ export class MyApp {
     //this.close();
   }
 
-  goToAtivities(){
-    this.app.getRootNav().setRoot('ActivitiesPage');
+  goToEvents(){
+    this.app.getRootNav().setRoot('EventsPage');
     //this.close();
   }
 

@@ -49,9 +49,13 @@ export class SermonPage {
       });/**/
       let mediaQuery = "?parent=" + this.sermonId;
       this.wpService.getMedia(mediaQuery).then((mediaData: mediaType) => {
-        //console.log(mediaData[0].source_url);
-        this.media = mediaData[0].source_url;
-        this.audio = '<source src="' + this.media + '" type="video/mp4">';
+        console.log(mediaData[0]);
+        if(mediaData[0].media_type == "image"){
+          this.media = '<img style="display: block; width: 100%;" src="' + mediaData[0].source_url + '" />';
+        }
+        if(mediaData[0].media_type == "file" || mediaData[0].media_type == "video"){
+          this.media = '<video style="width: 100%; display: block;" controls ><source src="' + mediaData[0].source_url + '" type="video/mp4"></video>';
+        }
       });
     }
   }

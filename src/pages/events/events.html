@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar color="theme">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Events</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor="let anEvent of events" (click)="goToEvent(anEvent.id, anEvent.slug, anEvent.title.rendered)">
+    <ion-card-header>
+      {{anEvent?.title.rendered}}
+    </ion-card-header>
+    <ion-card-content>
+      <div [innerHTML]="anEvent?.excerpt.rendered">
+
+      </div>
+      <br />
+      <p *ngIf="author" style="margin-right: 0px;">
+        {{author?.name}}
+        <span style="float: right;">
+          {{anEvent?.date}}
+        </span>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

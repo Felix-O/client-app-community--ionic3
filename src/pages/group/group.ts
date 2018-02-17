@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { GroupsProvider } from '../../providers/groups/groups';
-import { Group } from '../../models/group';
+//import { Group } from '../../models/group';
 //import { IndexProvider } from '../../providers/index/index';
 
 interface groupType {

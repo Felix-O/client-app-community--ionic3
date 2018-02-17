@@ -23,7 +23,7 @@
 
   </div-->
   <ion-slides id="homeslides" class="homeslide" pager="true">
-    <ion-slide class="homeslide">
+    <ion-slide class="homeslide" (click)="goToSundayWorship()">
       <img class="homeslide" id="homeslideimage" src="https://i0.wp.com/livingwaternazarene.com/wp-content/uploads/2016/04/FaultLineParkServicefromMrsKimbrall2.jpg?resize=1018%2C304" />
       <ion-fab left bottom>
         <div class="homeslidemessage">
@@ -80,7 +80,7 @@
     </ion-thumbnail>
     <h2>Join us for worship!</h2>
     <p>Join us Sundays at 4:30pm, Service at 5pm</p>
-    <button ion-button clear item-end>View</button>
+    <button ion-button clear item-end (click)="goToSundayWorship()">View</button>
     </ion-item>
     <ion-item>
       <ion-thumbnail item-start>

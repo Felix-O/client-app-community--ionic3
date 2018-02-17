@@ -39,11 +39,11 @@ export class WpProvider {
     });
   }
 
-  loadEvents(){
+  loadEvents(eventQuery){
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.get(this.url + 'wp-json/wp/v2/ctc_events', {headers: headers})
+      this.http.get(this.url + 'wp-json/wp/v2/ctc_event' + eventQuery, {headers: headers})
       .map(res => res.json())
       .subscribe(data => {
           resolve(data);
