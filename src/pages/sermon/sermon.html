@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{title}}</ion-title>
+    <ion-title>{{sermon?.title.rendered}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,11 +18,11 @@
   <ion-card>
 
     <ion-card-header>
-      {{title}}
+      {{sermon?.title.rendered}}
     </ion-card-header>
-    <div style="padding: 20px; padding-top:0px;" [innerHTML]="sermonContents">
+    <div style="padding: 20px; padding-top:0px;" [innerHTML]="sermon?.content.rendered">
     </div>
-    <div style="padding: 20px; width: 100%; padding-top:0px; display:block;" [innerHTML]="media">
+    <div style="padding: 20px; width: 100%; padding-top:0px;" [innerHTML]="media">
     </div>
 
   </ion-card>
