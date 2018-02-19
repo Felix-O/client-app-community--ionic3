@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 
 interface eventType {
@@ -14,16 +14,22 @@ interface eventType {
 export class EventsPage {
 
   events: any;
+  loading: any;
 
   constructor(
     public wpService: WpProvider,
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
+    this.showLoader();
     let eventQuery = "";
     this.wpService.loadEvents(eventQuery).then((eventData: eventType) => {
+
+      this.loading.dismiss();
+
       console.log(eventData);
       this.events = eventData;
     });
@@ -31,6 +37,13 @@ export class EventsPage {
 
   goToEvent(eventId, eventSlug, eventTitle){
     this.navCtrl.push("EventPage", {id: eventId, sl: eventSlug, t: eventTitle });
+  }
+
+  showLoader(){
+      this.loading = this.loadingCtrl.create({
+          content: 'Authenticating...'
+      });
+      this.loading.present();
   }
 
 }
