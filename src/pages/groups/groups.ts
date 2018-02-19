@@ -30,11 +30,11 @@ export class GroupsPage {
     public loadingCtrl: LoadingController) {
   }
 
-  ionViewWillEnter(){
+  ionViewDidLoad(){
     this.showLoader();
     this.authService.checkAuthentication().then((res) => {
       this.authService.storedUser().then((value) => {
-        this.loading.dismiss();
+
         this.role = value.role;
       });
     }, (err) => {
@@ -42,6 +42,7 @@ export class GroupsPage {
 
     this.groupService.getGroups().then((groupsArray) => {
       if(groupsArray){
+        this.loading.dismiss();
         this.groupData = groupsArray;
         //console.log(this.groupData);
       }
