@@ -62,8 +62,7 @@ export class GroupsPage {
 
   showLoader(){
       this.loading = this.loadingCtrl.create({
-          content: 'Loading...',
-          duration: 5000
+          content: 'Loading...'
       });
       this.loading.present();
   }
