@@ -41,7 +41,7 @@ export class EventsPage {
 
   showLoader(){
       this.loading = this.loadingCtrl.create({
-          content: 'Authenticating...'
+          content: 'Loading...'
       });
       this.loading.present();
   }

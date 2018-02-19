@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { GroupsProvider } from '../../providers/groups/groups';
 import { AuthProvider } from '../../providers/auth/auth';
 
@@ -19,18 +19,22 @@ export class GroupsPage {
 
   role: string;
   groupData: any;
+  loading: any;
 
   constructor(
     public authService: AuthProvider,
     public groupService: GroupsProvider,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController) {
   }
 
   ionViewWillEnter(){
+    this.showLoader();
     this.authService.checkAuthentication().then((res) => {
       this.authService.storedUser().then((value) => {
+        this.loading.dismiss();
         this.role = value.role;
       });
     }, (err) => {
@@ -53,6 +57,13 @@ export class GroupsPage {
 
   goToGroup(groupId, groupTitle){
     this.navCtrl.push("GroupPage", {id: groupId, gt: groupTitle });
+  }
+
+  showLoader(){
+      this.loading = this.loadingCtrl.create({
+          content: 'Loading...'
+      });
+      this.loading.present();
   }
 
 }
