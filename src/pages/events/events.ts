@@ -41,7 +41,8 @@ export class EventsPage {
 
   showLoader(){
       this.loading = this.loadingCtrl.create({
-          content: 'Loading...'
+          content: 'Loading...',
+          duration: 5000
       });
       this.loading.present();
   }
