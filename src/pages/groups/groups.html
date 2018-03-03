@@ -16,10 +16,8 @@
 </ion-header>
 
 
-<ion-content>
-  <!--div style="height: 40px;">
-  </div-->
-  <ion-list class="result-bar">
+<ion-content padding>
+  <!--ion-list class="result-bar">
     <ion-row >
       <ion-col>
         <p>
@@ -42,19 +40,22 @@
         </p>
       </ion-col>
     </ion-row>
-  </ion-list>
+  </ion-list-->
 
+<ion-grid no-padding>
 <ion-row class="container-npnm">
-  <div class="sidebar sidebar-left">
-  </div>
-  <ion-col class="container-npnm">
-    <ion-list *ngFor="let aGroup of groupData" (click)="goToGroup(aGroup._id, aGroup.title)">
+  <!--div class="sidebar sidebar-left">
+  </div-->
+  <ion-col col- col-sm-6 col-md-3 *ngFor="let aGroup of groupData" >
+    <ion-card (click)="goToGroup(aGroup._id, aGroup.title)">
+
+      <div style="background-size: cover; height: 150px; width: 100%; background: url('https://response.restoration.noaa.gov/sites/default/files/images/13/citizen-science-volunteers-beach-california_creative-commons-heal-the-bay-ana-luisa-ahern_980.jpg') no-repeat center center;">
+        <div class="overlay overlay-dark-gray-90 container-npnm" ></div>
+      </div>
+
       <ion-row>
         <ion-col>
-          <div style="background-size: cover; border-radius: 5px; height: 150px; width: 100%; margin-bottom: 10px; background: url('https://response.restoration.noaa.gov/sites/default/files/images/13/citizen-science-volunteers-beach-california_creative-commons-heal-the-bay-ana-luisa-ahern_980.jpg') no-repeat center center;">
-            <div class="overlay overlay-dark-gray-90 container-npnm rounded-five-px" style="
-            "></div>
-          </div>
+
             <h6 style="margin: 0px; display: inline-block; ">{{aGroup.title}}</h6>
             <p style="float: right; margin: 0px;">
             members: {{aGroup.users.length}}
@@ -62,11 +63,12 @@
         </ion-col>
       </ion-row>
         <!--button ion-button clear>Join</button-->
-    </ion-list>
+    </ion-card>
   </ion-col>
-  <div class="sidebar sidebar-right">
-  </div>
+  <!--div class="sidebar sidebar-right">
+  </div-->
 </ion-row>
+</ion-grid>
 
   <ion-fab *ngIf="role === 'Admin'" right bottom>
     <button ion-fab color="theme" (click)="addGroup()">
