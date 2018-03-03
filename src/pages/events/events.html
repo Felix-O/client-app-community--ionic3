@@ -12,22 +12,30 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let anEvent of events" (click)="goToEvent(anEvent.id, anEvent.slug, anEvent.title.rendered)">
-    <ion-card-header>
-      {{anEvent?.title.rendered}}
-    </ion-card-header>
-    <ion-card-content>
-      <div [innerHTML]="anEvent?.excerpt.rendered">
+  <ion-grid no-padding>
+    <ion-row style="padding:0px;margin:0px;" wrap>
+      <ion-col col- col-sm-6 col-md-3 *ngFor="let anEvent of events" >
 
-      </div>
-      <br />
-      <p *ngIf="author" style="margin-right: 0px;">
-        {{author?.name}}
-        <span style="float: right;">
-          {{anEvent?.date}}
-        </span>
-      </p>
-    </ion-card-content>
-  </ion-card>
+        <ion-card (click)="goToEvent(anEvent.id, anEvent.slug, anEvent.title.rendered)">
+          <ion-card-header>
+            {{anEvent?.title.rendered}}
+          </ion-card-header>
+          <ion-card-content>
+            <div [innerHTML]="anEvent?.excerpt.rendered">
+
+            </div>
+            <br />
+            <p *ngIf="author" style="margin-right: 0px;">
+              {{author?.name}}
+              <span style="float: right;">
+                {{anEvent?.date}}
+              </span>
+            </p>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

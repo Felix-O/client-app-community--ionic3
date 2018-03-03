@@ -15,7 +15,7 @@
 
 <ion-content padding>
 
-  <ion-card>
+  <ion-card *ngIf="media" >
 
     <ion-card-header>
       {{sermon?.title.rendered}}

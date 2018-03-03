@@ -18,22 +18,30 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let aSermon of sermons" (click)="goToSermon(aSermon.id, aSermon.slug, aSermon.title.rendered)">
-    <ion-card-header>
-      {{aSermon?.title.rendered}}
-    </ion-card-header>
-    <ion-card-content>
-      <div [innerHTML]="aSermon?.excerpt.rendered">
+  <ion-grid no-padding>
+    <ion-row style="padding:0px;margin:0px;" wrap>
+      <ion-col col- col-sm-6 col-md-3 *ngFor="let aSermon of sermons">
 
-      </div>
-      <br />
-      <p style="margin-right: 0px;">
-        {{author?.name}}
-        <span *ngIf="author" style="float: right;">
-          {{aSermon?.date}}
-        </span>
-      </p>
-    </ion-card-content>
-  </ion-card>
+        <ion-card  (click)="goToSermon(aSermon.id, aSermon.slug, aSermon.title.rendered)">
+          <ion-card-header>
+            {{aSermon?.title.rendered}}
+          </ion-card-header>
+          <ion-card-content>
+            <div [innerHTML]="aSermon?.excerpt.rendered">
+
+            </div>
+            <br />
+            <p style="margin-right: 0px;">
+              {{author?.name}}
+              <span *ngIf="author" style="float: right;">
+                {{aSermon?.date}}
+              </span>
+            </p>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
