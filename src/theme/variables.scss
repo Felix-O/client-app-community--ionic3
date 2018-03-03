@@ -140,3 +140,11 @@ ion-list.list.list-ios{
   background: white;
   border-left: 1px solid #e5e5e5;
 }
+
+ion-avatar img, ion-thumbnail img {
+    display: block;
+    max-width: 30px;
+    border: 0;
+    border-radius: 100%;
+    margin-right: 5px;
+}

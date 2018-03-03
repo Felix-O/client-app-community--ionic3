@@ -23,6 +23,8 @@ export class LoginPage {
     loading: any;
     user = {} as User;
 
+
+
     constructor( protected app: App,
       private aFAuth: AngularFireAuth,
       //private googlePlus: GooglePlus,
@@ -58,7 +60,9 @@ export class LoginPage {
     async googleLogin(){
       try{
         await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
+
           this.showLoader();
+
           let credentials = {
             googleId: result.user.uid,
             googleProfilePic: result.user.photoURL,
@@ -68,15 +72,17 @@ export class LoginPage {
             email: result.user.email,
             password: 'bust4all'
           };
+
           this.authService.googleLogin(credentials).then((googleLoginResult) => {
               this.loading.dismiss();
-              //console.log(googleLoginResult);
+              console.log(googleLoginResult);
               //this.app.getRootNav().setRoot('ProfilePage');
               this.close();
           }, (err) => {
               this.loading.dismiss();
               console.log(err);
           });
+
         });
       }
       catch (e){

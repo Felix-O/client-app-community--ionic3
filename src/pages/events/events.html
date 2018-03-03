@@ -5,6 +5,15 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Events</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only [color]="isTheme ? 'theme' : 'dark'" (click)="presentPopover($event)">
+        <ion-icon *ngIf="!loggedIn" [color]="menuIconColor" class="menuicon" name="more"></ion-icon>
+        <ion-avatar *ngIf="loggedIn">
+          <img [src]="profileData?.googleProfilePic">
+        </ion-avatar>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -14,7 +23,7 @@
 
   <ion-grid no-padding>
     <ion-row style="padding:0px;margin:0px;" wrap>
-      <ion-col col- col-sm-6 col-md-3 *ngFor="let anEvent of events" >
+      <ion-col col-12 col-sm-6 col-md-3 *ngFor="let anEvent of events" >
 
         <ion-card (click)="goToEvent(anEvent.id, anEvent.slug, anEvent.title.rendered)">
           <ion-card-header>

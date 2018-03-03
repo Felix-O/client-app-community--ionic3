@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
+import { AuthProvider } from '../../providers/auth/auth';
 
 interface eventType {
 
@@ -15,15 +16,30 @@ export class EventsPage {
 
   events: any;
   loading: any;
+  loggedIn: boolean;
+  profileData: any;
 
   constructor(
     public wpService: WpProvider,
+    public authService: AuthProvider,
+    public popoverCtrl: PopoverController,
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
+    this.authService.storedUser().then((value) => {
+      if(value){
+        this.loggedIn = true;
+        this.profileData = value;
+        console.log(this.profileData);
+      }
+      else{
+        this.loggedIn = false;
+      }
+    });
+
     this.showLoader();
     let eventQuery = "";
     this.wpService.loadEvents(eventQuery).then((eventData: eventType) => {
@@ -45,5 +61,10 @@ export class EventsPage {
       });
       this.loading.present();
   }
+
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create('PopoverPage');
+    popover.present({ev: ev});
+  }/**/
 
 }

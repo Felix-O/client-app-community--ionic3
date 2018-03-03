@@ -20,7 +20,7 @@
 
   <ion-grid no-padding>
     <ion-row style="padding:0px;margin:0px;" wrap>
-      <ion-col col- col-sm-6 col-md-3 *ngFor="let aSermon of sermons">
+      <ion-col col-12 col-sm-6 col-md-3 *ngFor="let aSermon of sermons">
 
         <ion-card  (click)="goToSermon(aSermon.id, aSermon.slug, aSermon.title.rendered)">
           <ion-card-header>
