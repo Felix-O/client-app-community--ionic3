@@ -29,12 +29,12 @@ export class AuthProvider {
             let headers = new Headers();
             headers.append('Authorization', this.token);
             this.http.get(this.url + 'api/auth/protected', {headers: headers})
-                .subscribe(res => {
-                    console.log(res.json());
-                    resolve(res);
-                }, (err) => {
-                    reject(err);
-                });
+            .subscribe(res => {
+                console.log(res.json());
+                resolve(res);
+            }, (err) => {
+                reject(err);
+            });
         });
     });
   }

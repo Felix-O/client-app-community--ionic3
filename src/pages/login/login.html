@@ -34,8 +34,23 @@
                 - or -
               </p>
             </div>
-            <button ion-button full (click)="googleLogin()" color="danger" class="login-button"><ion-icon name="logo-google" ></ion-icon>Google Login/Register</button>
-            <button ion-button full (click)="facebookLogin()" color="blue" class="login-button"><ion-icon name="logo-facebook" ></ion-icon>Facebook Login/Register</button>
+
+            <button ion-button full (click)="googleLogin()" color="danger" class="login-button">
+              <ion-col no-padding>
+                <ion-icon style="float:left;" name="logo-google" >
+              </ion-icon>
+                Google Login/Register
+            </ion-col>
+            </button>
+
+            <button ion-button full (click)="facebookLogin()" color="blue" class="login-button">
+              <ion-col no-padding>
+                <ion-icon style="float:left;" name="logo-facebook" >
+                </ion-icon>
+                Facebook Login/Register
+              </ion-col>
+            </button>
+
         </ion-col>
     </ion-row>
 

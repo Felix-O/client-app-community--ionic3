@@ -57,7 +57,33 @@ export class LoginPage {
         /**/
     }
 
-    async googleLogin(){
+    googleLogin(){
+      return new Promise((resolve, reject) => {
+        this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
+          this.showLoader();
+          let credentials = {
+            googleId: result.user.uid,
+            googleProfilePic: result.user.photoURL,
+            firstname: result.additionalUserInfo.profile.given_name,
+            lastname: result.additionalUserInfo.profile.family_name,
+            username: result.user.displayName,
+            email: result.user.email,
+            password: 'bust4all'
+          };
+
+          this.authService.googleLogin(credentials)
+          .then((googleLoginResult) => {
+            this.loading.dismiss();
+            this.close();
+            rosolve(googleLoginResult);
+          }, (err) => {
+            reject(err);
+          });
+        });
+      });
+    }
+
+    async googleLogin2(){
       try{
         await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
 
