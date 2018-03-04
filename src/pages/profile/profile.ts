@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 
 /**
@@ -27,11 +27,28 @@ export class ProfilePage {
   un: string = null;
   groups: any;
 
+  loggedIn: boolean;
+  profileData: any;
+
   constructor(
     protected app: App,
     public navCtrl: NavController,
+    public popoverCtrl: PopoverController,
     public navParams: NavParams,
     public authService: AuthProvider) {
+  }
+
+  ionViewCanEnter() {
+    this.authService.storedUser().then((value) => {
+      if(value){
+        this.loggedIn = true;
+        this.profileData = value;
+        console.log(this.profileData);
+      }
+      else{
+        this.loggedIn = false;
+      }
+    });
   }
 
   ionViewDidLoad() {
@@ -84,5 +101,10 @@ export class ProfilePage {
     //console.log(this._id);
     this.navCtrl.setRoot('HomePage');
   }
+
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create('PopoverPage');
+    popover.present({ev: ev});
+  }/**/
 
 }

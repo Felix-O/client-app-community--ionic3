@@ -1,5 +1,6 @@
 import { Component/*, ViewChild, ElementRef/**/ } from '@angular/core';
 import { IonicPage, NavController, PopoverController } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth/auth';
 //import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
 //import { AngularFireAuth } from 'angularfire2/auth';
@@ -16,9 +17,12 @@ export class HomePage {
   //gMap: any;
   userData: {};
   gDoc: any;
+  loggedIn: boolean;
+  profileData: any;
 
   constructor(/**/
     //private aFAuth: AngularFireAuth/**/,
+    public authService: AuthProvider,
     public popoverCtrl: PopoverController/**/,
     public navCtrl: NavController/**/,
     //public mapPvdr: MapProvider/**/,
@@ -27,6 +31,19 @@ export class HomePage {
     this.aFAuth.authState.subscribe(data => {
       console.log(data);
     });/**/
+  }
+
+  ionViewCanEnter(){
+    this.authService.storedUser().then((value) => {
+      if(value){
+        this.loggedIn = true;
+        this.profileData = value;
+        console.log(this.profileData);
+      }
+      else{
+        this.loggedIn = false;
+      }
+    });
   }
 
   ionViewDidLoad(){
@@ -55,5 +72,10 @@ export class HomePage {
       'sl': 'sunday-worship-service'
     });
   }
+
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create('PopoverPage');
+    popover.present({ev: ev});
+  }/**/
 
 }

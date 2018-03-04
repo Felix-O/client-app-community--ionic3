@@ -6,14 +6,15 @@
     <ion-title>
       Home
     </ion-title>
-    <!--ion-buttons end>
-      <button ion-button icon-only (click)="search()">
-        <ion-icon name="search"></ion-icon>
+
+    <ion-buttons end>
+      <button ion-button icon-only [color]="isTheme ? 'theme' : 'dark'" (click)="presentPopover($event)">
+        <ion-icon *ngIf="!loggedIn" [color]="menuIconColor" class="menuicon" name="more"></ion-icon>
+        <ion-avatar *ngIf="loggedIn">
+          <img class="navbar-avatar" [src]="profileData?.googleProfilePic">
+        </ion-avatar>
       </button>
-      <button ion-button icon-only (click)="presentPopover($event)">
-        <ion-icon name="more"></ion-icon>
-      </button>
-    </ion-buttons-->
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

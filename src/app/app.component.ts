@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, Platform, PopoverController } from 'ionic-angular';
+import { App, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //import { Observable } from 'rxjs/Observable';
@@ -19,7 +19,6 @@ export class MyApp {
 
   constructor(
     protected app: App,
-    public popoverCtrl: PopoverController,
     //public aFAuth: AngularFireAuth,
     platform: Platform,
     statusBar: StatusBar,
@@ -59,11 +58,6 @@ export class MyApp {
   /**
   get navCtrl(): NavController {
     return this.app.getRootNav();
-  }/**/
-
-  presentPopover(ev){
-    let popover = this.popoverCtrl.create('PopoverPage');
-    popover.present({ev: ev});
   }/**/
 
   goHome(){

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth/auth';
 import { WpProvider } from '../../providers/wp/wp';
 
 @IonicPage()
@@ -13,12 +14,29 @@ export class SermonsPage {
   userQuery: string;
   author: any;
   loading: any;
+  loggedIn: boolean;
+  profileData: any;
 
   constructor(
     public wpService: WpProvider,
+    public authService: AuthProvider,
+    public popoverCtrl: PopoverController,
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController) {
+  }
+
+  ionViewCanEnter(){
+    this.authService.storedUser().then((value) => {
+      if(value){
+        this.loggedIn = true;
+        this.profileData = value;
+        console.log(this.profileData);
+      }
+      else{
+        this.loggedIn = false;
+      }
+    });
   }
 
   ionViewDidLoad() {
@@ -28,7 +46,7 @@ export class SermonsPage {
       console.log(sermonData);
       this.userQuery = "?id=1" /*+ this.sermons.author/**/;
 
-this.loading.dismiss();
+      this.loading.dismiss();
 
       this.wpService.loadUser(this.userQuery).then((userData) => {
         //console.log(userData[0]);
@@ -47,5 +65,10 @@ this.loading.dismiss();
       });
       this.loading.present();
   }
+
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create('PopoverPage');
+    popover.present({ev: ev});
+  }/**/
 
 }

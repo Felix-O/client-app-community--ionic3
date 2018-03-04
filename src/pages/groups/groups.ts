@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
-import { GroupsProvider } from '../../providers/groups/groups';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, PopoverController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import { GroupsProvider } from '../../providers/groups/groups';
 
 /**
  * Generated class for the GroupsPage page.
@@ -20,14 +20,30 @@ export class GroupsPage {
   role: string;
   groupData: any;
   loading: any;
+  loggedIn: boolean;
+  profileData: any;
 
   constructor(
     public authService: AuthProvider,
+    public popoverCtrl: PopoverController,
     public groupService: GroupsProvider,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController) {
+  }
+
+  ionViewCanEnter(){
+    this.authService.storedUser().then((value) => {
+      if(value){
+        this.loggedIn = true;
+        this.profileData = value;
+        console.log(this.profileData);
+      }
+      else{
+        this.loggedIn = false;
+      }
+    });
   }
 
   ionViewDidLoad(){
@@ -66,5 +82,10 @@ export class GroupsPage {
       });
       this.loading.present();
   }
+
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create('PopoverPage');
+    popover.present({ev: ev});
+  }/**/
 
 }

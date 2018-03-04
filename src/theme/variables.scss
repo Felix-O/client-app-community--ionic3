@@ -141,8 +141,7 @@ ion-list.list.list-ios{
   border-left: 1px solid #e5e5e5;
 }
 
-ion-avatar img, ion-thumbnail img {
-    display: block;
+.navbar-avatar {
     max-width: 30px;
     border: 0;
     border-radius: 100%;

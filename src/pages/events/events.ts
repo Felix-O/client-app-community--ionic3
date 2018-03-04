@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
-import { WpProvider } from '../../providers/wp/wp';
 import { AuthProvider } from '../../providers/auth/auth';
+import { WpProvider } from '../../providers/wp/wp';
 
 interface eventType {
 
@@ -28,7 +28,7 @@ export class EventsPage {
     public loadingCtrl: LoadingController) {
   }
 
-  ionViewDidLoad() {
+  ionViewCanEnter(){
     this.authService.storedUser().then((value) => {
       if(value){
         this.loggedIn = true;
@@ -39,6 +39,9 @@ export class EventsPage {
         this.loggedIn = false;
       }
     });
+  }
+
+  ionViewDidLoad() {
 
     this.showLoader();
     let eventQuery = "";
