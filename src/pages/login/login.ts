@@ -81,7 +81,6 @@ export class LoginPage {
             this.loading.dismiss();
             console.log(err);
         });
-
       });
     }
 
