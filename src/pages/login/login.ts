@@ -90,7 +90,7 @@ export class LoginPage {
           this.reloadCurrentPage();
       }, (err) => {
           this.loading.dismiss();
-          console.log(err);
+          console.log(err); 
       });
     }
 
