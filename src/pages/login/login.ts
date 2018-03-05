@@ -100,7 +100,7 @@ export class LoginPage {
             password: 'bust4all'
           };
 
-          this.authService.googleLogin(credentials)
+          await this.authService.googleLogin(credentials)
           .then((googleLoginResult) => {
               this.loading.dismiss();
               console.log(googleLoginResult);
