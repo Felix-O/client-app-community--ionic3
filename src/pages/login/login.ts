@@ -105,8 +105,8 @@ export class LoginPage {
         this.pushGoogleCredetials(this.body);
     }
 
-    pushGoogleCredetials(credentials){
-      this.authService.googleLogin(credentials)
+    async pushGoogleCredetials(credentials){
+      await this.authService.googleLogin(credentials)
       .then((googleLoginResult) => {
           this.loading.dismiss();
           console.log(googleLoginResult);
