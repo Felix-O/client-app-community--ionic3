@@ -100,9 +100,8 @@ export class LoginPage {
             email: result.user.email,
             password: 'bust4all'
           };
+          this.pushGoogleCredetials(this.body);
         });
-
-        this.pushGoogleCredetials(this.body);
     }
 
     async pushGoogleCredetials(credentials){
