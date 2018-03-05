@@ -57,7 +57,7 @@ export class LoginPage {
         /**/
     }
 
-    googleLogin(){
+    googleLogin2(){
       this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
 
         this.showLoader();
@@ -72,7 +72,8 @@ export class LoginPage {
           password: 'bust4all'
         };
 
-        this.authService.googleLogin(credentials).then((googleLoginResult) => {
+        this.authService.googleLogin(credentials)
+        .then((googleLoginResult) => {
             this.loading.dismiss();
             console.log(googleLoginResult);
             //this.app.getRootNav().setRoot('ProfilePage');
@@ -84,9 +85,8 @@ export class LoginPage {
       });
     }
 
-    async googleLogin2(){
-      try{
-        await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
+    googleLogin(){
+        this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
 
           this.showLoader();
 
@@ -100,22 +100,16 @@ export class LoginPage {
             password: 'bust4all'
           };
 
-          this.authService.googleLogin(credentials).then((googleLoginResult) => {
+          this.authService.googleLogin(credentials)
+          .then((googleLoginResult) => {
               this.loading.dismiss();
               console.log(googleLoginResult);
-              //this.app.getRootNav().setRoot('ProfilePage');
               this.close();
           }, (err) => {
               this.loading.dismiss();
               console.log(err);
           });
-
         });
-      }
-      catch (e){
-          this.loading.dismiss();
-          console.error(e);
-      }
     }
 
     login(){
