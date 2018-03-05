@@ -22,10 +22,11 @@ export class LoginPage {
     password: string;
     loading: any;
     user = {} as User;
+    body: any;
 
 
-
-    constructor( protected app: App,
+    constructor(
+      protected app: App,
       private aFAuth: AngularFireAuth,
       //private googlePlus: GooglePlus,
       public viewCtrl: ViewController,
@@ -85,12 +86,12 @@ export class LoginPage {
       });
     }
 
-    googleLogin(){
-        this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
+    async googleLogin(){
+        await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
 
           this.showLoader();
 
-          let credentials = {
+          this.body = {
             googleId: result.user.uid,
             googleProfilePic: result.user.photoURL,
             firstname: result.additionalUserInfo.profile.given_name,
@@ -99,17 +100,21 @@ export class LoginPage {
             email: result.user.email,
             password: 'bust4all'
           };
-
-          await this.authService.googleLogin(credentials)
-          .then((googleLoginResult) => {
-              this.loading.dismiss();
-              console.log(googleLoginResult);
-              this.close();
-          }, (err) => {
-              this.loading.dismiss();
-              console.log(err);
-          });
         });
+
+        this.pushGoogleCredetials(this.body);
+    }
+
+    pushGoogleCredetials(credentials){
+      this.authService.googleLogin(credentials)
+      .then((googleLoginResult) => {
+          this.loading.dismiss();
+          console.log(googleLoginResult);
+          this.reloadCurrentPage();
+      }, (err) => {
+          this.loading.dismiss();
+          console.log(err);
+      });
     }
 
     login(){
@@ -122,11 +127,16 @@ export class LoginPage {
             this.loading.dismiss();
             //console.log(result);
             //this.app.getRootNav().setRoot('ProfilePage');
-            this.close();
+            this.reloadCurrentPage();
         }, (err) => {
             this.loading.dismiss();
             //console.log(err);
         });
+    }
+
+    reloadCurrentPage(){
+      this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component);
+      this.close();
     }
 
     launchSignup(){

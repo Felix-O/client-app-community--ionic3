@@ -77,7 +77,7 @@ export class PopoverPage {
     this.authService.logout();
     //this.aFAuth.auth.signOut();
     //this.loggedIn = false;
-    //this.app.getRootNav().setRoot('HomePage');
+    this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component);
     this.close();
   }
 
