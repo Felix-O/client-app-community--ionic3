@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, ViewController, LoadingController } from 'ionic-angular';
+import { App, IonicPage, NavController, ViewController, LoadingController, ToastController, ToastOptions } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -23,11 +23,12 @@ export class LoginPage {
     loading: any;
     user = {} as User;
     body: any;
-
+    toastOptions: ToastOptions;
 
     constructor(
       protected app: App,
       private aFAuth: AngularFireAuth,
+      public toast: ToastController,
       //private googlePlus: GooglePlus,
       public viewCtrl: ViewController,
       public navCtrl: NavController,
@@ -58,34 +59,6 @@ export class LoginPage {
         /**/
     }
 
-    googleLogin2(){
-      this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
-
-        this.showLoader();
-
-        let credentials = {
-          googleId: result.user.uid,
-          googleProfilePic: result.user.photoURL,
-          firstname: result.additionalUserInfo.profile.given_name,
-          lastname: result.additionalUserInfo.profile.family_name,
-          username: result.user.displayName,
-          email: result.user.email,
-          password: 'bust4all'
-        };
-
-        this.authService.googleLogin(credentials)
-        .then((googleLoginResult) => {
-            this.loading.dismiss();
-            console.log(googleLoginResult);
-            //this.app.getRootNav().setRoot('ProfilePage');
-            this.close();
-        }, (err) => {
-            this.loading.dismiss();
-            console.log(err);
-        });
-      });
-    }
-
     async googleLogin(){
         await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
 
@@ -101,7 +74,7 @@ export class LoginPage {
             password: 'bust4all'
           };
           this.pushGoogleCredetials(this.body);
-        }); 
+        });
     }
 
     async pushGoogleCredetials(credentials){
@@ -109,6 +82,11 @@ export class LoginPage {
       .then((googleLoginResult) => {
           this.loading.dismiss();
           console.log(googleLoginResult);
+          this.toastOptions = {
+            message: googleLoginResult.user.firstname,
+            duration: 3000
+          }
+          this.toast.create(this.toastOptions).present();
           this.reloadCurrentPage();
       }, (err) => {
           this.loading.dismiss();
