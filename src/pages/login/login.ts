@@ -21,7 +21,7 @@ export class LoginPage {
     email: string;
     password: string;
     loading: any;
-    user = {} as User;
+    //user = {} as User;
     body: any;
     toastOptions: ToastOptions;
 
@@ -90,7 +90,7 @@ export class LoginPage {
           this.reloadCurrentPage();
       }, (err) => {
           this.loading.dismiss();
-          console.log(err); 
+          console.log(err);
       });
     }
 
