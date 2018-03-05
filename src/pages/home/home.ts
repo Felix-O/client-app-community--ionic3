@@ -38,7 +38,7 @@ export class HomePage {
       if(value){
         this.loggedIn = true;
         this.profileData = value;
-        console.log(this.profileData);
+        //console.log(this.profileData);
       }
       else{
         this.loggedIn = false;

@@ -101,7 +101,7 @@ export class AuthProvider {
         this.http.post(this.url + 'api/auth/googlelogin', JSON.stringify(credentials), {headers: headers})
           .subscribe(res => {
             let data = res.json();
-            //console.log(data);
+            console.log(data.user);
             //this.token = data.token;
             //this.user = data.user;
             //console.log(this.user);

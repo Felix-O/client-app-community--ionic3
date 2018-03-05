@@ -101,7 +101,7 @@ export class LoginPage {
             password: 'bust4all'
           };
           this.pushGoogleCredetials(this.body);
-        });
+        }); 
     }
 
     async pushGoogleCredetials(credentials){
