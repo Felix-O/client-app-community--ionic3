@@ -44,6 +44,9 @@ page-home {
   .homeslidemessage{
     background-color: rgba(0,0,0,0.90);
     padding: 1px;
+    position: absolute;
+    top: 125px;
+    left: 20px;
   }
   .swiper-pagination-bullet{
     border-radius: 10%;
