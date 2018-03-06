@@ -21,7 +21,7 @@ export class LoginPage {
     email: string;
     password: string;
     loading: any;
-    //user = {} as User;
+    user = {} as User;
     body: any;
     toastOptions: ToastOptions;
 
@@ -83,7 +83,7 @@ export class LoginPage {
           this.loading.dismiss();
           console.log(googleLoginResult);
           this.toastOptions = {
-            message: googleLoginResult.user.firstname,
+            message: "Success",
             duration: 3000
           }
           this.toast.create(this.toastOptions).present();
