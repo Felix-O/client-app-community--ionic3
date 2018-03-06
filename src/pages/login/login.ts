@@ -78,15 +78,11 @@ export class LoginPage {
     }
 
     async pushGoogleCredetials(credentials){
+      this.toastA("success").present();
       await this.authService.googleLogin(credentials)
       .then((googleLoginResult) => {
           this.loading.dismiss();
           console.log(googleLoginResult);
-          this.toastOptions = {
-            message: "Success",
-            duration: 3000
-          }
-          this.toast.create(this.toastOptions).present();
           this.reloadCurrentPage();
       }, (err) => {
           this.loading.dismiss();
@@ -109,6 +105,14 @@ export class LoginPage {
             this.loading.dismiss();
             //console.log(err);
         });
+    }
+
+    toastA(message){
+      this.toastOptions = {
+        message: message,
+        duration: 3000
+      }
+      return this.toast.create(this.toastOptions);
     }
 
     reloadCurrentPage(){
