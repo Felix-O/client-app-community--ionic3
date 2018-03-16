@@ -1,5 +1,5 @@
-import { Component/*, ViewChild, ElementRef/**/ } from '@angular/core';
-import { IonicPage, NavController, PopoverController } from 'ionic-angular';
+import { Component/*, ViewChild/*, ElementRef/**/ } from '@angular/core';
+import { IonicPage, NavController, PopoverController/*, Slides/**/ } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 //import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
@@ -14,6 +14,7 @@ import { IndexProvider } from '../../providers/index/index';
 export class HomePage {
 
   //@ViewChild('map') mapRef: ElementRef;
+  //@ViewChild(Slides) slides: Slides;
   //gMap: any;
   userData: {};
   gDoc: any;
@@ -57,6 +58,7 @@ export class HomePage {
         //console.log(JSON.stringify(res));
         this.gDoc = JSON.stringify(res).substr(1101).slice(0, -1);
       });/**/
+      //this.slides.startAutoplay();
   }
 
   goToUser(userID, firstname, lastname, username, email, role){
