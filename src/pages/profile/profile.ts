@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 
+import { PopoverPage } from "../popover/popover";
+
 /**
  * Generated class for the ProfilePage page.
  *
@@ -103,7 +105,7 @@ export class ProfilePage {
   }
 
   presentPopover(ev){
-    let popover = this.popoverCtrl.create('PopoverPage');
+    let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({ev: ev});
   }/**/
 

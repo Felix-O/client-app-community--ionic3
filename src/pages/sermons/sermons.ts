@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController, PopoverControll
 import { AuthProvider } from '../../providers/auth/auth';
 import { WpProvider } from '../../providers/wp/wp';
 
+import { PopoverPage } from "../popover/popover";
+
 @IonicPage()
 @Component({
   selector: 'page-sermons',
@@ -67,7 +69,7 @@ export class SermonsPage {
   }
 
   presentPopover(ev){
-    let popover = this.popoverCtrl.create('PopoverPage');
+    let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({ev: ev});
   }/**/
 

@@ -76,8 +76,8 @@ export class LoginPage {
             password: 'bust4all'
           };
 
-          this.showAlert(this.body);
-          resolve(result);
+
+          resolve(this.showAlert(this.body));
         }, (err) => {
           reject(err);
         });

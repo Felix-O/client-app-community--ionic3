@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { WpProvider } from '../../providers/wp/wp';
+import { PopoverPage } from "../popover/popover";
 
 interface eventType {
 
@@ -66,7 +67,7 @@ export class EventsPage {
   }
 
   presentPopover(ev){
-    let popover = this.popoverCtrl.create('PopoverPage');
+    let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({ev: ev});
   }/**/
 

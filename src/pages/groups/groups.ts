@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 import { AuthProvider } from '../../providers/auth/auth';
 import { GroupsProvider } from '../../providers/groups/groups';
 
+import { PopoverPage } from "../popover/popover";
+
 /**
  * Generated class for the GroupsPage page.
  *
@@ -84,7 +86,7 @@ export class GroupsPage {
   }
 
   presentPopover(ev){
-    let popover = this.popoverCtrl.create('PopoverPage');
+    let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({ev: ev});
   }/**/
 
