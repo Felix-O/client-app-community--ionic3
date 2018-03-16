@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="theme">
-    <button ion-button menuToggle>
+    <button ion-button large menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
@@ -8,7 +8,7 @@
     </ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only [color]="isTheme ? 'theme' : 'dark'" (click)="presentPopover($event)">
+      <button ion-button icon-only large [color]="isTheme ? 'theme' : 'dark'" (click)="presentPopover($event)">
         <ion-icon *ngIf="!loggedIn" [color]="menuIconColor" class="menuicon" name="more"></ion-icon>
         <ion-avatar *ngIf="loggedIn">
           <img class="navbar-avatar" [src]="profileData?.googleProfilePic">

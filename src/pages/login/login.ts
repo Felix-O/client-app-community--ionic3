@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, ViewController, LoadingController, ToastController, ToastOptions } from 'ionic-angular';
+import { App, IonicPage, NavController, ViewController, LoadingController, ToastController, ToastOptions, AlertController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -26,6 +26,7 @@ export class LoginPage {
     toastOptions: ToastOptions;
 
     constructor(
+      private alertCtrl: AlertController,
       protected app: App,
       private aFAuth: AngularFireAuth,
       public toast: ToastController,
@@ -48,21 +49,21 @@ export class LoginPage {
             console.log("Not already authorized");
             //this.loading.dismiss();
         });
+    }
 
-        /**
-        window.plugins.googleplus.login({
-          'webClientId': '602320724221-45ne6ra24g7n2b9velck9dv94hlaqghp.apps.googleusercontent.com',
-          'offline': true
-        })
-        .then(res => console.log(res))
-        .catch(err => console.error(err));
-        /**/
+    showAlert(info) {
+      let alert = this.alertCtrl.create({
+        title: 'Credentials',
+        subTitle: info.googleId,
+        buttons: ['Dismiss']
+      });
+      alert.present();
     }
 
     async googleLogin(){
         await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
 
-          this.showLoader();
+          //this.showLoader();
 
           this.body = {
             googleId: result.user.uid,
@@ -73,13 +74,14 @@ export class LoginPage {
             email: result.user.email,
             password: 'bust4all'
           };
-          this.pushGoogleCredetials(this.body);
+
+          this.showAlert(this.body);
         });
     }
 
-    async pushGoogleCredetials(credentials){
+    pushGoogleCredetials(credentials){
       this.toastA("success").present();
-      await this.authService.googleLogin(credentials)
+      this.authService.googleLogin(credentials)
       .then((googleLoginResult) => {
           this.loading.dismiss();
           console.log(googleLoginResult);
