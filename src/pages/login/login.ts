@@ -60,8 +60,8 @@ export class LoginPage {
       alert.present();
     }
 
-    async googleLogin(){
-        await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
+    googleLogin(){
+      this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
 
           //this.showLoader();
 
