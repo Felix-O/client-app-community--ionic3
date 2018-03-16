@@ -4,6 +4,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 //import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
 //import { AngularFireAuth } from 'angularfire2/auth';
+import { PopoverPage } from "../popover/popover";
 
 //declare var google: any;
 @IonicPage()
@@ -76,7 +77,7 @@ export class HomePage {
   }
 
   presentPopover(ev){
-    let popover = this.popoverCtrl.create('PopoverPage');
+    let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({ev: ev});
   }/**/
 

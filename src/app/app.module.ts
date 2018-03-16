@@ -18,12 +18,16 @@ import { IndexProvider } from '../providers/index/index';
 import { GroupsProvider } from '../providers/groups/groups';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { WpProvider } from '../providers/wp/wp';
+import { PopoverPage } from '../pages/popover/popover';
+import { LoginPage } from "../pages/login/login";
 
 //import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
-    MyApp//,
+    MyApp,
+    PopoverPage,
+    LoginPage//,
     //HomePage
   ],
   imports: [
@@ -36,7 +40,9 @@ import { WpProvider } from '../providers/wp/wp';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp//,
+    MyApp,
+    PopoverPage,
+    LoginPage//,
     //HomePage
   ],
   providers: [

@@ -60,8 +60,9 @@ export class LoginPage {
       alert.present();
     }
 
-    async googleLogin(){
-        await this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
+    googleLogin(){
+      return new Promise((resolve, reject) => {
+        this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
 
           //this.showLoader();
 
@@ -76,7 +77,11 @@ export class LoginPage {
           };
 
           this.showAlert(this.body);
+          resolve(result);
+        }, (err) => {
+          reject(err);
         });
+      });
     }
 
     pushGoogleCredetials(credentials){

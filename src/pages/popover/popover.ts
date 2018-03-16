@@ -3,6 +3,7 @@ import { App, IonicPage, ViewController, ModalController, NavController } from '
 import { AuthProvider } from '../../providers/auth/auth';
 //import { AngularFireAuth } from 'angularfire2/auth';
 //import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the PopoverPage page.
@@ -54,7 +55,7 @@ export class PopoverPage {
   }
 
   goToLogin(){
-    this.modalCtrl.create('LoginPage').present();
+    this.modalCtrl.create(LoginPage).present();
     this.close();
   }
 
