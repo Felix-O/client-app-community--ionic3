@@ -72,6 +72,11 @@ export class LoginPage {
     }/**/
 
     googleLogin(){
+      this.alertCtrl.create({
+        title: 'Test Alert',
+        subTitle: 'it worked',
+        buttons: ['Dismiss']
+      }).present();
       var provider = new firebase.auth.GoogleAuthProvider();
       this.aFAuth.auth.signInWithRedirect(provider).then(() => {
         //stack flow test
@@ -79,7 +84,7 @@ export class LoginPage {
           title: 'Test Alert',
           subTitle: 'it worked',
           buttons: ['Dismiss']
-        });
+        }).present();
       });
       this.aFAuth.auth.getRedirectResult().then(result => {
         if (result.credential) {
