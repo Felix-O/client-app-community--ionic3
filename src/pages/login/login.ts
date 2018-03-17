@@ -68,6 +68,7 @@ export class LoginPage {
       if(!<any>window.cordova){
         this.googlePopup();
       } else {
+        this.showAlert("this.body");
         this.googleRedirect();
       }
     }
@@ -99,7 +100,6 @@ export class LoginPage {
     googleRedirect(){
       return this.aFAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
   		.then(() => {
-        this.showAlert("this.body");
   			return this.aFAuth.auth.getRedirectResult().then( result => {
   				// This gives you a Google Access Token.
   				// You can use it to access the Google API.
