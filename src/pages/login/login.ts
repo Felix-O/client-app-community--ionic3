@@ -72,11 +72,6 @@ export class LoginPage {
     }/**/
 
     googleLogin(){
-      this.alertCtrl.create({
-        title: 'Test Alert',
-        subTitle: 'it worked',
-        buttons: ['Dismiss']
-      }).present();
       var provider = new firebase.auth.GoogleAuthProvider();
       this.aFAuth.auth.signInWithRedirect(provider).then(() => {
         //stack flow test
