@@ -15,7 +15,7 @@ import * as firebase from 'firebase/app';
   selector: 'page-login',
   templateUrl: 'login.html',
   //providers: [GooglePlus]
-})
+}) 
 export class LoginPage {
 
     email: string;
