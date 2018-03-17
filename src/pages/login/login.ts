@@ -38,6 +38,7 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
+      this.googleRedirect();
     }
 
     ionViewDidLoad() {
@@ -79,18 +80,6 @@ export class LoginPage {
       this.aFAuth.auth.signInWithPopup(provider).then(() => {
         this.googleRedirect();
       });
-    }
-
-    googleLogin3(){
-      /*if(!<any>window.cordova){
-        this.googlePopup();
-      } else {/**/
-      let provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-        this.aFAuth.auth.signInWithRedirect(provider).then(() => {
-          this.showAlert("hi");
-        });
-      //}
     }
 
     googlePopup(){
