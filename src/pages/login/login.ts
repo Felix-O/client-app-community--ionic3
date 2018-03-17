@@ -120,7 +120,7 @@ export class LoginPage {
 				console.log(token, user);
 			}).catch(function(error) {
 				// Handle Errors here.
-				alert(error.message);
+				this.showAlert(error.message);
 			});
 		});
     }
