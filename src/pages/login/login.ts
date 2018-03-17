@@ -46,7 +46,7 @@ export class LoginPage {
 
         this.alertCtrl.create({
           title: 'Test Alert',
-          subTitle: 'it worked',
+          subTitle: user,
           buttons: ['Dismiss']
         }).present();
       }).catch(function(error) {
