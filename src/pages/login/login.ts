@@ -37,6 +37,20 @@ export class LoginPage {
       public loadingCtrl: LoadingController) {
     }
 
+    ionViewDidEnter(){
+      this.aFAuth.auth.getRedirectResult().then(result => {
+        if (result.credential) {
+          var token = result.credential.accessToken;
+        }
+        var user = result.user;
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+      });
+    }
+
     ionViewDidLoad() {
         //this.showLoader();
         //Check if already authenticated
@@ -80,17 +94,6 @@ export class LoginPage {
           subTitle: 'it worked',
           buttons: ['Dismiss']
         }).present();
-      });
-      this.aFAuth.auth.getRedirectResult().then(result => {
-        if (result.credential) {
-          var token = result.credential.accessToken;
-        }
-        var user = result.user;
-      }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
       });
     }
 
