@@ -38,13 +38,20 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
+      var message;
       this.aFAuth.auth.getRedirectResult().then(result => {
-        if (result.credential) {
-          var token = result.credential.accessToken;
-          var user = result.user;
-          var message = "success";
+        if(result){
+          if (result.credential) {
+            var token = result.credential.accessToken;
+          }
+          if(result.user){
+            var user = result.user;
+            message = "success";
+          } else {
+            message = "weird, no user";
+          }
         } else {
-          var message = "didnt work";
+          message = "didnt work";
         }
         this.showAlert(message);
       }).catch(function(error) {
@@ -52,7 +59,9 @@ export class LoginPage {
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
+        var message = "error with getRedirectResult";
         //stack flow test
+        this.showAlert(message);
       });
     }
 
