@@ -75,7 +75,6 @@ export class LoginPage {
       /*if(!<any>window.cordova){
         this.googlePopup();
       } else {/**/
-      this.showAlert('hi');
         this.aFAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider()).then(() => {
           this.showAlert("hi");
         });
