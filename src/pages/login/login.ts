@@ -41,25 +41,18 @@ export class LoginPage {
       this.aFAuth.auth.getRedirectResult().then(result => {
         if (result.credential) {
           var token = result.credential.accessToken;
+          var user = result.user;
+          var message = "success";
+        } else {
+          var message = "didnt work";
         }
-        var user = result.user;//stack flow test
-
-        this.alertCtrl.create({
-          title: 'Test Alert',
-          subTitle: user.uid,
-          buttons: ['Dismiss']
-        }).present();
+        this.showAlert(message);
       }).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
         //stack flow test
-        this.alertCtrl.create({
-          title: 'Test Alert',
-          subTitle: error.message,
-          buttons: ['Dismiss']
-        }).present();
       });
     }
 
@@ -80,7 +73,7 @@ export class LoginPage {
     showAlert(info) {
       let alert = this.alertCtrl.create({
         title: 'Credentials',
-        subTitle: info.googleId,
+        subTitle: info,
         buttons: ['Dismiss']
       });
       alert.present();
