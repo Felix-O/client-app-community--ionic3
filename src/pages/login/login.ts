@@ -66,7 +66,6 @@ export class LoginPage {
         'webClientId': '602320724221-45ne6ra24g7n2b9velck9dv94hlaqghp.apps.googleusercontent.com',
         'offline': true
       }).then( res => {
-        this.showAlert("this.body");
         console.log(res);
       })
         .catch(err => console.error(err));
@@ -107,7 +106,9 @@ export class LoginPage {
     googleRedirect(){
       return this.aFAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
   		.then(() => {
-  			return this.aFAuth.auth.getRedirectResult().then( result => {
+        this.showAlert("this.body");
+
+  			this.aFAuth.auth.getRedirectResult().then( result => {
   				// This gives you a Google Access Token.
   				// You can use it to access the Google API.
   				let token = result.credential.accessToken;
