@@ -4,7 +4,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { GooglePlus } from '@ionic-native/google-plus';
+//import { GooglePlus } from '@ionic-native/google-plus';
 
 declare var window: any;
 
@@ -30,7 +30,7 @@ export class LoginPage {
       protected app: App,
       private aFAuth: AngularFireAuth,
       public toast: ToastController,
-      private googlePlus: GooglePlus,
+      //private googlePlus: GooglePlus,
       public viewCtrl: ViewController,
       public navCtrl: NavController,
       public authService: AuthProvider,
@@ -60,6 +60,7 @@ export class LoginPage {
       alert.present();
     }
 
+/*
     googleLogin(): void {
       this.googlePlus.login({
         'webClientId': '602320724221-45ne6ra24g7n2b9velck9dv94hlaqghp.apps.googleusercontent.com',
@@ -69,14 +70,14 @@ export class LoginPage {
         console.log(res);
       })
         .catch(err => console.error(err));
-    }
+    }/**/
 
-    googleLogin2(){
-      if(!<any>window.cordova){
+    googleLogin(){
+      /*if(!<any>window.cordova){
         this.googlePopup();
-      } else {
+      } else {/**/
         this.googleRedirect();
-      }
+      //}
     }
 
     googlePopup(){

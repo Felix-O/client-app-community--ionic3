@@ -9,6 +9,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { GooglePlus } from '@ionic-native/google-plus';
+//import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
 //import { HomePage } from '../pages/home/home';
@@ -50,6 +51,7 @@ import { LoginPage } from "../pages/login/login";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GooglePlus,
+    //InAppBrowser,
     MapProvider,
     AuthProvider,
     IndexProvider,
