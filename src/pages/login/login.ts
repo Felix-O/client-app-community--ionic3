@@ -75,7 +75,9 @@ export class LoginPage {
       /*if(!<any>window.cordova){
         this.googlePopup();
       } else {/**/
-        this.aFAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider()).then(() => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        this.aFAuth.auth.signInWithRedirect(provider).then(() => {
           this.showAlert("hi");
         });
       //}
