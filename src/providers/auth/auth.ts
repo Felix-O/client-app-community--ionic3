@@ -10,7 +10,22 @@ export class AuthProvider {
   public user: any;
   public url: string = 'https://fo-server--express.herokuapp.com/';
 
-  constructor(public http: Http, public storage: Storage) {
+  constructor(
+    public http: Http,
+    public storage: Storage) {
+  }
+
+  googleTest(){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.get(this.url + 'api/auth/google', {headers: headers})
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
   }
 
   storedUser(){
@@ -56,23 +71,7 @@ export class AuthProvider {
           });
     });
   }
-/**
-  login(credentials){
-    return new Promise((resolve, reject) => {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        this.http.post(this.url + 'api/auth/test', JSON.stringify(credentials), {headers: headers})
-          .subscribe(res => {
-            let data = res.json();
-            console.log(data);
-            resolve(data);
-            //resolve(res.json());
-          }, (err) => {
-            reject(err);
-          });
-    });
-  }
-/**/
+
   login(credentials){
     return new Promise((resolve, reject) => {
         let headers = new Headers();

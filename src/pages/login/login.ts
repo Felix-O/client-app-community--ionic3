@@ -60,6 +60,10 @@ export class LoginPage {
       alert.present();
     }
 
+    googleLogin2(){
+      this.authService.googleTest();
+    }
+
     googleLogin(){
       return new Promise((resolve, reject) => {
         this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
@@ -76,8 +80,8 @@ export class LoginPage {
             password: 'bust4all'
           };
 
-
-          resolve(this.showAlert(this.body));
+          this.showAlert(this.body);
+          resolve(result);
         }, (err) => {
           reject(err);
         });
