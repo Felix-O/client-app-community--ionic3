@@ -62,7 +62,7 @@ export class LoginPage {
 
     googleLogin(): void {
       this.googlePlus.login({
-        'webClientId': '<Your web client ID>',
+        'webClientId': '602320724221-45ne6ra24g7n2b9velck9dv94hlaqghp.apps.googleusercontent.com',
         'offline': true
       }).then( res => {
         this.showAlert("this.body");
