@@ -38,31 +38,6 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
-      var message;
-      this.aFAuth.auth.getRedirectResult().then(result => {
-        if(result){
-          if (result.credential) {
-            var token = result.credential.accessToken;
-          }
-          if(result.user){
-            var user = result.user;
-            message = "success";
-          } else {
-            message = "weird, no user";
-          }
-        } else {
-          message = "didnt work";
-        }
-        this.showAlert(message);
-      }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
-        var message = "error with getRedirectResult";
-        //stack flow test
-        this.showAlert(message);
-      });
     }
 
     ionViewDidLoad() {
@@ -101,7 +76,9 @@ export class LoginPage {
 
     googleLogin(){
       var provider = new firebase.auth.GoogleAuthProvider();
-      this.aFAuth.auth.signInWithRedirect(provider);
+      this.aFAuth.auth.signInWithPopup(provider).then(() => {
+        this.googleRedirect();
+      });
     }
 
     googleLogin3(){
@@ -117,56 +94,41 @@ export class LoginPage {
     }
 
     googlePopup(){
-      //return new Promise((resolve, reject) => {
-      return  this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
-
-          //this.showLoader();
-
-          this.body = {
-            googleId: result.user.uid,
-            googleProfilePic: result.user.photoURL,
-            firstname: result.additionalUserInfo.profile.given_name,
-            lastname: result.additionalUserInfo.profile.family_name,
-            username: result.user.displayName,
-            email: result.user.email,
-            password: 'bust4all'
-          };
-
-          this.showAlert(this.body);
-          /*resolve(result);
-        }, (err) => {
-          reject(err);/**/
-        });
-      //});
+      var message;
+      var provider = new firebase.auth.GoogleAuthProvider();
+      return this.aFAuth.auth.signInWithPopup(provider).then( result => {
+        //var user = this.objectifiedUser(result);
+        message = result.user.uid;
+        this.showAlert(message);
+      });
     }
 
     googleRedirect(){
-      return this.aFAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-  		.then(() => {
-        //this.showAlert("this.body");
-
-  			return this.aFAuth.auth.getRedirectResult().then( result => {
-  				// This gives you a Google Access Token.
-  				// You can use it to access the Google API.
-  				let token = result.credential.accessToken;
-  				// The signed-in user info.
-  				let user = result.user;
-
-          this.body = {
-            googleId: result.user.uid,
-            googleProfilePic: result.user.photoURL,
-            firstname: result.additionalUserInfo.profile.given_name,
-            lastname: result.additionalUserInfo.profile.family_name,
-            username: result.user.displayName,
-            email: result.user.email,
-            password: 'bust4all'
-          };
-
-  			}).catch(function(error) {
-  				// Handle Errors here.
-  				this.showAlert(error.message);
-  			});
-  		});
+      var message;
+      return this.aFAuth.auth.getRedirectResult().then(result => {
+        if(result){
+          if (result.credential) {
+            var token = result.credential.accessToken;
+          }
+          if(result.user){
+            var user = result.user;
+            message = "success";
+          } else {
+            message = "weird, no user";
+          }
+        } else {
+          message = "didnt work";
+        }
+        this.showAlert(message);
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+        message = "error with getRedirectResult";
+        //stack flow test
+        this.showAlert(message);
+      });
     }
 
     pushGoogleCredetials(credentials){
@@ -197,6 +159,18 @@ export class LoginPage {
             this.loading.dismiss();
             //console.log(err);
         });
+    }
+
+    objectifiedUser(result){
+      return this.body = {
+        googleId: result.user.uid,
+        googleProfilePic: result.user.photoURL,
+        firstname: result.additionalUserInfo.profile.given_name,
+        lastname: result.additionalUserInfo.profile.family_name,
+        username: result.user.displayName,
+        email: result.user.email,
+        password: 'bust4all'
+      };
     }
 
     toastA(message){
