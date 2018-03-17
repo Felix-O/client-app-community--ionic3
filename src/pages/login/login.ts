@@ -98,31 +98,30 @@ export class LoginPage {
 
     googleRedirect(){
       return this.aFAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-		.then(() => {
-			return this.aFAuth.auth.getRedirectResult().then( result => {
-				// This gives you a Google Access Token.
-				// You can use it to access the Google API.
-				let token = result.credential.accessToken;
-				// The signed-in user info.
-				let user = result.user;
+  		.then(() => {
+        this.showAlert("this.body");
+  			return this.aFAuth.auth.getRedirectResult().then( result => {
+  				// This gives you a Google Access Token.
+  				// You can use it to access the Google API.
+  				let token = result.credential.accessToken;
+  				// The signed-in user info.
+  				let user = result.user;
 
-        this.body = {
-          googleId: result.user.uid,
-          googleProfilePic: result.user.photoURL,
-          firstname: result.additionalUserInfo.profile.given_name,
-          lastname: result.additionalUserInfo.profile.family_name,
-          username: result.user.displayName,
-          email: result.user.email,
-          password: 'bust4all'
-        };
+          this.body = {
+            googleId: result.user.uid,
+            googleProfilePic: result.user.photoURL,
+            firstname: result.additionalUserInfo.profile.given_name,
+            lastname: result.additionalUserInfo.profile.family_name,
+            username: result.user.displayName,
+            email: result.user.email,
+            password: 'bust4all'
+          };
 
-        this.showAlert(this.body);
-				console.log(token, user);
-			}).catch(function(error) {
-				// Handle Errors here.
-				this.showAlert(error.message);
-			});
-		});
+  			}).catch(function(error) {
+  				// Handle Errors here.
+  				this.showAlert(error.message);
+  			});
+  		});
     }
 
     pushGoogleCredetials(credentials){
