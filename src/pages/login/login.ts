@@ -6,7 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 //import { GooglePlus } from '@ionic-native/google-plus';
 
-//declare window: any;
+declare var window: any;
 
 @IonicPage({
   defaultHistory: ['HomePage']
@@ -15,7 +15,7 @@ import * as firebase from 'firebase/app';
   selector: 'page-login',
   templateUrl: 'login.html',
   //providers: [GooglePlus]
-}) 
+})
 export class LoginPage {
 
     email: string;
@@ -65,8 +65,16 @@ export class LoginPage {
     }
 
     googleLogin(){
-      return new Promise((resolve, reject) => {
-        this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
+      if(!<any>window.cordova){
+        this.googlePopup();
+      } else {
+        this.googleRedirect();
+      }
+    }
+
+    googlePopup(){
+      //return new Promise((resolve, reject) => {
+      return  this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => {
 
           //this.showLoader();
 
@@ -81,11 +89,40 @@ export class LoginPage {
           };
 
           this.showAlert(this.body);
-          resolve(result);
+          /*resolve(result);
         }, (err) => {
-          reject(err);
+          reject(err);/**/
         });
-      });
+      //});
+    }
+
+    googleRedirect(){
+      return this.aFAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+		.then(() => {
+			return this.aFAuth.auth.getRedirectResult().then( result => {
+				// This gives you a Google Access Token.
+				// You can use it to access the Google API.
+				let token = result.credential.accessToken;
+				// The signed-in user info.
+				let user = result.user;
+
+        this.body = {
+          googleId: result.user.uid,
+          googleProfilePic: result.user.photoURL,
+          firstname: result.additionalUserInfo.profile.given_name,
+          lastname: result.additionalUserInfo.profile.family_name,
+          username: result.user.displayName,
+          email: result.user.email,
+          password: 'bust4all'
+        };
+
+        this.showAlert(this.body);
+				console.log(token, user);
+			}).catch(function(error) {
+				// Handle Errors here.
+				alert(error.message);
+			});
+		});
     }
 
     pushGoogleCredetials(credentials){
