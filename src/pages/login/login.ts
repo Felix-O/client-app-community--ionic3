@@ -72,6 +72,29 @@ export class LoginPage {
     }/**/
 
     googleLogin(){
+      var provider = new firebase.auth.GoogleAuthProvider();
+      this.aFAuth.auth.signInWithRedirect(provider).then(() => {
+        //stack flow test
+        this.alertCtrl.create({
+          title: 'Test Alert',
+          subTitle: 'it worked',
+          buttons: ['Dismiss']
+        });
+      });
+      this.aFAuth.auth.getRedirectResult().then(result => {
+        if (result.credential) {
+          var token = result.credential.accessToken;
+        }
+        var user = result.user;
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+      });
+    }
+
+    googleLogin3(){
       /*if(!<any>window.cordova){
         this.googlePopup();
       } else {/**/
