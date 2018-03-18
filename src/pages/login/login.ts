@@ -104,7 +104,7 @@ export class LoginPage {
       } catch (err) {
         m1 = err;
       }
-      this.showAlert(m1, m2, m3);
+      //this.showAlert(m1, m2, m3);
     }
 
     googleRedirect(){
