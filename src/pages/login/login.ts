@@ -29,20 +29,17 @@ export class LoginPage {
     constructor(
       private alertCtrl: AlertController,
       protected app: App,
-      private aFAuth: AngularFireAuth,
+      private afAuth: AngularFireAuth,
       public toast: ToastController,
       //private googlePlus: GooglePlus,
       public viewCtrl: ViewController,
       public navCtrl: NavController,
       public authService: AuthProvider,
       public loadingCtrl: LoadingController) {
-        this.user = this.aFAuth.authState;
+        this.user = this.afAuth.authState;
     }
 
     ionViewDidEnter(){
-      if(this.user){
-        this.showAlert(this.user);
-      }
     }
 
     ionViewDidLoad() {
@@ -59,13 +56,22 @@ export class LoginPage {
         });
     }
 
-    showAlert(info) {
+    showAlert(m1, m2?, m3?) {
+      if(m2 === undefined){
+        m2 = '';
+      }
+      if(m3 === undefined){
+        m3 = '';
+      }
       let alert = this.alertCtrl.create({
         title: 'Credentials',
-        subTitle: info,
+        subTitle: m1 + m2 + m3,
         buttons: ['Dismiss']
       });
       alert.present();
+      console.log(m1);
+      console.log(m2);
+      console.log(m3);
     }
 
 /*
@@ -80,46 +86,45 @@ export class LoginPage {
     }/**/
 
     googleLogin(){
-      var provider = new firebase.auth.GoogleAuthProvider();
-      this.aFAuth.auth.signInWithPopup(provider);
-      this.showAlert(this.user);
+      this.googlePopup();
     }
 
     googlePopup(){
-      var message;
+      var m1, m2, m3;
       var provider = new firebase.auth.GoogleAuthProvider();
-      return this.aFAuth.auth.signInWithPopup(provider).then( result => {
+      return this.afAuth.auth.signInWithPopup(provider).then( result => {
         //var user = this.objectifiedUser(result);
-        message = result.user.uid;
-        this.showAlert(message);
+        m1 = result.user.uid;
+        m2 = this.user.subscribe();
+        this.showAlert(m1, m2, m3);
       });
     }
 
     googleRedirect(){
-      var message;
-      return this.aFAuth.auth.getRedirectResult().then(result => {
+      var m1, m2, m3;
+      return this.afAuth.auth.getRedirectResult().then(result => {
         if(result){
           if (result.credential) {
             var token = result.credential.accessToken;
           }
           if(result.user){
             var user = result.user;
-            message = "success";
+            m1 = "success";
           } else {
-            message = "weird, no user";
+            m1 = "weird, no user";
           }
         } else {
-          message = "didnt work";
+          m1 = "didnt work";
         }
-        this.showAlert(message);
+        this.showAlert(m1, m2, m3);
       }).catch(function(error) {
         var errorCode = error.code;
-        var errorMessage = error.message;
+        var errorm1 = error.m1;
         var email = error.email;
         var credential = error.credential;
-        message = "error with getRedirectResult";
+        m1 = "error with getRedirectResult";
         //stack flow test
-        this.showAlert(message);
+        this.showAlert(m1, m2, m3);
       });
     }
 
