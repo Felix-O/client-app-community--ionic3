@@ -4,6 +4,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
 //import { GooglePlus } from '@ionic-native/google-plus';
 
 declare var window: any;
@@ -21,7 +22,7 @@ export class LoginPage {
     email: string;
     password: string;
     loading: any;
-    user = {} as User;
+    user: Observable<firebase.User>;
     body: any;
     toastOptions: ToastOptions;
 
@@ -77,9 +78,8 @@ export class LoginPage {
 
     googleLogin(){
       var provider = new firebase.auth.GoogleAuthProvider();
-      this.aFAuth.auth.signInWithPopup(provider).then(() => {
-        this.googleRedirect();
-      });
+      this.aFAuth.auth.signInWithPopup(provider);
+      this.showAlert(this.user);
     }
 
     googlePopup(){
