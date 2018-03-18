@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content fullscreen="true">
-{{user?}}
+{{(user | async)?.uid}}
     <ion-row class="login-form">
         <ion-col>
             <ion-list inset>
