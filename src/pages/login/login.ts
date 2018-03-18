@@ -36,6 +36,7 @@ export class LoginPage {
       public navCtrl: NavController,
       public authService: AuthProvider,
       public loadingCtrl: LoadingController) {
+        this.user = this.aFAuth.authState;
     }
 
     ionViewDidEnter(){
