@@ -39,7 +39,9 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
-      this.googleRedirect();
+      if(this.user){
+        this.showAlert(this.user);
+      }
     }
 
     ionViewDidLoad() {
