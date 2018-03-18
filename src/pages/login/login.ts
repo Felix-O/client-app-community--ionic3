@@ -41,7 +41,7 @@ export class LoginPage {
 
     ionViewDidEnter(){
       var m1, m2, m3;
-      m1 = this.user;
+      m1 = this.user; 
       this.showAlert(m1, m2, m3);
     }
 
