@@ -89,15 +89,19 @@ export class LoginPage {
       this.googlePopup();
     }
 
-    googlePopup(){
+    async googlePopup(): Promise<void>{
       var m1, m2, m3;
-      var provider = new firebase.auth.GoogleAuthProvider();
-      return this.afAuth.auth.signInWithPopup(provider).then( result => {
-        //var user = this.objectifiedUser(result);
-        m1 = result.user.uid;
-        m2 = this.user.subscribe();
-        this.showAlert(m1, m2, m3);
-      });
+      try {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const credential = await this.afAuth.auth.signInWithPopup(provider).then( result => {
+          //var user = this.objectifiedUser(result);
+          m1 = result.user.uid;
+          m2 = this.user.subscribe();
+        });
+      } catch (err) {
+        m1 = err;
+      }
+      this.showAlert(m1, m2, m3);
     }
 
     googleRedirect(){
