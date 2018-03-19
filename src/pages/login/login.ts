@@ -19,6 +19,9 @@ declare var window: any;
 })
 export class LoginPage {
 
+    m1: any;
+    m2: any;
+    m3: any;
     email: string;
     password: string;
     loading: any;
@@ -40,35 +43,33 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
-      var m1, m2, m3;
-      m1 = this.user; 
-      this.showAlert(m1, m2, m3);
     }
 
     ionViewDidLoad() {
-        //this.showLoader();
-        //Check if already authenticated
-        this.authService.checkAuthentication().then((res) => {
-            console.log("Already authorized");
-            //this.loading.dismiss();
-            this.app.getRootNav().setRoot('ProfilePage');
-            //this.close();
-        }, (err) => {
-            console.log("Not already authorized");
-            //this.loading.dismiss();
-        });
+      this.user.subscribe( res => {
+        this.m1 = res;
+      });
+      this.showAlert(this.m1, this.m2, this.m3);
+      //this.showLoader();
+      //Check if already authenticated
+      this.authService.checkAuthentication().then((res) => {
+          console.log("Already authorized");
+          //this.loading.dismiss();
+          this.app.getRootNav().setRoot('ProfilePage');
+          //this.close();
+      }, (err) => {
+          console.log("Not already authorized");
+          //this.loading.dismiss();
+      });
     }
 
-    showAlert(m1, m2?, m3?) {
-      if(m2 === undefined){
-        m2 = '';
-      }
-      if(m3 === undefined){
-        m3 = '';
-      }
+    showAlert(m1?, m2?, m3?) {
+      m1 = m1 || "...";
+      m2 = m2 || "";
+      m3 = m3 || "";
       let alert = this.alertCtrl.create({
         title: 'Credentials',
-        subTitle: m1 + m2 + m3,
+        subTitle: m1 + " " + m2 + " " + m3,
         buttons: ['Dismiss']
       });
       alert.present();
@@ -93,22 +94,20 @@ export class LoginPage {
     }
 
     async googlePopup(): Promise<void>{
-      var m1, m2, m3;
       try {
         const provider = new firebase.auth.GoogleAuthProvider();
         const credential = await this.afAuth.auth.signInWithPopup(provider).then( result => {
           //var user = this.objectifiedUser(result);
-          m1 = result.user.uid;
-          m2 = this.user.subscribe();
+          this.m1 = result.user.uid;
+          this.m2 = this.user.subscribe();
         });
       } catch (err) {
-        m1 = err;
+        this.m1 = err;
       }
       //this.showAlert(m1, m2, m3);
     }
 
     googleRedirect(){
-      var m1, m2, m3;
       return this.afAuth.auth.getRedirectResult().then(result => {
         if(result){
           if (result.credential) {
@@ -116,22 +115,22 @@ export class LoginPage {
           }
           if(result.user){
             var user = result.user;
-            m1 = "success";
+            this.m1 = "success";
           } else {
-            m1 = "weird, no user";
+            this.m1 = "weird, no user";
           }
         } else {
-          m1 = "didnt work";
+          this.m1 = "didnt work";
         }
-        this.showAlert(m1, m2, m3);
+        this.showAlert(this.m1, this.m2, this.m3);
       }).catch(function(error) {
         var errorCode = error.code;
-        var errorm1 = error.m1;
+        var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
-        m1 = "error with getRedirectResult";
+        this.m1 = "error with getRedirectResult";
         //stack flow test
-        this.showAlert(m1, m2, m3);
+        this.showAlert(this.m1, this.m2, this.m3);
       });
     }
 
