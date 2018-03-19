@@ -65,7 +65,7 @@ export class LoginPage {
       return this.authenticated ? this.authState.uid : '';
     }
 
-    // Anonymous User
+    // Anonymous User 
     get currentUserAnonymous(): boolean {
       return this.authenticated ? this.authState.isAnonymous : false
     }
