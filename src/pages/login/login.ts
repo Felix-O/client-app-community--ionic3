@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 //import { GooglePlus } from '@ionic-native/google-plus';
 
-declare var window: any;
+//declare var window: any;
 
 @IonicPage({
   defaultHistory: ['HomePage']
@@ -51,17 +51,6 @@ export class LoginPage {
     }
 
     ionViewDidLoad() {
-      //this.showLoader();
-      //Check if already authenticated
-      this.authService.checkAuthentication().then((res) => {
-          console.log("Already authorized");
-          //this.loading.dismiss();
-          this.app.getRootNav().setRoot('ProfilePage');
-          //this.close();
-      }, (err) => {
-          console.log("Not already authorized");
-          //this.loading.dismiss();
-      });
     }
 
     showAlert(m1?, m2?, m3?) {
@@ -176,6 +165,20 @@ export class LoginPage {
             this.loading.dismiss();
             //console.log(err);
         });
+    }
+
+    checkAuthentication(){
+      this.showLoader();
+      //Check if already authenticated
+      this.authService.checkAuthentication().then((res) => {
+          console.log("Already authorized");
+          //this.loading.dismiss();
+          this.app.getRootNav().setRoot('ProfilePage');
+          //this.close();
+      }, (err) => {
+          console.log("Not already authorized");
+          //this.loading.dismiss();
+      });
     }
 
     objectifiedUser(result){
