@@ -43,10 +43,7 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
-      this.googlePopup().then(res => {
-        this.m1 = this.user;
-        this.showAlert(this.m1, this.m2, this.m3);
-      });
+      this.googlePopup();
     }
 
     ionViewDidLoad() {
