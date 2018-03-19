@@ -40,7 +40,7 @@ export class LoginPage {
       public navCtrl: NavController,
       public authService: AuthProvider,
       public loadingCtrl: LoadingController) {
-        //this.user = this.afAuth.authState;
+        this.user = this.afAuth.authState;
         this.afAuth.authState.subscribe((auth) => {
           this.authState = auth
         });
@@ -65,7 +65,7 @@ export class LoginPage {
       return this.authenticated ? this.authState.uid : '';
     }
 
-    // Anonymous User 
+    // Anonymous User
     get currentUserAnonymous(): boolean {
       return this.authenticated ? this.authState.isAnonymous : false
     }
@@ -78,8 +78,7 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
-      this.m1 = this.authenticated ? this.authState : null;
-      this.showAlert(this.m1);
+      //this.showAlert(this.m1);
     }
 
     ionViewDidLoad() {
