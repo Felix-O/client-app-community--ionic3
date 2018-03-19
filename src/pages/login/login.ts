@@ -46,9 +46,8 @@ export class LoginPage {
     }
 
     ionViewDidLoad() {
-      this.user.subscribe( res => {
-        this.m1 = res;
-      });
+      this.user.subscribe();
+      this.m1 = this.user;
       this.showAlert(this.m1, this.m2, this.m3);
       //this.showLoader();
       //Check if already authenticated
