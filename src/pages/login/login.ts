@@ -19,6 +19,7 @@ declare var window: any;
 })
 export class LoginPage {
 
+    authState: any = null;
     m1: any;
     m2: any;
     m3: any;
@@ -39,11 +40,46 @@ export class LoginPage {
       public navCtrl: NavController,
       public authService: AuthProvider,
       public loadingCtrl: LoadingController) {
-        this.user = this.afAuth.authState;
+        //this.user = this.afAuth.authState;
+        this.afAuth.authState.subscribe((auth) => {
+          this.authState = auth
+        });
+    }  // Returns true if user is logged in
+
+    get authenticated(): boolean {
+      return this.authState !== null;
+    }
+
+    // Returns current user data
+    get currentUser(): any {
+      return this.authenticated ? this.authState : null;
+    }
+
+    // Returns
+    get currentUserObservable(): any {
+      return this.afAuth.authState
+    }
+
+    // Returns current user UID
+    get currentUserId(): string {
+      return this.authenticated ? this.authState.uid : '';
+    }
+
+    // Anonymous User
+    get currentUserAnonymous(): boolean {
+      return this.authenticated ? this.authState.isAnonymous : false
+    }
+
+    // Returns current user display name or Guest
+    get currentUserDisplayName(): string {
+      if (!this.authState) { return 'Guest' }
+      else if (this.currentUserAnonymous) { return 'Anonymous' }
+      else { return this.authState['displayName'] || 'User without a Name' }
     }
 
     ionViewDidEnter(){
-      //this.googlePopup();
+      this.m1 = this.authenticated ? this.authState : null;
+      this.showAlert(this.m1);
     }
 
     ionViewDidLoad() {
