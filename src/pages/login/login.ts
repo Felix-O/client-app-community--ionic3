@@ -46,37 +46,6 @@ export class LoginPage {
         });
     }  // Returns true if user is logged in
 
-    get authenticated(): boolean {
-      return this.authState !== null;
-    }
-
-    // Returns current user data
-    get currentUser(): any {
-      return this.authenticated ? this.authState : null;
-    }
-
-    // Returns
-    get currentUserObservable(): any {
-      return this.afAuth.authState
-    }
-
-    // Returns current user UID
-    get currentUserId(): string {
-      return this.authenticated ? this.authState.uid : '';
-    }
-
-    // Anonymous User
-    get currentUserAnonymous(): boolean {
-      return this.authenticated ? this.authState.isAnonymous : false
-    }
-
-    // Returns current user display name or Guest
-    get currentUserDisplayName(): string {
-      if (!this.authState) { return 'Guest' }
-      else if (this.currentUserAnonymous) { return 'Anonymous' }
-      else { return this.authState['displayName'] || 'User without a Name' }
-    }
-
     ionViewDidEnter(){
       //this.showAlert(this.m1);
     }
@@ -110,16 +79,36 @@ export class LoginPage {
       console.log(m3);
     }
 
-/*
-    googleLogin(): void {
-      this.googlePlus.login({
-        'webClientId': '602320724221-45ne6ra24g7n2b9velck9dv94hlaqghp.apps.googleusercontent.com',
-        'offline': true
-      }).then( res => {
-        console.log(res);
-      })
-        .catch(err => console.error(err));
-    }/**/
+    get authenticated(): boolean {
+      return this.authState !== null;
+    }
+
+    // Returns current user data
+    get currentUser(): any {
+      return this.authenticated ? this.authState : null;
+    }
+
+    // Returns
+    get currentUserObservable(): any {
+      return this.afAuth.authState
+    }
+
+    // Returns current user UID
+    get currentUserId(): string {
+      return this.authenticated ? this.authState.uid : '';
+    }
+
+    // Anonymous User
+    get currentUserAnonymous(): boolean {
+      return this.authenticated ? this.authState.isAnonymous : false
+    }
+
+    // Returns current user display name or Guest
+    get currentUserDisplayName(): string {
+      if (!this.authState) { return 'Guest' }
+      else if (this.currentUserAnonymous) { return 'Anonymous' }
+      else { return this.authState['displayName'] || 'User without a Name' }
+    }
 
     googleLogin(){
       this.googlePopup();
