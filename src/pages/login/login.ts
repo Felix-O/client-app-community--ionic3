@@ -43,10 +43,11 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
-      this.googlePopup();
-      this.user.subscribe(res => {
-        this.m1 = res;
-        this.showAlert(this.m1, this.m2, this.m3);
+      this.googlePopup().then(res => {
+        this.afAuth.authState.subscribe(res => {
+          this.m1 = res;
+          this.showAlert(this.m1, this.m2, this.m3);
+        });
       });
     }
 
@@ -97,15 +98,10 @@ export class LoginPage {
     async googlePopup(): Promise<void>{
       try {
         const provider = new firebase.auth.GoogleAuthProvider();
-        const credential = await this.afAuth.auth.signInWithPopup(provider).then( result => {
-          //var user = this.objectifiedUser(result);
-          this.m1 = result.user.uid;
-          this.m2 = this.user.subscribe();
-        });
+        const credential = await this.afAuth.auth.signInWithPopup(provider);
       } catch (err) {
         this.m1 = err;
       }
-      //this.showAlert(m1, m2, m3);
     }
 
     googleRedirect(){
@@ -123,15 +119,12 @@ export class LoginPage {
         } else {
           this.m1 = "didnt work";
         }
-        this.showAlert(this.m1, this.m2, this.m3);
       }).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
         this.m1 = "error with getRedirectResult";
-        //stack flow test
-        this.showAlert(this.m1, this.m2, this.m3);
       });
     }
 
