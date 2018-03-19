@@ -43,6 +43,7 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
+      this.googlePopup();
       this.user.subscribe(res => {
         this.m1 = res;
         this.showAlert(this.m1, this.m2, this.m3);
