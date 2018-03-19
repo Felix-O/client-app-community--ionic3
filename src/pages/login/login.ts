@@ -43,12 +43,13 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
+      this.user.subscribe(res => {
+        this.m1 = this.user;
+        this.showAlert(this.m1, this.m2, this.m3);
+      });
     }
 
     ionViewDidLoad() {
-      this.user.subscribe();
-      this.m1 = this.user;
-      this.showAlert(this.m1, this.m2, this.m3);
       //this.showLoader();
       //Check if already authenticated
       this.authService.checkAuthentication().then((res) => {
