@@ -43,7 +43,7 @@ export class LoginPage {
     }
 
     ionViewDidEnter(){
-      this.googlePopup();
+      //this.googlePopup();
     }
 
     ionViewDidLoad() {
