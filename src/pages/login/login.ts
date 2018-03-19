@@ -40,10 +40,10 @@ export class LoginPage {
       public navCtrl: NavController,
       public authService: AuthProvider,
       public loadingCtrl: LoadingController) {
-        this.user = this.afAuth.authState;
+        this.user = this.afAuth.authState;/*
         this.afAuth.authState.subscribe((auth) => {
           this.authState = auth
-        });
+        });/**/
     }  // Returns true if user is logged in
 
     ionViewDidEnter(){
@@ -79,6 +79,7 @@ export class LoginPage {
       console.log(m3);
     }
 
+    /*
     get authenticated(): boolean {
       return this.authState !== null;
     }
@@ -108,7 +109,7 @@ export class LoginPage {
       if (!this.authState) { return 'Guest' }
       else if (this.currentUserAnonymous) { return 'Anonymous' }
       else { return this.authState['displayName'] || 'User without a Name' }
-    }
+    }/**/
 
     googleLogin(){
       this.googlePopup();
