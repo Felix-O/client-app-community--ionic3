@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //import { Observable } from 'rxjs/Observable';
 
-//import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 //import * as firebase from 'firebase/app';
 
 //import { HomePage } from '../pages/home/home';
@@ -19,7 +19,7 @@ export class MyApp {
 
   constructor(
     protected app: App,
-    //public aFAuth: AngularFireAuth,
+    public afAuth: AngularFireAuth,
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen) {
@@ -28,9 +28,23 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-
       //console.log(this.navCtrl._app);
       this.isTheme = true;
+
+      this.getGoogleRedirectResult().then(result => {
+        if(result){
+          if (result.credential) {
+            var token = result.credential.accessToken;
+            var user = result.user;
+            console.log(user.uid);
+          }
+        }
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+      });
     });
   }
 
@@ -46,12 +60,13 @@ export class MyApp {
     //this.isTheme = true;
   }
 
-  /**
-  googleLogin(){
-    this.aFAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  /**/
+  getGoogleRedirectResult(){
+    return this.afAuth.auth.getRedirectResult();
   }
+
   logout(){
-    this.aFAuth.auth.signOut();
+    return this.afAuth.auth.signOut();
   }
   /**/
 

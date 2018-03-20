@@ -26,7 +26,7 @@ export class LoginPage {
     email: string;
     password: string;
     loading: any;
-    user: Observable<firebase.User>;
+    //user: Observable<firebase.User>;
     body: any;
     toastOptions: ToastOptions;
 
@@ -40,17 +40,13 @@ export class LoginPage {
       public navCtrl: NavController,
       public authService: AuthProvider,
       public loadingCtrl: LoadingController) {
-        this.user = this.afAuth.authState;/**/
+        //this.user = this.afAuth.authState;/**/
     }  // Returns true if user is logged in
 
     ionViewDidEnter(){
     }
 
     ionViewDidLoad() {
-      this.afAuth.authState.subscribe((auth) => {
-        this.authState = auth
-        this.showAlert(this.authState.uid);
-      });/**/
     }
 
     showAlert(m1?, m2?, m3?) {
@@ -101,7 +97,9 @@ export class LoginPage {
     }/**/
 
     googleLogin(){
-      this.googleRedirect();
+      this.logout().then(() => {
+        this.googleRedirect();
+      });
     }
 
     async googlePopup(): Promise<void>{
@@ -208,6 +206,10 @@ export class LoginPage {
     launchSignup(){
         this.app.getRootNav().setRoot('RegisterPage');
         this.close();
+    }
+
+    logout(){
+      return this.afAuth.auth.signOut();
     }
 
     showLoader(){
