@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { App, IonicPage, NavController, ViewController, LoadingController, ToastController, ToastOptions, AlertController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { User } from '../../models/user';
+//import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
-//import { GooglePlus } from '@ionic-native/google-plus';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 //declare var window: any;
 
@@ -35,22 +35,22 @@ export class LoginPage {
       protected app: App,
       private afAuth: AngularFireAuth,
       public toast: ToastController,
-      //private googlePlus: GooglePlus,
+      private googlePlus: GooglePlus,
       public viewCtrl: ViewController,
       public navCtrl: NavController,
       public authService: AuthProvider,
       public loadingCtrl: LoadingController) {
-        this.user = this.afAuth.authState;/*
-        this.afAuth.authState.subscribe((auth) => {
-          this.authState = auth
-        });/**/
+        this.user = this.afAuth.authState;/**/
     }  // Returns true if user is logged in
 
     ionViewDidEnter(){
-      //this.showAlert(this.m1);
     }
 
     ionViewDidLoad() {
+      this.afAuth.authState.subscribe((auth) => {
+        this.authState = auth
+        this.showAlert(this.authState.uid);
+      });/**/
     }
 
     showAlert(m1?, m2?, m3?) {
@@ -101,14 +101,28 @@ export class LoginPage {
     }/**/
 
     googleLogin(){
-      this.googlePopup();
+      this.nativeGoogleLogin();
     }
 
     async googlePopup(): Promise<void>{
       try {
         const provider = new firebase.auth.GoogleAuthProvider();
-        const credential = await this.afAuth.auth.signInWithPopup(provider);
+        //const credential =
+        await this.afAuth.auth.signInWithPopup(provider);
       } catch (err) {
+        this.m1 = err;
+      }
+    }
+
+    async nativeGoogleLogin(): Promise<void> {
+      try {
+        const gplusUser = await this.googlePlus.login({
+          'webClientId': '602320724221-45ne6ra24g7n2b9velck9dv94hlaqghp.apps.googleusercontent.com',
+          'offline': true,
+          'scopes': 'profile email'
+        })
+        return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
+      } catch(err) {
         this.m1 = err;
       }
     }

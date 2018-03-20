@@ -3,7 +3,7 @@ import { IonicPage, NavController, PopoverController/*, Slides/**/ } from 'ionic
 import { AuthProvider } from '../../providers/auth/auth';
 //import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
-//import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { PopoverPage } from "../popover/popover";
 
 //declare var google: any;
@@ -23,13 +23,13 @@ export class HomePage {
   profileData: any;
 
   constructor(/**/
-    //private aFAuth: AngularFireAuth/**/,
+    private aFAuth: AngularFireAuth/**/,
     public authService: AuthProvider,
     public popoverCtrl: PopoverController/**/,
     public navCtrl: NavController/**/,
     //public mapPvdr: MapProvider/**/,
     public indexPvdr: IndexProvider/**/) {
-    /**
+    /**/
     this.aFAuth.authState.subscribe(data => {
       console.log(data);
     });/**/
