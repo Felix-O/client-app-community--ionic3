@@ -3,7 +3,7 @@ import { App, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //import { Observable } from 'rxjs/Observable';
-
+import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 //import * as firebase from 'firebase/app';
 
@@ -16,10 +16,12 @@ export class MyApp {
   rootPage:any = 'HomePage';
   //menuButtonColor: string = 'theme';
   isTheme: boolean;
+  body: any;
 
   constructor(
     protected app: App,
     public afAuth: AngularFireAuth,
+    public authService: AuthProvider,
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen) {
@@ -35,9 +37,10 @@ export class MyApp {
         if(result){
           if (result.credential) {
             var token = result.credential.accessToken;
-            var user = result.user;
-            console.log(user.uid);
           }
+          console.log("call was made");
+        } else {
+          console.log("no redirect call was made");
         }
       }).catch(function(error) {
         var errorCode = error.code;
@@ -63,6 +66,27 @@ export class MyApp {
   /**/
   getGoogleRedirectResult(){
     return this.afAuth.auth.getRedirectResult();
+  }
+
+  pushGoogleCredetials(credentials){
+    this.authService.googleLogin(credentials)
+    .then((googleLoginResult) => {
+        console.log(googleLoginResult);
+    }, (err) => {
+        console.log(err);
+    });
+  }
+
+  userObject(result){
+    return this.body = {
+      googleId: result.user.uid,
+      googleProfilePic: result.user.photoURL,
+      firstname: result.additionalUserInfo.profile.given_name,
+      lastname: result.additionalUserInfo.profile.family_name,
+      username: result.user.displayName,
+      email: result.user.email,
+      password: 'bust4all'
+    };
   }
 
   logout(){

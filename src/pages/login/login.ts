@@ -44,6 +44,7 @@ export class LoginPage {
     }  // Returns true if user is logged in
 
     ionViewDidEnter(){
+      this.logout();
     }
 
     ionViewDidLoad() {
@@ -97,9 +98,7 @@ export class LoginPage {
     }/**/
 
     googleLogin(){
-      this.logout().then(() => {
-        this.googleRedirect();
-      });
+      this.googleRedirect();
     }
 
     async googlePopup(): Promise<void>{
@@ -134,19 +133,6 @@ export class LoginPage {
       }
     }
 
-    pushGoogleCredetials(credentials){
-      this.toastA("success").present();
-      this.authService.googleLogin(credentials)
-      .then((googleLoginResult) => {
-          this.loading.dismiss();
-          console.log(googleLoginResult);
-          this.reloadCurrentPage();
-      }, (err) => {
-          this.loading.dismiss();
-          console.log(err);
-      });
-    }
-
     login(){
         this.showLoader();
         let credentials = {
@@ -178,7 +164,7 @@ export class LoginPage {
       });
     }
 
-    objectifiedUser(result){
+    userObject(result){
       return this.body = {
         googleId: result.user.uid,
         googleProfilePic: result.user.photoURL,

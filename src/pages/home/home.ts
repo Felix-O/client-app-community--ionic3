@@ -33,10 +33,6 @@ export class HomePage {
     public alertCtrl: AlertController,
     //public mapPvdr: MapProvider/**/,
     public indexPvdr: IndexProvider/**/) {
-    /**/
-    this.afAuth.authState.subscribe(data => {
-      console.log(data);
-    });/**/
   }
 
   ionViewCanEnter(){
