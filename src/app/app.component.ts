@@ -39,9 +39,11 @@ export class MyApp {
         if(result.user){
           //this.showLoader();
           var token = result.credential.accessToken;
-          this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component).then(() => {
-            //this.loading.dismiss();
-            console.log("redirecting");
+          this.pushGoogleCredetials(this.userObject(result)).then(res => {
+            this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component).then(() => {
+              //this.loading.dismiss();
+              console.log("redirecting");
+            });
           });
           console.log("call was made");
         } else {
@@ -74,7 +76,7 @@ export class MyApp {
   }
 
   pushGoogleCredetials(credentials){
-    this.authService.googleLogin(credentials)
+    return this.authService.googleLogin(credentials)
     .then((googleLoginResult) => {
         console.log(googleLoginResult);
     }, (err) => {
