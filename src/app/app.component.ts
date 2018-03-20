@@ -39,7 +39,9 @@ export class MyApp {
         if(result.user){
           this.showLoader();
           var token = result.credential.accessToken;
-          this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component);
+          this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component).then(() => {
+            this.loading.dismiss();
+          });
           console.log("call was made");
         } else {
           console.log("no redirect call was made");
