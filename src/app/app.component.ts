@@ -37,10 +37,11 @@ export class MyApp {
 
       this.getGoogleRedirectResult().then(result => {
         if(result.user){
-          this.showLoader();
+          //this.showLoader();
           var token = result.credential.accessToken;
           this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component).then(() => {
-            this.loading.dismiss();
+            //this.loading.dismiss();
+            console.log("redirecting");
           });
           console.log("call was made");
         } else {

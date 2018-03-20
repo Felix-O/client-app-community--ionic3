@@ -98,6 +98,7 @@ export class LoginPage {
     }/**/
 
     googleLogin(){
+      this.showLoader();
       this.googleRedirect();
     }
 
