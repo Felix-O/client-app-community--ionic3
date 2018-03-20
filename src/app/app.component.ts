@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, Platform } from 'ionic-angular';
+import { App, Platform, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //import { Observable } from 'rxjs/Observable';
@@ -17,11 +17,13 @@ export class MyApp {
   //menuButtonColor: string = 'theme';
   isTheme: boolean;
   body: any;
+  loading: any;
 
   constructor(
     protected app: App,
     public afAuth: AngularFireAuth,
     public authService: AuthProvider,
+    public loadingCtrl: LoadingController,
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen) {
@@ -35,7 +37,9 @@ export class MyApp {
 
       this.getGoogleRedirectResult().then(result => {
         if(result.user){
+          this.showLoader();
           var token = result.credential.accessToken;
+          this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component);
           console.log("call was made");
         } else {
           console.log("no redirect call was made");
@@ -140,6 +144,13 @@ export class MyApp {
   goToGive(){
     this.app.getRootNav().setRoot('GivePage');
     //this.close();
+  }
+
+  showLoader(){
+      this.loading = this.loadingCtrl.create({
+          content: 'Authenticating...'
+      });
+      this.loading.present();
   }
 
   /**
