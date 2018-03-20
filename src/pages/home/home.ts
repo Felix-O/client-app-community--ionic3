@@ -1,5 +1,5 @@
 import { Component/*, ViewChild/*, ElementRef/**/ } from '@angular/core';
-import { IonicPage, NavController, PopoverController/*, Slides/**/ } from 'ionic-angular';
+import { IonicPage, NavController, PopoverController, AlertController/*, Slides/**/ } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 //import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
@@ -17,20 +17,24 @@ export class HomePage {
   //@ViewChild('map') mapRef: ElementRef;
   //@ViewChild(Slides) slides: Slides;
   //gMap: any;
+  m1: any;
+  m2: any;
+  m3: any;
   userData: {};
   gDoc: any;
   loggedIn: boolean;
   profileData: any;
 
   constructor(/**/
-    private aFAuth: AngularFireAuth/**/,
+    private afAuth: AngularFireAuth/**/,
     public authService: AuthProvider,
     public popoverCtrl: PopoverController/**/,
     public navCtrl: NavController/**/,
+    public alertCtrl: AlertController,
     //public mapPvdr: MapProvider/**/,
     public indexPvdr: IndexProvider/**/) {
     /**/
-    this.aFAuth.authState.subscribe(data => {
+    this.afAuth.authState.subscribe(data => {
       console.log(data);
     });/**/
   }
@@ -60,6 +64,45 @@ export class HomePage {
         this.gDoc = JSON.stringify(res).substr(1101).slice(0, -1);
       });/**/
       //this.slides.startAutoplay();
+  }
+
+  showAlert(m1?, m2?, m3?) {
+    m1 = m1 || "...";
+    m2 = m2 || "";
+    m3 = m3 || "";
+    let alert = this.alertCtrl.create({
+      title: 'Credentials',
+      subTitle: m1 + " " + m2 + " " + m3,
+      buttons: ['Dismiss']
+    });
+    alert.present();
+    console.log(m1);
+    console.log(m2);
+    console.log(m3);
+  }
+
+  googleRedirect(){
+    return this.afAuth.auth.getRedirectResult().then(result => {
+      if(result){
+        if (result.credential) {
+          var token = result.credential.accessToken;
+        }
+        if(result.user){
+          var user = result.user;
+          this.m1 = "success";
+        } else {
+          this.m1 = "weird, no user";
+        }
+      } else {
+        this.m1 = "didnt work";
+      }
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
+      this.m1 = "error with getRedirectResult";
+    });
   }
 
   goToUser(userID, firstname, lastname, username, email, role){

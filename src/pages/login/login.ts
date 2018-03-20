@@ -101,7 +101,7 @@ export class LoginPage {
     }/**/
 
     googleLogin(){
-      this.nativeGoogleLogin();
+      this.googleRedirect();
     }
 
     async googlePopup(): Promise<void>{
@@ -109,6 +109,16 @@ export class LoginPage {
         const provider = new firebase.auth.GoogleAuthProvider();
         //const credential =
         await this.afAuth.auth.signInWithPopup(provider);
+      } catch (err) {
+        this.m1 = err;
+      }
+    }
+
+    async googleRedirect(): Promise<void>{
+      try {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        //const credential =
+        await this.afAuth.auth.signInWithRedirect(provider);
       } catch (err) {
         this.m1 = err;
       }
@@ -125,30 +135,6 @@ export class LoginPage {
       } catch(err) {
         this.m1 = err;
       }
-    }
-
-    googleRedirect(){
-      return this.afAuth.auth.getRedirectResult().then(result => {
-        if(result){
-          if (result.credential) {
-            var token = result.credential.accessToken;
-          }
-          if(result.user){
-            var user = result.user;
-            this.m1 = "success";
-          } else {
-            this.m1 = "weird, no user";
-          }
-        } else {
-          this.m1 = "didnt work";
-        }
-      }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
-        this.m1 = "error with getRedirectResult";
-      });
     }
 
     pushGoogleCredetials(credentials){
