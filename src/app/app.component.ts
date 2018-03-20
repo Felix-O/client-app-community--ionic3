@@ -34,10 +34,8 @@ export class MyApp {
       this.isTheme = true;
 
       this.getGoogleRedirectResult().then(result => {
-        if(result){
-          if (result.credential) {
-            var token = result.credential.accessToken;
-          }
+        if(result.user){
+          var token = result.credential.accessToken;
           console.log("call was made");
         } else {
           console.log("no redirect call was made");

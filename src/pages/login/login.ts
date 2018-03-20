@@ -44,10 +44,10 @@ export class LoginPage {
     }  // Returns true if user is logged in
 
     ionViewDidEnter(){
-      this.logout();
     }
 
     ionViewDidLoad() {
+      this.logout();
     }
 
     showAlert(m1?, m2?, m3?) {
