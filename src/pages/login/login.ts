@@ -114,11 +114,10 @@ export class LoginPage {
       }
     }
 
-    async googleRedirect(): Promise<void>{
+    googleRedirect() {
       try {
         const provider = new firebase.auth.GoogleAuthProvider();
-        //const credential =
-        await this.afAuth.auth.signInWithRedirect(provider);
+        this.afAuth.auth.signInWithRedirect(provider);
       } catch (err) {
         this.m1 = err;
       }

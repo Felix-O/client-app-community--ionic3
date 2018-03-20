@@ -37,6 +37,27 @@ export class HomePage {
     this.afAuth.authState.subscribe(data => {
       console.log(data);
     });/**/
+    this.getGoogleRedirectResult().then(result => {
+      if(result){
+        if (result.credential) {
+          var token = result.credential.accessToken;
+        }
+        if(result.user){
+          var user = result.user;
+          this.m1 = "success";
+        } else {
+          this.m1 = "weird, no user";
+        }
+      } else {
+        this.m1 = "didnt work";
+      }
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
+      this.m1 = "error with getRedirectResult";
+    });
   }
 
   ionViewCanEnter(){
@@ -81,28 +102,8 @@ export class HomePage {
     console.log(m3);
   }
 
-  googleRedirect(){
-    return this.afAuth.auth.getRedirectResult().then(result => {
-      if(result){
-        if (result.credential) {
-          var token = result.credential.accessToken;
-        }
-        if(result.user){
-          var user = result.user;
-          this.m1 = "success";
-        } else {
-          this.m1 = "weird, no user";
-        }
-      } else {
-        this.m1 = "didnt work";
-      }
-    }).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      var email = error.email;
-      var credential = error.credential;
-      this.m1 = "error with getRedirectResult";
-    });
+  getGoogleRedirectResult(){
+    return this.afAuth.auth.getRedirectResult();
   }
 
   goToUser(userID, firstname, lastname, username, email, role){
