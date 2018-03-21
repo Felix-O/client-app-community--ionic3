@@ -7,7 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { PopoverPage } from "../popover/popover";
 
 //declare var google: any;
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

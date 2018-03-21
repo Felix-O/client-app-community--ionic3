@@ -7,13 +7,13 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 //import * as firebase from 'firebase/app';
 
-//import { HomePage } from '../pages/home/home';
+import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'HomePage';
+  rootPage:any = HomePage;
   //menuButtonColor: string = 'theme';
   isTheme: boolean;
   body: any;
@@ -107,7 +107,7 @@ export class MyApp {
   }/**/
 
   goHome(){
-    this.app.getRootNav().setRoot('HomePage');
+    this.app.getRootNav().setRoot(HomePage);
     //this.close();
   }
 

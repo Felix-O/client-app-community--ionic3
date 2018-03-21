@@ -12,7 +12,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 //import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
-//import { HomePage } from '../pages/home/home';
+import { HomePage } from '../pages/home/home';
 import { MapProvider } from '../providers/map/map';
 import { AuthProvider } from '../providers/auth/auth';
 import { IndexProvider } from '../providers/index/index';
@@ -28,8 +28,8 @@ import { LoginPage } from "../pages/login/login";
   declarations: [
     MyApp,
     PopoverPage,
-    LoginPage//,
-    //HomePage
+    LoginPage,
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -43,8 +43,8 @@ import { LoginPage } from "../pages/login/login";
   entryComponents: [
     MyApp,
     PopoverPage,
-    LoginPage//,
-    //HomePage
+    LoginPage,
+    HomePage
   ],
   providers: [
     StatusBar,

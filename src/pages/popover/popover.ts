@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { App, IonicPage, ViewController, ModalController, NavController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 //import { AngularFireAuth } from 'angularfire2/auth';
-//import { HomePage } from '../home/home';
+import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 
 /**
@@ -60,7 +60,7 @@ export class PopoverPage {
   }
 
   goHome(){
-    this.app.getRootNav().setRoot('HomePage');
+    this.app.getRootNav().setRoot(HomePage);
     this.close();
   }
 
