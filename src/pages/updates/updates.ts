@@ -26,19 +26,19 @@ export class UpdatesPage {
     public menuCtrl: MenuController,
     public popoverCtrl: PopoverController,
     public navParams: NavParams) {
+      this.authService.storedUser().then((value) => {
+        if(value){
+          this.loggedIn = true;
+          this.profileData = value;
+          console.log(this.profileData);
+        }
+        else{
+          this.loggedIn = false;
+        }
+      });
   }
 
   ionViewCanEnter() {
-    this.authService.storedUser().then((value) => {
-      if(value){
-        this.loggedIn = true;
-        this.profileData = value;
-        console.log(this.profileData);
-      }
-      else{
-        this.loggedIn = false;
-      }
-    });
   }
 
   presentPopover(ev){

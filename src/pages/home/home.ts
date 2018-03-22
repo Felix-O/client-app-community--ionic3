@@ -34,19 +34,19 @@ export class HomePage {
     public alertCtrl: AlertController,
     //public mapPvdr: MapProvider/**/,
     public indexPvdr: IndexProvider/**/) {
+      this.authService.storedUser().then((value) => {
+        if(value){
+          this.loggedIn = true;
+          this.profileData = value;
+          //console.log(this.profileData);
+        }
+        else{
+          this.loggedIn = false;
+        }
+      });
   }
 
   ionViewCanEnter(){
-    this.authService.storedUser().then((value) => {
-      if(value){
-        this.loggedIn = true;
-        this.profileData = value;
-        //console.log(this.profileData);
-      }
-      else{
-        this.loggedIn = false;
-      }
-    });
   }
 
   ionViewDidLoad(){

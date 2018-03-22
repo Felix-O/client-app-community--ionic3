@@ -27,19 +27,19 @@ export class SermonsPage {
     public navParams: NavParams,
     public menuCtrl: MenuController,
     public loadingCtrl: LoadingController) {
+      this.authService.storedUser().then((value) => {
+        if(value){
+          this.loggedIn = true;
+          this.profileData = value;
+          console.log(this.profileData);
+        }
+        else{
+          this.loggedIn = false;
+        }
+      });
   }
 
   ionViewCanEnter(){
-    this.authService.storedUser().then((value) => {
-      if(value){
-        this.loggedIn = true;
-        this.profileData = value;
-        console.log(this.profileData);
-      }
-      else{
-        this.loggedIn = false;
-      }
-    });
   }
 
   ionViewDidLoad() {

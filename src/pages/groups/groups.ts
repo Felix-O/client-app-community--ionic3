@@ -34,19 +34,19 @@ export class GroupsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController) {
+      this.authService.storedUser().then((value) => {
+        if(value){
+          this.loggedIn = true;
+          this.profileData = value;
+          //console.log(this.profileData);
+        }
+        else{
+          this.loggedIn = false;
+        }
+      });
   }
 
   ionViewCanEnter(){
-    this.authService.storedUser().then((value) => {
-      if(value){
-        this.loggedIn = true;
-        this.profileData = value;
-        console.log(this.profileData);
-      }
-      else{
-        this.loggedIn = false;
-      }
-    });
   }
 
   ionViewDidLoad(){

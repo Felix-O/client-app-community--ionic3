@@ -39,21 +39,26 @@ export class ProfilePage {
     public popoverCtrl: PopoverController,
     public navParams: NavParams,
     public authService: AuthProvider) {
+      this.authService.storedUser().then((value) => {
+        if(value){
+          this.loggedIn = true;
+          this.profileData = value;
+          //console.log(this.profileData);
+        }
+        else{
+          this.loggedIn = false;
+        }
+      });
   }
-  
+
   ionViewCanEnter() {
     //Check if already authenticated
     this.authService.checkAuthentication().then((res) => {
         //console.log("Authorized");
         this.authService.storedUser().then((value) => {
           if(value){
-            this.loggedIn = true;
-            this.profileData = value;
             this.showData(value);
-            console.log(this.profileData);
-          }
-          else{
-            this.loggedIn = false;
+            //console.log(this.profileData);
           }
           //console.log(value);
         });

@@ -11,8 +11,8 @@
 
     <ion-buttons class="menu-buttons-right" end>
       <button ion-button icon-only large [color]="isTheme ? 'theme' : 'dark'" (click)="presentPopover($event)">
-        <ion-icon [color]="menuIconColor" class="menuicon" name="more"></ion-icon>
-        <ion-avatar style="position: absolute;" *ngIf="loggedIn">
+        <ion-icon *ngIf="!loggedIn" [color]="menuIconColor" class="menu-icon-left" name="more"></ion-icon>
+        <ion-avatar *ngIf="loggedIn">
           <img class="navbar-avatar" [src]="profileData?.googleProfilePic">
         </ion-avatar>
       </button>
