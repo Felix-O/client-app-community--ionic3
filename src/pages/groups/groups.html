@@ -7,9 +7,11 @@
 <ion-header>
 
   <ion-navbar color="theme">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-buttons left>
+      <button ion-button large (click)="menuCtrl.toggle()" margin-horizontal>
+        <ion-icon name="menu" style="font-size: 1.7em" ></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Groups</ion-title>
 
     <ion-buttons end>

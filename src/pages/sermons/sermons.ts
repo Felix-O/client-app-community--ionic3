@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController, PopoverController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { WpProvider } from '../../providers/wp/wp';
 
@@ -25,6 +25,7 @@ export class SermonsPage {
     public popoverCtrl: PopoverController,
     public navCtrl: NavController,
     public navParams: NavParams,
+    public menuCtrl: MenuController,
     public loadingCtrl: LoadingController) {
   }
 

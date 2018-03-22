@@ -1,5 +1,5 @@
 import { Component/*, ViewChild/*, ElementRef/**/ } from '@angular/core';
-import { IonicPage, NavController, PopoverController, AlertController/*, Slides/**/ } from 'ionic-angular';
+import { IonicPage, NavController, MenuController, PopoverController, AlertController/*, Slides/**/ } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 //import { MapProvider } from '../../providers/map/map';
 import { IndexProvider } from '../../providers/index/index';
@@ -7,7 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { PopoverPage } from "../popover/popover";
 
 //declare var google: any;
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -28,6 +28,7 @@ export class HomePage {
   constructor(/**/
     private afAuth: AngularFireAuth/**/,
     public authService: AuthProvider,
+    public menuCtrl: MenuController,
     public popoverCtrl: PopoverController/**/,
     public navCtrl: NavController/**/,
     public alertCtrl: AlertController,

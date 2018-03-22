@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { App, IonicPage, NavController, MenuController, NavParams, PopoverController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 
 import { PopoverPage } from "../popover/popover";
@@ -35,31 +35,27 @@ export class ProfilePage {
   constructor(
     protected app: App,
     public navCtrl: NavController,
+    public menuCtrl: MenuController,
     public popoverCtrl: PopoverController,
     public navParams: NavParams,
     public authService: AuthProvider) {
   }
-
+  
   ionViewCanEnter() {
-    this.authService.storedUser().then((value) => {
-      if(value){
-        this.loggedIn = true;
-        this.profileData = value;
-        console.log(this.profileData);
-      }
-      else{
-        this.loggedIn = false;
-      }
-    });
-  }
-
-  ionViewDidLoad() {
     //Check if already authenticated
     this.authService.checkAuthentication().then((res) => {
         //console.log("Authorized");
         this.authService.storedUser().then((value) => {
+          if(value){
+            this.loggedIn = true;
+            this.profileData = value;
+            this.showData(value);
+            console.log(this.profileData);
+          }
+          else{
+            this.loggedIn = false;
+          }
           //console.log(value);
-          this.showData(value);
         });
     }, (err) => {
         //console.log("Not Authorized");

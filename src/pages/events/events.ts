@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController, PopoverController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { WpProvider } from '../../providers/wp/wp';
 import { PopoverPage } from "../popover/popover";
@@ -23,6 +23,7 @@ export class EventsPage {
   constructor(
     public wpService: WpProvider,
     public authService: AuthProvider,
+    public menuCtrl: MenuController,
     public popoverCtrl: PopoverController,
     public navCtrl: NavController,
     public navParams: NavParams,

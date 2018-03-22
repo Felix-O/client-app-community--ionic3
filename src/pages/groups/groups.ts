@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, ModalController, LoadingController, PopoverController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { GroupsProvider } from '../../providers/groups/groups';
 
@@ -27,6 +27,7 @@ export class GroupsPage {
 
   constructor(
     public authService: AuthProvider,
+    public menuCtrl: MenuController,
     public popoverCtrl: PopoverController,
     public groupService: GroupsProvider,
     public modalCtrl: ModalController,

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController, PopoverController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+
+import { PopoverPage } from '../../pages/popover/popover';
 
 @IonicPage({
   name: 'RegisterPage'
@@ -27,7 +29,9 @@ export class RegisterPage {
 
   constructor( private aFAuth: AngularFireAuth,
     public navCtrl: NavController,
+    public menuCtrl: MenuController,
     public authService: AuthProvider,
+    public popoverCtrl: PopoverController,
     public loadingCtrl: LoadingController) {
 
   }
@@ -80,5 +84,10 @@ export class RegisterPage {
     });
     this.loading.present();
   }
+
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({ev: ev});
+  }/**/
 
 }

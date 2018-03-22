@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams, MenuController, PopoverController } from 'ionic-angular';
 import { IndexProvider } from '../../providers/index/index';
+import { PopoverPage } from '../../pages/popover/popover';
 
 /**
  * Generated class for the UserPage page.
@@ -30,8 +31,9 @@ export class UserPage {
     protected app: App,
     public indexPvdr: IndexProvider,
     public navCtrl: NavController,
+    public menuCtrl: MenuController,
+    public popoverCtrl: PopoverController,
     public navParams: NavParams) {
-
   }
 
   ionViewDidLoad() {
@@ -48,5 +50,10 @@ export class UserPage {
       this.role = this.userData.role;
     });/**/
   }
+
+  presentPopover(ev){
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({ev: ev});
+  }/**/
 
 }

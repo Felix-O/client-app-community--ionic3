@@ -7,13 +7,13 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 //import * as firebase from 'firebase/app';
 
-import { HomePage } from '../pages/home/home';
+//import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = 'HomePage';
   //menuButtonColor: string = 'theme';
   isTheme: boolean;
   body: any;
@@ -27,6 +27,7 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen) {
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -34,27 +35,27 @@ export class MyApp {
       splashScreen.hide();
       //console.log(this.navCtrl._app);
       this.isTheme = true;
+    });
 
-      this.getGoogleRedirectResult().then(result => {
-        if(result.user){
-          //this.showLoader();
-          var token = result.credential.accessToken;
-          this.pushGoogleCredetials(this.userObject(result)).then(res => {
-            this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component).then(() => {
-              //this.loading.dismiss();
-              console.log("redirecting");
-            });
+    this.getGoogleRedirectResult().then(result => {
+      if(result.user){
+        //this.showLoader();
+        var token = result.credential.accessToken;
+        this.pushGoogleCredetials(this.userObject(result)).then(res => {
+          this.app.getRootNav().setRoot(this.app.getRootNav().getActive().component).then(() => {
+            //this.loading.dismiss();
+            console.log("redirecting");
           });
-          console.log("call was made");
-        } else {
-          console.log("no redirect call was made");
-        }
-      }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
-      });
+        });
+        console.log("call was made");
+      } else {
+        console.log("no redirect call was made");
+      }
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
     });
   }
 
@@ -107,7 +108,7 @@ export class MyApp {
   }/**/
 
   goHome(){
-    this.app.getRootNav().setRoot(HomePage);
+    this.app.getRootNav().setRoot('HomePage');
     //this.close();
   }
 
