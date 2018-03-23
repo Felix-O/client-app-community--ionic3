@@ -92,6 +92,21 @@ export class HomePage {
     });
   }
 
+  goToGroups(){
+    this.navCtrl.setRoot('GroupsPage');
+    //this.close();
+  }
+
+  goToTheTeam(){
+    this.navCtrl.setRoot('TheTeamPage');
+    //this.close();
+  }
+
+  goToGive(){
+    this.navCtrl.setRoot('GivePage');
+    //this.close();
+  }
+
   presentPopover(ev){
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({ev: ev});
