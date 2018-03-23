@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, ViewController, LoadingController, ToastController, ToastOptions, AlertController } from 'ionic-angular';
+import { App, Platform, IonicPage, NavController, ViewController, LoadingController, ToastController, ToastOptions, AlertController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 //import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -36,6 +36,7 @@ export class LoginPage {
       private afAuth: AngularFireAuth,
       public toast: ToastController,
       private googlePlus: GooglePlus,
+      private platform: Platform,
       public viewCtrl: ViewController,
       public navCtrl: NavController,
       public authService: AuthProvider,
@@ -99,7 +100,11 @@ export class LoginPage {
 
     googleLogin(){
       this.showLoader();
-      this.googleRedirect();
+      if (this.platform.is('cordova')) {
+        this.nativeGoogleLogin();
+      } else {
+          this.googleRedirect();
+      }
     }
 
     async googlePopup(): Promise<void>{
